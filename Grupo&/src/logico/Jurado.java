@@ -8,6 +8,14 @@ public class Jurado extends Persona {
 		// TODO Auto-generated constructor stub
 	}
 
+	public String getExperiencia() {
+		return experiencia;
+	}
+
+	public void setExperiencia(String experiencia) {
+		this.experiencia = experiencia;
+	}
+
 	
 
 }
