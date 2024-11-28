@@ -13,7 +13,7 @@ public class Audio extends Recurso {
 		return tipoAudio;
 	}
 
-	public void setTipoAudio(String tipoAudio) {
+	public void setTipoAudio(String tipoAudio) { 
 		this.tipoAudio = tipoAudio;
 	}
 	
