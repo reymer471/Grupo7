@@ -65,7 +65,7 @@ public class SPEC {
 	}
 	
 	
-	public void insertarpersona(Persona persona) {
+	public void insertarPersona(Persona persona) {
 		misPersonas.add(persona);
 		codPersona++;
 	}
@@ -83,6 +83,25 @@ public class SPEC {
 	public void insertarComision(Comision comision) {
 		misComisiones.add(comision);
 		codComision++;
+	}
+	
+	public void eliminarPersona(Persona persona) {
+		if (persona != null) {
+			misPersonas.remove(persona);
+		}
+	}
+	
+	public TrabajoCientifico buscarTCientificoById(String id) {
+		TrabajoCientifico t = null;
+		boolean encontrado = false; 
+		int i = 0;
+		while (i < mistrabajosCientificos.size() && !encontrado) {
+			if(mistrabajosCientificos.get(i).getCodTrabajo().equalsIgnoreCase(id)) {
+				t = mistrabajosCientificos.get(i);
+				encontrado = true;
+			}
+		}
+		return t;
 	}
 
 }
