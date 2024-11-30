@@ -9,13 +9,27 @@ public class SPEC {
 	private ArrayList<Persona>misPersonas;
 	private ArrayList<Comision>misComisiones;
 	
-	public SPEC(ArrayList<TrabajoCientifico> mistrabajosCientifico, ArrayList<Evento> misEventos,
-			ArrayList<Persona> misPersonas, ArrayList<Comision> misComisiones) {
+	public static int codTrajCientifico = 1;
+	public static int codEvento = 1; 
+	public static int codPersona = 1;
+	public static int codComision = 1;
+	
+	private static SPEC sistemaSpec = null;
+	
+	public SPEC() {
+		
 		super();
-		this.mistrabajosCientifico = mistrabajosCientifico;
-		this.misEventos = misEventos;
-		this.misPersonas = misPersonas;
-		this.misComisiones = misComisiones;
+		mistrabajosCientifico = new ArrayList<>();
+		misEventos = new ArrayList<>();
+		misPersonas = new ArrayList<>();
+		misComisiones = new ArrayList<>();
+	}
+	
+	public static SPEC getInstance() {
+		if(sistemaSpec == null) {
+			sistemaSpec = new SPEC();
+		}
+		return sistemaSpec;
 	}
 
 	public ArrayList<TrabajoCientifico> getMistrabajosCientifico() {
