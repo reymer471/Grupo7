@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SPEC {
 	
-	private ArrayList<TrabajoCientifico>mistrabajosCientifico;
+	private ArrayList<TrabajoCientifico>mistrabajosCientificos;
 	private ArrayList<Evento>misEventos;
 	private ArrayList<Persona>misPersonas;
 	private ArrayList<Comision>misComisiones;
@@ -19,7 +19,7 @@ public class SPEC {
 	public SPEC() {
 		
 		super();
-		mistrabajosCientifico = new ArrayList<>();
+		mistrabajosCientificos = new ArrayList<>();
 		misEventos = new ArrayList<>();
 		misPersonas = new ArrayList<>();
 		misComisiones = new ArrayList<>();
@@ -32,12 +32,12 @@ public class SPEC {
 		return sistemaSpec;
 	}
 
-	public ArrayList<TrabajoCientifico> getMistrabajosCientifico() {
-		return mistrabajosCientifico;
+	public ArrayList<TrabajoCientifico> getMistrabajosCientificos() {
+		return mistrabajosCientificos;
 	}
 
-	public void setMistrabajosCientifico(ArrayList<TrabajoCientifico> mistrabajosCientifico) {
-		this.mistrabajosCientifico = mistrabajosCientifico;
+	public void setMistrabajosCientifico(ArrayList<TrabajoCientifico> mistrabajosCientificos) {
+		this.mistrabajosCientificos = mistrabajosCientificos;
 	}
 
 	public ArrayList<Evento> getMisEventos() {
@@ -62,6 +62,27 @@ public class SPEC {
 
 	public void setMisComisiones(ArrayList<Comision> misComisiones) {
 		this.misComisiones = misComisiones;
+	}
+	
+	
+	public void insertarpersona(Persona persona) {
+		misPersonas.add(persona);
+		codPersona++;
+	}
+	
+	public void insertarTrabajoCientifico(TrabajoCientifico t) {
+		mistrabajosCientificos.add(t);
+		codTrajCientifico++;
+	}
+	
+	public void inertarEvento(Evento event) {
+		misEventos.add(event);
+		codEvento++;
+	}
+	
+	public void insertarComision(Comision comision) {
+		misComisiones.add(comision);
+		codComision++;
 	}
 
 }

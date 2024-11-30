@@ -8,7 +8,7 @@ public class TrabajoCientifico {
 	private String titulo;
 	private String contexto;
 	private String areacomision;
-	private ArrayList<Participante>particiantes;
+	private ArrayList<Participante> particiantes;
 	
 	public TrabajoCientifico(String numTrabajo, String titulo, String contexto, String areacomision,
 			ArrayList<Participante> particiantes) {
@@ -17,7 +17,7 @@ public class TrabajoCientifico {
 		this.titulo = titulo;
 		this.contexto = contexto;
 		this.areacomision = areacomision;
-		this.particiantes = particiantes;
+		particiantes = new ArrayList<>();
 	}
 
 	public String getNumTrabajo() {
