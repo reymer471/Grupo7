@@ -1,9 +1,11 @@
 package logico;
 
 public abstract class infoEvento {
+	
 	protected String temaEvento;
 	protected String numeroPersonas;
 	protected String duracionEvento;
+	
 	public infoEvento(String temaEvento, String numeroPersonas, String duracionEvento) {
 		super();
 		this.temaEvento = temaEvento;
@@ -29,8 +31,4 @@ public abstract class infoEvento {
 		this.duracionEvento = duracionEvento;
 	}
 	
-
-
-
-
 }
