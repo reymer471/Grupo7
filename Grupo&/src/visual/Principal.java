@@ -62,73 +62,7 @@ public class Principal extends JFrame {
         });
         mnArchivo.add(mntmSalir);
         
-        // Menu Usuario
-        JMenu mnClientes = new JMenu("Usuarios");
-        mnClientes.setIcon(new ImageIcon(Principal.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
-        menuBar1.add(mnClientes);
-        
-        JMenuItem mntmAgregarCliente = new JMenuItem("Agregar Personas");
-        mntmAgregarCliente.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-fewer-details@2x.png")));
-        mntmAgregarCliente.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new AgregarPersona();
-            }
-        });
-      
-        
-        JMenuItem mntmListadoClientes = new JMenuItem("Listado de jurados");
-        mntmListadoClientes.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-more-details@2x.png")));
-        mntmListadoClientes.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new TablajJurados();
-            }
-        });
-      
-        
-        // Menú Quesos
-        JMenu mnQuesos = new JMenu("Evento");
-        mnQuesos.setIcon(new ImageIcon(Principal.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
-        menuBar1.add(mnQuesos);
-        
-        JMenuItem mntmAgregarQueso = new JMenuItem("Agregar Recurso");
-        mntmAgregarQueso.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-fewer-details@2x.png")));
-        mntmAgregarQueso.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new AgregarRecurso();
-            }
-        });
-        
-        
-        JMenuItem mntmListadoQuesos = new JMenuItem("Agregar informacion del evento ");
-        mntmListadoQuesos.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-more-details@2x.png")));
-        mntmListadoQuesos.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new AgregarRecurso();
-            }
-        });
-    
-        
-        // Menu trabajo cientifico
-        JMenu mnFacturas = new JMenu("trabajo cientifico");
-        mnFacturas.setIcon(new ImageIcon(Principal.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
-        menuBar1.add(mnFacturas);
-        
-        JMenuItem mntmCrearFactura = new JMenuItem("Crear trabajo cientifico");
-        mntmCrearFactura.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-fewer-details@2x.png")));
-        mntmCrearFactura.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new CrearFactura(Principal.this).setVisible(true);
-            }
-        });
-       
-        
-        JMenuItem mntmListadoFacturas = new JMenuItem("Listado de trabajo cientifico");
-        mntmListadoFacturas.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-more-details@2x.png")));
-        mntmListadoFacturas.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new ListadoFacturas(Principal.this).setVisible(true);
-            }
-        });
+
       
         
      // Panel central con mensaje de bienvenida
