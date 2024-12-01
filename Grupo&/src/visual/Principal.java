@@ -1,42 +1,145 @@
 package visual;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.border.LineBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 public class Principal extends JFrame {
+    
+    private JPanel contentPane;
+    
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Principal frame = new Principal();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-	private JPanel contentPane;
+    public Principal() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/javax/swing/plaf/metal/icons/ocean/paletteClose-pressed.gif")));
+   
+        setTitle("Sistema de Quesos");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 600, 400);
+        Dimension dim = getToolkit().getScreenSize();
+        setSize(dim.width+10,dim.height-40);
+        setLocationRelativeTo(null);
+        JMenuBar menuBar= new JMenuBar();
+        setJMenuBar(menuBar);
+        
+        // Panel principal
+        contentPane = new JPanel();
+        setContentPane(contentPane);
+        contentPane.setLayout(new BorderLayout(0, 0));
+        
+        // Barra de menú
+        JMenuBar menuBar1 = new JMenuBar();
+        menuBar1.setBackground(UIManager.getColor("Button.darkShadow"));
+        setJMenuBar(menuBar1);
+        
+        // Menú Archivo
+        JMenu mnArchivo = new JMenu("Emergencia");
+        mnArchivo.setIcon(new ImageIcon(Principal.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
+        menuBar1.add(mnArchivo);
+        
+        JMenuItem mntmSalir = new JMenuItem("Salir");
+        mntmSalir.setIcon(new ImageIcon(Principal.class.getResource("/javax/swing/plaf/metal/icons/Error.gif")));
+        mntmSalir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        mnArchivo.add(mntmSalir);
+        
+        // Menu Usuario
+        JMenu mnClientes = new JMenu("Usuarios");
+        mnClientes.setIcon(new ImageIcon(Principal.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
+        menuBar1.add(mnClientes);
+        
+        JMenuItem mntmAgregarCliente = new JMenuItem("Agregar Personas");
+        mntmAgregarCliente.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-fewer-details@2x.png")));
+        mntmAgregarCliente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new AgregarPersona();
+            }
+        });
+      
+        
+        JMenuItem mntmListadoClientes = new JMenuItem("Listado de jurados");
+        mntmListadoClientes.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-more-details@2x.png")));
+        mntmListadoClientes.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TablajJurados();
+            }
+        });
+      
+        
+        // Menú Quesos
+        JMenu mnQuesos = new JMenu("Evento");
+        mnQuesos.setIcon(new ImageIcon(Principal.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
+        menuBar1.add(mnQuesos);
+        
+        JMenuItem mntmAgregarQueso = new JMenuItem("Agregar Recurso");
+        mntmAgregarQueso.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-fewer-details@2x.png")));
+        mntmAgregarQueso.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new AgregarRecurso();
+            }
+        });
+        
+        
+        JMenuItem mntmListadoQuesos = new JMenuItem("Agregar informacion del evento ");
+        mntmListadoQuesos.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-more-details@2x.png")));
+        mntmListadoQuesos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new AgregarRecurso();
+            }
+        });
+    
+        
+        // Menu trabajo cientifico
+        JMenu mnFacturas = new JMenu("trabajo cientifico");
+        mnFacturas.setIcon(new ImageIcon(Principal.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
+        menuBar1.add(mnFacturas);
+        
+        JMenuItem mntmCrearFactura = new JMenuItem("Crear trabajo cientifico");
+        mntmCrearFactura.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-fewer-details@2x.png")));
+        mntmCrearFactura.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new CrearFactura(Principal.this).setVisible(true);
+            }
+        });
+       
+        
+        JMenuItem mntmListadoFacturas = new JMenuItem("Listado de trabajo cientifico");
+        mntmListadoFacturas.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-more-details@2x.png")));
+        mntmListadoFacturas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ListadoFacturas(Principal.this).setVisible(true);
+            }
+        });
+      
+        
+     // Panel central con mensaje de bienvenida
+        JPanel panelCentral = new JPanel();
+        panelCentral.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+        panelCentral.setLayout(new FlowLayout(FlowLayout.CENTER));  
+        contentPane.add(panelCentral, BorderLayout.CENTER);
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Principal frame = new Principal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Principal() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-	}
-
+        // Mensaje de bienvenida
+        JLabel lblNewLabel = new JLabel("Bienvenidos al sistema de Eventos  ");
+        lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/java/swing/plaf/windows/icons/Inform.gif")));
+        panelCentral.add(lblNewLabel); 
+    }
 }
