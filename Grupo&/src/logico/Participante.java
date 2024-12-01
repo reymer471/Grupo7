@@ -9,6 +9,16 @@ public class Participante extends Persona {
 		this.direccion = direccion;
 		this.email = email;
 	}
+	@Override
+    public void registrar() {
+        System.out.println("Participante registrado: " + nombre + " " + apellido);
+    }
+
+    @Override
+    public void eliminar() {
+        System.out.println("Participante eliminado: " + nombre + " " + apellido);
+    }
+
 
 	public String getDireccion() {
 		return direccion;

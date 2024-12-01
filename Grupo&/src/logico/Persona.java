@@ -13,7 +13,11 @@ public abstract class Persona {
 		this.apellido = apellido;
 	}
 
-
+    public abstract void registrar();
+    
+    public abstract void eliminar();
+    
+    
 	public String getCodigo() {
 		return codigo;
 	}

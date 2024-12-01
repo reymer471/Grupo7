@@ -12,8 +12,13 @@ public class Comision {
 		super();
 		this.nombreComision = nombreComision;
 		this.codigocomision = codigocomision;
-		losJurados = new ArrayList<>();
+		losJurados = new ArrayList<>();	
 	}
+	
+	public void integrarComision(Jurado jurado) {
+        losJurados.add(jurado);
+        System.out.println("Jurado agregado a la comisión: " + jurado.getNombre());
+    }
 
 	public String getNombreComision() {
 		return nombreComision;
