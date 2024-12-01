@@ -59,7 +59,14 @@ public class TrabajoCientifico {
 	public void setParticiantes(ArrayList<Participante> particiantes) {
 		this.particiantes = particiantes;
 	}
-	
+    public void agregarParticipante(Participante participante) {
+        this.particiantes.add(participante);
+    }
+
+   
+    public void eliminarParticipante(Participante participante) {
+        this.particiantes.remove(participante);
+    }
 	
 
 }
