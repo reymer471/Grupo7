@@ -20,6 +20,7 @@ import logico.Persona;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.Color;
+import javax.swing.border.CompoundBorder;
 
 public class AgregarPersona extends JDialog {
 
@@ -46,13 +47,14 @@ public class AgregarPersona extends JDialog {
     public AgregarPersona() {
     	setTitle("Agregar tipo de Persona");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarPersona.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
-        setBounds(100, 100, 450, 400);
+        setBounds(150, 150, 500, 450);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(Color.LIGHT_GRAY);
         contentPanel.setLayout(null);
         contentPanel.setBorder(new EmptyBorder(12, 12, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
-
+        setLocationRelativeTo(null);
+        
         // Etiquetas comunes
         JLabel lblCodigo = new JLabel("Código:");
         lblCodigo.setBounds(10, 20, 100, 20);
@@ -125,6 +127,7 @@ public class AgregarPersona extends JDialog {
 
         // Botones de acción 
         JPanel buttonPane = new JPanel();
+        buttonPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
@@ -162,6 +165,17 @@ public class AgregarPersona extends JDialog {
                 String codigo = txtCodigo.getText();
                 String nombre = txtNombre.getText();
                 String apellido = txtApellido.getText();
+                
+                
+                if (codigo.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                        null,
+                        "Por favor, complete todos los campos obligatorios.",
+                        "Error",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                    );
+                    return; 
+                }
 
                 // Crear la persona según el tipo seleccionado
                 Persona persona = null;
@@ -173,8 +187,17 @@ public class AgregarPersona extends JDialog {
                 	persona = new Jurado(txtCodigo.getText(), txtNombre.getText(), txtApellido.getText(), txtExperiencia.getText(), txtEspecialidad.getText());
                     ((Jurado) persona).setExperiencia(txtExperiencia.getText());
                     ((Jurado) persona).setEspecialidad(txtEspecialidad.getText());
+                    
+                    if (persona != null) {
+                        // Muestra un mensaje de confirmación
+                        javax.swing.JOptionPane.showMessageDialog(
+                            null, 
+                            "Se ha agregado correctamente a " + persona.getNombre() + " " + persona.getApellido(), 
+                            "Confirmación", 
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE
+                 );}
                 }
-
+             
                 persona.setCodigo(codigo);
                 persona.setNombre(nombre);
                 persona.setApellido(apellido);
@@ -182,7 +205,9 @@ public class AgregarPersona extends JDialog {
 
                 dispose();
             }
+            
         });
+        
 
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
