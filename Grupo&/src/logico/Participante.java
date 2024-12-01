@@ -4,8 +4,8 @@ public class Participante extends Persona {
 	private String direccion;
 	private String email;
 	
-	public Participante(String codigo, String nombre, String apellido, String direccion, String email) {
-		super(codigo, nombre, apellido);
+    public Participante(String codigo, String nombre, String apellido, String direccion, String email) {
+        super(codigo, nombre, apellido);
 		this.direccion = direccion;
 		this.email = email;
 	}

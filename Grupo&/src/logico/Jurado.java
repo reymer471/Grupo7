@@ -4,8 +4,8 @@ public class Jurado extends Persona {
 	private String experiencia;
 	private String especialidad;
 	
-	public Jurado(String codigo, String nombre, String apellido, String especialidad, String experiencia) {
-		super(codigo, nombre, apellido);
+    public Jurado(String codigo, String nombre, String apellido, String experiencia, String especialidad) {
+        super(codigo, nombre, apellido);
 		this.experiencia=experiencia;
 		this.especialidad=especialidad;
 	}
