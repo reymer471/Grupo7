@@ -1,16 +1,19 @@
 package logico;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable{
 	
-	public String username;
-	public String contrasena;
-	public String rol;
+	private static final long serialVersionUID = 1L;
+	private String username;
+	private String contrasena;
+	private String pass;
 	
-	public Usuario(String username, String contrasena, String rol) {
+	public Usuario(String username, String contrasena, String pass) {
 		super();
 		this.username = username;
 		this.contrasena = contrasena;
-		this.rol = rol;
+		this.pass = pass;
 	}
 
 	public String getUsername() {
@@ -29,12 +32,15 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 
-	public String getRol() {
-		return rol;
+	public String getPass() {
+		return pass;
 	}
 
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
-
+	
+	
+   
+	
 }
