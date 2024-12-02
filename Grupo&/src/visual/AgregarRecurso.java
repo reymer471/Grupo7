@@ -18,8 +18,8 @@ import java.awt.event.ActionEvent;
 public class AgregarRecurso extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtCodigoRecurso;
+	private JTextField txtNombre;
 
 	/**
 	 * Launch the application.
@@ -50,32 +50,32 @@ public class AgregarRecurso extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
-				JLabel lblNewLabel = new JLabel("Codigo:");
-				lblNewLabel.setBounds(10, 24, 78, 14);
-				panel.add(lblNewLabel);
+				JLabel lblCodigo = new JLabel("Codigo:");
+				lblCodigo.setBounds(10, 24, 78, 14);
+				panel.add(lblCodigo);
 			}
 			{
-				textField = new JTextField();
-				textField.setEnabled(false);
-				textField.setBounds(101, 21, 117, 20);
-				panel.add(textField);
-				textField.setColumns(10);
+				txtCodigoRecurso = new JTextField();
+				txtCodigoRecurso.setEnabled(false);
+				txtCodigoRecurso.setBounds(101, 21, 117, 20);
+				panel.add(txtCodigoRecurso);
+				txtCodigoRecurso.setColumns(10);
 			}
 			{
-				JLabel lblNewLabel_1 = new JLabel("Nombre:");
-				lblNewLabel_1.setBounds(10, 99, 46, 14);
-				panel.add(lblNewLabel_1);
+				JLabel lblNombre = new JLabel("Nombre:");
+				lblNombre.setBounds(10, 99, 46, 14);
+				panel.add(lblNombre);
 			}
 			{
-				JLabel lblNewLabel_2 = new JLabel("Tipo de recurso:");
-				lblNewLabel_2.setBounds(10, 143, 78, 14);
-				panel.add(lblNewLabel_2);
+				JLabel lblTIpoRecurso = new JLabel("Tipo de recurso:");
+				lblTIpoRecurso.setBounds(10, 143, 78, 14);
+				panel.add(lblTIpoRecurso);
 			}
 			{
-				textField_1 = new JTextField();
-				textField_1.setColumns(10);
-				textField_1.setBounds(101, 96, 321, 20);
-				panel.add(textField_1);
+				txtNombre = new JTextField();
+				txtNombre.setColumns(10);
+				txtNombre.setBounds(101, 96, 321, 20);
+				panel.add(txtNombre);
 			}
 			{
 				JLabel lblCantidad = new JLabel("Cantidad:");
@@ -83,14 +83,14 @@ public class AgregarRecurso extends JDialog {
 				panel.add(lblCantidad);
 			}
 			{
-				JSpinner spinner = new JSpinner();
-				spinner.setBounds(305, 140, 117, 20);
-				panel.add(spinner);
+				JSpinner spnCantidad = new JSpinner();
+				spnCantidad.setBounds(305, 140, 117, 20);
+				panel.add(spnCantidad);
 			}
 			{
-				JComboBox comboBox = new JComboBox();
-				comboBox.setBounds(101, 140, 117, 20);
-				panel.add(comboBox);
+				JComboBox cbxTIpoRecurso = new JComboBox();
+				cbxTIpoRecurso.setBounds(101, 140, 117, 20);
+				panel.add(cbxTIpoRecurso);
 			}
 		}
 		{
@@ -98,10 +98,10 @@ public class AgregarRecurso extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Registrar");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton RegistrarButton = new JButton("Registrar");
+				RegistrarButton.setActionCommand("OK");
+				buttonPane.add(RegistrarButton);
+				getRootPane().setDefaultButton(RegistrarButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");

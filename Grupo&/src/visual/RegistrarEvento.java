@@ -17,8 +17,8 @@ import javax.swing.JComboBox;
 public class RegistrarEvento extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtNombre;
+	private JTextField txtEventoCodigo;
 
 	/**
 	 * Launch the application.
@@ -48,47 +48,47 @@ public class RegistrarEvento extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
-				JLabel lblNewLabel = new JLabel("Evento codigo:");
-				lblNewLabel.setBounds(10, 26, 79, 14);
-				panel.add(lblNewLabel);
+				JLabel lblCodEvento = new JLabel("Evento codigo:");
+				lblCodEvento.setBounds(10, 26, 79, 14);
+				panel.add(lblCodEvento);
 			}
 			{
-				JLabel lblNewLabel_1 = new JLabel("Nombre:");
-				lblNewLabel_1.setBounds(10, 77, 46, 14);
-				panel.add(lblNewLabel_1);
+				JLabel lblNombre = new JLabel("Nombre:");
+				lblNombre.setBounds(10, 77, 46, 14);
+				panel.add(lblNombre);
 			}
 			{
-				JLabel lblNewLabel_2 = new JLabel("Fecha:");
-				lblNewLabel_2.setBounds(244, 120, 46, 14);
-				panel.add(lblNewLabel_2);
+				JLabel lblFechas = new JLabel("Fecha:");
+				lblFechas.setBounds(244, 120, 46, 14);
+				panel.add(lblFechas);
 			}
 			{
-				JLabel lblNewLabel_3 = new JLabel("Tipo de evento: ");
-				lblNewLabel_3.setBounds(10, 120, 79, 14);
-				panel.add(lblNewLabel_3);
+				JLabel lblTipoEvento = new JLabel("Tipo de evento: ");
+				lblTipoEvento.setBounds(10, 120, 79, 14);
+				panel.add(lblTipoEvento);
 			}
 			{
-				JLabel lblNewLabel_4 = new JLabel("Capacidad:");
-				lblNewLabel_4.setBounds(10, 163, 119, 14);
-				panel.add(lblNewLabel_4);
+				JLabel lblCapacidad = new JLabel("Capacidad:");
+				lblCapacidad.setBounds(10, 163, 119, 14);
+				panel.add(lblCapacidad);
 			}
 			
-			textField = new JTextField();
-			textField.setBounds(66, 74, 350, 20);
-			panel.add(textField);
-			textField.setColumns(10);
+			txtNombre = new JTextField();
+			txtNombre.setBounds(66, 74, 350, 20);
+			panel.add(txtNombre);
+			txtNombre.setColumns(10);
 			
-			JComboBox comboBox = new JComboBox();
-			comboBox.setBounds(99, 116, 119, 20);
-			panel.add(comboBox);
+			JComboBox cbxTipoEvento = new JComboBox();
+			cbxTipoEvento.setBounds(99, 116, 119, 20);
+			panel.add(cbxTipoEvento);
 			
-			JSpinner spinner = new JSpinner();
-			spinner.setBounds(289, 117, 127, 20);
-			panel.add(spinner);
+			JSpinner spnFecha = new JSpinner();
+			spnFecha.setBounds(289, 117, 127, 20);
+			panel.add(spnFecha);
 			{
-				JSpinner spinner_1 = new JSpinner();
-				spinner_1.setBounds(99, 160, 119, 20);
-				panel.add(spinner_1);
+				JSpinner spnCapacidad = new JSpinner();
+				spnCapacidad.setBounds(99, 160, 119, 20);
+				panel.add(spnCapacidad);
 			}
 			{
 				JLabel lblDuracion = new JLabel("Duracion:");
@@ -96,15 +96,15 @@ public class RegistrarEvento extends JDialog {
 				panel.add(lblDuracion);
 			}
 			{
-				JSpinner spinner_1 = new JSpinner();
-				spinner_1.setBounds(299, 160, 117, 20);
-				panel.add(spinner_1);
+				JSpinner spnDuracion = new JSpinner();
+				spnDuracion.setBounds(299, 160, 117, 20);
+				panel.add(spnDuracion);
 			}
 			{
-				textField_1 = new JTextField();
-				textField_1.setBounds(88, 23, 120, 20);
-				panel.add(textField_1);
-				textField_1.setColumns(10);
+				txtEventoCodigo = new JTextField();
+				txtEventoCodigo.setBounds(88, 23, 120, 20);
+				panel.add(txtEventoCodigo);
+				txtEventoCodigo.setColumns(10);
 			}
 		}
 		{
@@ -112,20 +112,20 @@ public class RegistrarEvento extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Cancelar");
-				okButton.addActionListener(new ActionListener() {
+				JButton cancelarButton = new JButton("Cancelar");
+				cancelarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				cancelarButton.setActionCommand("OK");
+				buttonPane.add(cancelarButton);
+				getRootPane().setDefaultButton(cancelarButton);
 			}
 			{
-				JButton cancelButton = new JButton("Registrar");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JButton registrarButton = new JButton("Registrar");
+				registrarButton.setActionCommand("Cancel");
+				buttonPane.add(registrarButton);
 			}
 		}
 	}
