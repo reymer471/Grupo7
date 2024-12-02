@@ -10,8 +10,7 @@ public class TrabajoCientifico {
 	private String areacomision;
 	private ArrayList<Participante> particiantes;
 	
-	public TrabajoCientifico(String numTrabajo, String titulo, String contexto, String areacomision,
-			ArrayList<Participante> particiantes) {
+	public TrabajoCientifico(String numTrabajo, String titulo, String contexto, String areacomision) {
 		super();
 		this.codTrabajo = numTrabajo;
 		this.titulo = titulo;
