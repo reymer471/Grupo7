@@ -45,8 +45,9 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setBackground(Color.BLACK);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-information@2x.png")));
-		setTitle("Gestion de eventos PUCMM");
+		setTitle("Gestion PUCMM");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(150, 150, 400, 305);
 		
@@ -56,6 +57,7 @@ public class Login extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
