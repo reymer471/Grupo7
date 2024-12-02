@@ -91,6 +91,12 @@ public class SPEC {
 		}
 	}
 	
+	public void eliminarEvento(Evento evento) {
+		if (evento != null) {
+			misEventos.remove(evento);
+		}
+	}
+	
 	public TrabajoCientifico buscarTCientificoById(String id) {
 		TrabajoCientifico t = null;
 		boolean encontrado = false; 
@@ -102,6 +108,61 @@ public class SPEC {
 			}
 		}
 		return t;
+	}
+	
+	public TrabajoCientifico buscarTCientificoByNombre(String titulo) {
+		TrabajoCientifico t = null;
+		boolean encontrado = false; 
+		int i = 0;
+		while (i < mistrabajosCientificos.size() && !encontrado) {
+			if(mistrabajosCientificos.get(i).getTitulo().equalsIgnoreCase(titulo)) {
+				t = mistrabajosCientificos.get(i);
+				encontrado = true;
+			}
+		}
+		return t;
+	}
+	
+	public Jurado buscarJuradoById(String id) {
+		Jurado jurado = null;
+		boolean encontrado = false; 
+		int i = 0;
+		
+		while (i < misPersonas.size() && !encontrado) {
+			Persona persona =  misPersonas.get(i);
+			
+			if(persona instanceof Jurado) {
+				
+				if(persona.getCodigo().equalsIgnoreCase(id)) {
+					jurado = (Jurado) persona;
+					encontrado = true;
+				}
+			}
+			
+			i++;
+		}
+		return (Jurado) jurado;
+	}
+	
+	public Participante buscarParticipanteById(String id) {
+		Participante participante = null;
+		boolean encontrado = false; 
+		int i = 0;
+		
+		while (i < misPersonas.size() && !encontrado) {
+			Persona persona =  misPersonas.get(i);
+			
+			if(persona instanceof Participante) {
+				
+				if(persona.getCodigo().equalsIgnoreCase(id)) {
+					participante = (Participante) persona;
+					encontrado = true;
+				}
+			}
+			
+			i++;
+		}
+		return (Participante) participante;
 	}
 
 }
