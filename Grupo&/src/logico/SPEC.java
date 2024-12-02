@@ -8,11 +8,13 @@ public class SPEC {
 	private ArrayList<Evento>misEventos;
 	private ArrayList<Persona>misPersonas;
 	private ArrayList<Comision>misComisiones;
+	private ArrayList<Recurso>misRecursos;
 	
 	public static int codTrajCientifico = 1;
 	public static int codEvento = 1; 
 	public static int codPersona = 1;
 	public static int codComision = 1;
+	public static int codRecurso = 1;
 	
 	private static SPEC sistemaSpec = null;
 	
@@ -83,6 +85,12 @@ public class SPEC {
 	public void insertarComision(Comision comision) {
 		misComisiones.add(comision);
 		codComision++;
+	}
+	
+	public void insertarRecurso(Recurso nuevoRecurso) {
+		// TODO Auto-generated method stub
+		misRecursos.add(nuevoRecurso);
+		codRecurso++;
 	}
 	
 	public void eliminarPersona(Persona persona) {
@@ -255,6 +263,8 @@ public class SPEC {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 	
 

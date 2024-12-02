@@ -143,11 +143,13 @@ public class Consulta extends JDialog {
 			panel_2.add(lblNewLabel_5);
 			
 			txtCodComision = new JTextField();
+			txtCodComision.setEditable(false);
 			txtCodComision.setBounds(130, 24, 86, 20);
 			panel_2.add(txtCodComision);
 			txtCodComision.setColumns(10);
 			
 			txtNombreComision = new JTextField();
+			txtNombreComision.setEditable(false);
 			txtNombreComision.setBounds(128, 59, 252, 20);
 			panel_2.add(txtNombreComision);
 			txtNombreComision.setColumns(10);
