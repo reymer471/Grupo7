@@ -17,7 +17,7 @@ public class Comision {
 	
 	public void integrarComision(Jurado jurado) {
         losJurados.add(jurado);
-        System.out.println("Jurado agregado a la comisión: " + jurado.getNombre());
+        System.out.println("Jurado agregado a la comision: " + jurado.getNombre());
     }
 
 	public String getNombreComision() {

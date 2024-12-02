@@ -10,6 +10,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
+
+import logico.Comision;
+import logico.Evento;
+import logico.Jurado;
+import logico.Participante;
+import logico.Recurso;
+import logico.SPEC;
+import logico.TrabajoCientifico;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -30,6 +39,13 @@ public class Consulta extends JDialog {
 	private JRadioButton rdbtnCodigo;
 	private JRadioButton rdbtnNombre;
 	private JLabel lblNombre;
+	
+	private Evento eventoBuscando;
+	private Jurado juradoBuscando;
+	private Comision comisionBuscando;
+	private Participante participanteBuscando;
+	private Recurso recurBucando;
+	private TrabajoCientifico trabajoBuscando;
 
 	/**
 	 * Launch the application.
@@ -202,6 +218,35 @@ public class Consulta extends JDialog {
 			}
 			{
 				JButton buscarButton = new JButton("Buscar");
+				buscarButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						if (radioButtonEvento.isSelected() && rdbtnCodigo.isSelected()) {
+							eventoBuscando = SPEC.getInstance().buscarEventoByCodigo();
+							
+						}else if (radioButtonEvento.isSelected() && rdbtnNombre.isSelected()) {
+							eventoBuscando = SPEC.getInstance().buscarEventoByNombre();
+							
+						}else if (rdbtnJurado.isSelected() && rdbtnCodigo.isSelected()) {
+							juradoBuscando = SPEC.getInstance().buscarJuradoById(txtCodigo.getText());
+							
+						}else if(rdbtnJurado.isSelected() && rdbtnNombre.isSelected()) {
+							
+						}else if(rdbtnComision.isSelected() && rdbtnCodigo.isSelected()) {
+							
+						}else if(rdbtnComision.isSelected() && rdbtnNombre.isSelected()) {
+							
+						}else if(rdbtnParticipante.isSelected() && rdbtnCodigo.isSelected()) {
+							
+						}else if(rdbtnParticipante.isSelected() && rdbtnNombre.isSelected()) {
+							
+						}else if(rdbtnTC.isSelected() && rdbtnCodigo.isSelected()) {
+							
+						}else if (rdbtnTC.isSelected() && rdbtnNombre.isSelected()) {
+							
+						}
+					}
+				});
 				buscarButton.setActionCommand("Cancel");
 				buttonPane.add(buscarButton);
 			}
