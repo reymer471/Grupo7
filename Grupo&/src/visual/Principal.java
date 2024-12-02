@@ -28,8 +28,6 @@ public class Principal extends JFrame {
 
     public Principal() {
     	setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/javax/swing/plaf/metal/icons/ocean/paletteClose-pressed.gif")));
-   
-        setTitle("Sistema de Quesos");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 600, 400);
         Dimension dim = getToolkit().getScreenSize();
