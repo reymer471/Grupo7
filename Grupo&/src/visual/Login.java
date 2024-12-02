@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Login extends JFrame {
 
@@ -44,9 +45,11 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-information@2x.png")));
 		setTitle("Gestion de eventos PUCMM");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 350, 255);
+		setBounds(150, 150, 400, 305);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -56,6 +59,7 @@ public class Login extends JFrame {
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JLabel lblNewLabel = new JLabel("\u00A1Bienvenido al gestor de eventos de nuestra alma mater!");
 		lblNewLabel.setBackground(Color.BLUE);
@@ -64,7 +68,8 @@ public class Login extends JFrame {
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Usuario:");
-		lblNewLabel_1.setBounds(69, 75, 67, 14);
+		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaTimeThumb.png")));
+		lblNewLabel_1.setBounds(29, 75, 90, 14);
 		panel.add(lblNewLabel_1);
 		
 		textField = new JTextField();
@@ -73,11 +78,12 @@ public class Login extends JFrame {
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Contrase\u00F1a:");
-		lblNewLabel_2.setBounds(54, 144, 93, 14);
+		lblNewLabel_2.setIcon(new ImageIcon(Login.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaTimeThumb.png")));
+		lblNewLabel_2.setBounds(29, 164, 93, 14);
 		panel.add(lblNewLabel_2);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(132, 141, 152, 20);
+		textField_1.setBounds(131, 161, 152, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -86,15 +92,17 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(29, 172, 89, 23);
+		btnNewButton.setBounds(235, 212, 89, 23);
 		panel.add(btnNewButton);
 		
 		JLabel lblNewLabel_3 = new JLabel("Inserte su nombre de usuario");
+		lblNewLabel_3.setIcon(new ImageIcon(Login.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
 		lblNewLabel_3.setBounds(29, 49, 213, 14);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Inserte su contrase\u00F1a:");
-		lblNewLabel_4.setBounds(29, 119, 159, 14);
+		lblNewLabel_4.setIcon(new ImageIcon(Login.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
+		lblNewLabel_4.setBounds(29, 130, 159, 14);
 		panel.add(lblNewLabel_4);
 		
 		
