@@ -106,22 +106,25 @@ public class SPEC {
 				t = mistrabajosCientificos.get(i);
 				encontrado = true;
 			}
+			i++;
 		}
 		return t;
 	}
-	
-	public TrabajoCientifico buscarTCientificoByNombre(String titulo) {
+	public TrabajoCientifico buscarTCientificoByNombre (String nombre) {
 		TrabajoCientifico t = null;
 		boolean encontrado = false; 
 		int i = 0;
 		while (i < mistrabajosCientificos.size() && !encontrado) {
-			if(mistrabajosCientificos.get(i).getTitulo().equalsIgnoreCase(titulo)) {
+			if(mistrabajosCientificos.get(i).getTitulo().equalsIgnoreCase(nombre)) {
 				t = mistrabajosCientificos.get(i);
 				encontrado = true;
 			}
+			i++;
 		}
 		return t;
 	}
+	
+
 	
 	public Jurado buscarJuradoById(String id) {
 		Jurado jurado = null;
@@ -144,6 +147,29 @@ public class SPEC {
 		return (Jurado) jurado;
 	}
 	
+	public Jurado buscarJuradoByNombre(String nombre) {
+		// TODO Auto-generated method stub
+		Jurado jurado = null;
+		boolean encontrado = false; 
+		int i = 0;
+		
+		while (i < misPersonas.size() && !encontrado) {
+			Persona persona =  misPersonas.get(i);
+			
+			if(persona instanceof Jurado) {
+				
+				if(persona.getNombre().equalsIgnoreCase(nombre)) {
+					jurado = (Jurado) persona;
+					encontrado = true;
+				}
+			}
+			
+			i++;
+		}
+		return (Jurado) jurado;
+	}
+	
+	
 	public Participante buscarParticipanteById(String id) {
 		Participante participante = null;
 		boolean encontrado = false; 
@@ -164,5 +190,76 @@ public class SPEC {
 		}
 		return (Participante) participante;
 	}
+	
+	public Participante buscarParticipanteByNombre(String nombre) {
+		// TODO Auto-generated method stub
+		Participante participante = null;
+		boolean encontrado = false; 
+		int i = 0;
+		
+		while (i < misPersonas.size() && !encontrado) {
+			Persona persona =  misPersonas.get(i);
+			
+			if(persona instanceof Participante) {
+				
+				if(persona.getNombre().equalsIgnoreCase(nombre)) {
+					participante = (Participante) persona;
+					encontrado = true;
+				}
+			}
+			
+			i++;
+		}
+		return (Participante) participante;
+	}
+
+	public Evento buscarEventoByCodigo(String idevento) {
+		// TODO Auto-generated method stub
+		Evento evento = null;
+		boolean found = false; 
+		int i = 0; 
+		
+		while(i < misEventos.size() && !found) {
+			if (misEventos.get(i).getIdEvento().equalsIgnoreCase(idevento)) {
+				evento = misEventos.get(i);
+				found = true;
+			}
+			i++;
+		}
+		return evento;
+	}
+
+	public Evento buscarEventoByNombre(String nombre) {
+		// TODO Auto-generated method stub
+		Evento evento = null;
+		boolean found = false; 
+		
+		int i = 0; 
+		
+		while(i < misEventos.size() && !found) {
+			if (misEventos.get(i).getNombre().equalsIgnoreCase(nombre)) {
+				evento = misEventos.get(i);
+				found = true;
+			}
+			i++;
+		}
+		return evento;
+	}
+
+	public Comision buscarComisionById(String codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Comision buscarComisionByNombre(String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+
+	
+	
 
 }
