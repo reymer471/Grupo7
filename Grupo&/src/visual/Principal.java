@@ -7,12 +7,16 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
+
+import logico.Control;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 
 public class Principal extends JFrame {
     
     private JPanel contentPane;
+	private Object mnAdministracion;
     
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -78,6 +82,11 @@ public class Principal extends JFrame {
         mnNewMenu_2.add(mntmNewMenuItem_1);
         
         JMenu mnNewMenu_1 = new JMenu("Administracion");
+        //if (!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")) {
+			// ((Object) mnAdministracin).setEnable(false);
+        	
+			
+		//}
         menuBar1.add(mnNewMenu_1);
         
         // Menú Archivo

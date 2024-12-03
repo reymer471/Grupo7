@@ -39,6 +39,11 @@ public class Usuario implements Serializable{
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+
+	public String getTipo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
    
