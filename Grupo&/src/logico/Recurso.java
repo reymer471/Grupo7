@@ -1,18 +1,18 @@
 package logico;
 
-public class Recurso {
-	
-	 private String id ;
-	 private String nombre;
-	 private int cantidadTotal;
-	 private String tiporecurso;
- 
-	public Recurso(String id, String nombre, int cantidadTotal) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.cantidadTotal = cantidadTotal;
-	}
+class Recurso {
+    private String id;
+    private String tipoRecurso;
+    private String nombre;
+    private int cantidadTotal;
+
+
+    public Recurso(String id, String tipoRecurso, String nombre, int cantidadTotal) {
+        this.id = id;
+        this.tipoRecurso = tipoRecurso;
+        this.nombre = nombre;
+        this.cantidadTotal = cantidadTotal;
+    }
 
 	public String getId() {
 		return id;
@@ -39,11 +39,27 @@ public class Recurso {
 	}
 
 	public String getTiporecurso() {
-		return tiporecurso;
+		return tipoRecurso;
 	}
 
 	public void setTiporecurso(String tiporecurso) {
-		this.tiporecurso = tiporecurso;
+		this.tipoRecurso = tiporecurso;
 	}
+	
+	  public void usar() {
+	        if (cantidadTotal > 0) {
+	            cantidadTotal--;
+	        } else {
+	            System.out.println("No hay recursos disponibles.");
+	        }
+	    }
+
+	    public void desuso() {
+	        cantidadTotal++;
+	    }
+
+	    public boolean verificarDispo() {
+	        return cantidadTotal > 0;
+	    }
 
 }

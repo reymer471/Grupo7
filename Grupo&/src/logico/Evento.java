@@ -4,91 +4,122 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Evento {
-	private String nombre;
-	private String idEvento;
-	private Date fechaEvento;
-	private String tipoEvento;
-	private infoEvento iEvento;
-	private ArrayList<Recurso>recursosEvento;
-	private ArrayList<TrabajoCientifico>trajsCientificosEvento;
-	private ArrayList<Comision> comisionesevento;
 	
-	
-	public Evento(String nombre, String idEvento, Date fechaEvento, String tipoEvento, infoEvento iEvento) {
-		super();
-		this.nombre = nombre;
-		this.idEvento = idEvento;
-		this.fechaEvento = fechaEvento;
-		this.tipoEvento = tipoEvento;
-		this.iEvento = iEvento;
-		recursosEvento = new ArrayList<>();
-		trajsCientificosEvento = new ArrayList<>();
-		comisionesevento = new ArrayList<>();
-		
-	}
+	    private String nombre;
+	    private String idEvento;
+	    private Date fechaEvento;
+	    private String tipoEvento;
+	    private infoEvento infoEvento;
+	    private ArrayList<Recurso> recursosEvento;
+	    private ArrayList<String> trabajosCientificos; 
+	    private ArrayList<String> comisiones; 
 
-	public String getNombre() {
-		return nombre;
-	}
+	    
+	    public Evento(String nombre, String idEvento, Date fechaEvento, String tipoEvento, infoEvento infoEvento) {
+	        this.nombre = nombre;
+	        this.idEvento = idEvento;
+	        this.fechaEvento = fechaEvento;
+	        this.tipoEvento = tipoEvento;
+	        this.infoEvento = infoEvento;
+	        this.recursosEvento = new ArrayList<>();
+	        this.trabajosCientificos = new ArrayList<>();
+	        this.comisiones = new ArrayList<>();
+	    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
-	public String getIdEvento() {
-		return idEvento;
-	}
+		public String getNombre() {
+			return nombre;
+		}
 
-	public void setIdEvento(String idEvento) {
-		this.idEvento = idEvento;
-	}
 
-	public Date getFechaEvento() {
-		return fechaEvento;
-	}
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
 
-	public void setFechaEvento(Date fechaEvento) {
-		this.fechaEvento = fechaEvento;
-	}
 
-	public String getTipoEvento() {
-		return tipoEvento;
-	}
+		public String getIdEvento() {
+			return idEvento;
+		}
 
-	public void setTipoEvento(String tipoEvento) {
-		this.tipoEvento = tipoEvento;
-	}
 
-	public infoEvento getiEvento() {
-		return iEvento;
-	}
+		public void setIdEvento(String idEvento) {
+			this.idEvento = idEvento;
+		}
 
-	public void setiEvento(infoEvento iEvento) {
-		this.iEvento = iEvento;
-	}
 
-	public ArrayList<Recurso> getRecursosEvento() {
-		return recursosEvento;
-	}
+		public Date getFechaEvento() {
+			return fechaEvento;
+		}
 
-	public void setRecursosEvento(ArrayList<Recurso> recursosEvento) {
-		this.recursosEvento = recursosEvento;
-	}
 
-	public ArrayList<TrabajoCientifico> getTrajsCientificosEvento() {
-		return trajsCientificosEvento;
-	}
+		public void setFechaEvento(Date fechaEvento) {
+			this.fechaEvento = fechaEvento;
+		}
 
-	public void setTrajsCientificosEvento(ArrayList<TrabajoCientifico> trajsCientificosEvento) {
-		this.trajsCientificosEvento = trajsCientificosEvento;
-	}
 
-	public ArrayList<Comision> getComisionesevento() {
-		return comisionesevento;
-	}
+		public String getTipoEvento() {
+			return tipoEvento;
+		}
 
-	public void setComisionesevento(ArrayList<Comision> comisionesevento) {
-		this.comisionesevento = comisionesevento;
-	}
-	
+
+		public void setTipoEvento(String tipoEvento) {
+			this.tipoEvento = tipoEvento;
+		}
+
+
+		public infoEvento getInfoEvento() {
+			return infoEvento;
+		}
+
+
+		public void setInfoEvento(infoEvento infoEvento) {
+			this.infoEvento = infoEvento;
+		}
+
+
+		public ArrayList<Recurso> getRecursosEvento() {
+			return recursosEvento;
+		}
+
+
+		public void setRecursosEvento(ArrayList<Recurso> recursosEvento) {
+			this.recursosEvento = recursosEvento;
+		}
+
+
+		public ArrayList<String> getTrabajosCientificos() {
+			return trabajosCientificos;
+		}
+
+
+		public void setTrabajosCientificos(ArrayList<String> trabajosCientificos) {
+			this.trabajosCientificos = trabajosCientificos;
+		}
+
+
+		public ArrayList<String> getComisiones() {
+			return comisiones;
+		}
+
+
+		public void setComisiones(ArrayList<String> comisiones) {
+			this.comisiones = comisiones;
+		}
+	    
+		 public void crearEvento() {
+		        System.out.println("Evento creado: " + nombre);
+		    }
+
+		    public void agregarRecurso(Recurso recurso) {
+		        recursosEvento.add(recurso);
+		    }
+
+		    public void agregarTrabajoCientifico(String trabajo) {
+		        trabajosCientificos.add(trabajo);
+		    }
+
+		    public void agregarComision(String comision) {
+		        comisiones.add(comision);
+		    }
+
 }

@@ -66,7 +66,7 @@ public class Login extends JFrame {
 		JLabel lblNewLabel = new JLabel("\u00A1Bienvenido al gestor de eventos de nuestra alma mater!");
 		lblNewLabel.setBackground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Calisto MT", Font.ITALIC, 13));
-		lblNewLabel.setBounds(20, 18, 304, 20);
+		lblNewLabel.setBounds(40, 13, 304, 20);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Usuario:");
