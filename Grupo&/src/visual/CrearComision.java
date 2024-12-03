@@ -15,6 +15,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.Color;
 
 public class CrearComision extends JDialog {
 
@@ -44,12 +45,12 @@ public class CrearComision extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearComision() {
-		setTitle("Registrar Comision");
+		setTitle("Registrar comision");
 		setBounds(100, 100, 450, 340);
 		
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
@@ -58,16 +59,17 @@ public class CrearComision extends JDialog {
 			panel.setLayout(new BorderLayout(0, 0));
 			{
 				JPanel panel_1 = new JPanel();
+				panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 				panel.add(panel_1, BorderLayout.CENTER);
 				panel_1.setLayout(null);
 				{
 					JLabel lblCodcomision = new JLabel("Codigo:");
-					lblCodcomision.setBounds(10, 11, 90, 14);
+					lblCodcomision.setBounds(31, 11, 90, 14);
 					panel_1.add(lblCodcomision);
 				}
 				{
 					JLabel lblNombre = new JLabel("Nombre: ");
-					lblNombre.setBounds(10, 53, 79, 14);
+					lblNombre.setBounds(31, 53, 79, 14);
 					panel_1.add(lblNombre);
 				}
 				{
@@ -163,13 +165,17 @@ public class CrearComision extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Registrar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
