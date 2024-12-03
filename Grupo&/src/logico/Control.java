@@ -27,10 +27,53 @@ public class Control implements Serializable{
 		return misUsers;
 	}
 
+	public static Control getControl() {
+		return control;
+	}
 
+
+	public static void setControl(Control control) {
+		Control.control = control;
+	}
+
+
+	public static Usuario getLoginUser() {
+		return LoginUser;
+	}
+
+
+	public static void setLoginUser(Usuario loginUser) {
+		LoginUser = loginUser;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	public void setMisUsers(ArrayList<Usuario> misUsers) {
+		this.misUsers = misUsers;
+	}
+	
+	public static void setLoginUser1(Usuario loginUser) {
+		Control.LoginUser = loginUser;
+	}
+	
+	public void regUsuario (Usuario usuario) {
+		misUsers.add(usuario);
+	}
+	
+	
 	public boolean confirmLogin(String text, String text2) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean login = false;
+		for (Usuario usuario : misUsers) {
+			if(usuario.getUsername().equals(text) && usuario.getPass().equals(text2)) {
+				LoginUser = usuario;
+				login = true;
+			}
+		}
+		return login;
 	}
 
 
