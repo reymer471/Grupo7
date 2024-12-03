@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
+
+import logico.Control;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
@@ -92,6 +95,11 @@ public class Login extends JFrame {
 		JButton btnNewButton = new JButton("Loggin");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(Control.getInstance().confirmLogin(textField.getText(), textField_1.getText())) {
+					Principal frame = new Principal();
+					dispose();
+					frame.setVisible(true);
+				}
 			}
 		});
 		btnNewButton.setBounds(235, 212, 89, 23);

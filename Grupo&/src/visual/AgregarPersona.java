@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.border.CompoundBorder;
+import javax.swing.border.EtchedBorder;
 
 public class AgregarPersona extends JDialog {
 
@@ -47,16 +48,16 @@ public class AgregarPersona extends JDialog {
     public AgregarPersona() {
     	setTitle("Agregar tipo de Persona");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarPersona.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
-        setBounds(150, 150, 500, 450);
+        setBounds(150, 150, 413, 432);
         getContentPane().setLayout(new BorderLayout());
-        contentPanel.setBackground(Color.LIGHT_GRAY);
+        contentPanel.setBackground(Color.WHITE);
         contentPanel.setLayout(null);
-        contentPanel.setBorder(new EmptyBorder(12, 12, 5, 5));
+        contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         setLocationRelativeTo(null);
         
         // Etiquetas comunes
-        JLabel lblCodigo = new JLabel("Código:");
+        JLabel lblCodigo = new JLabel("Codigo:");
         lblCodigo.setBounds(10, 20, 100, 20);
         contentPanel.add(lblCodigo);
 
@@ -92,7 +93,7 @@ public class AgregarPersona extends JDialog {
         contentPanel.add(tipoPersonaComboBox);
 
         // Campos especificos para Participante
-        JLabel lblDireccion = new JLabel("Dirección:");
+        JLabel lblDireccion = new JLabel("Direccion:");
         lblDireccion.setBounds(10, 180, 100, 20);
         contentPanel.add(lblDireccion);
 

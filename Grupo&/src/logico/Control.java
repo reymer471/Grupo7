@@ -26,7 +26,15 @@ public class Control implements Serializable{
 	public ArrayList <Usuario> getMisUsers(){
 		return misUsers;
 	}
-	
+
+
+	public boolean confirmLogin(String text, String text2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
 	
 	
 }
