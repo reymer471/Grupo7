@@ -33,7 +33,7 @@ public class Principal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(50, 100, 521, 335);
         Dimension dim = getToolkit().getScreenSize();
-        //setSize(dim.width+10,dim.height-40);
+        setSize(dim.width+10,dim.height-40);
         setLocationRelativeTo(null);
         JMenuBar menuBar= new JMenuBar();
         setJMenuBar(menuBar);
@@ -64,6 +64,19 @@ public class Principal extends JFrame {
         });
         mnNewMenu.add(mntmNewMenuItem);
         
+        JMenu mnNewMenu_2 = new JMenu("Eventos");
+        menuBar1.add(mnNewMenu_2);
+        
+        JMenuItem mntmNewMenuItem_1 = new JMenuItem("Registrar evento");
+        mntmNewMenuItem_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		RegistrarEvento dialog = new RegistrarEvento();
+        		dialog.setVisible(true);
+        	}
+        });
+        mnNewMenu_2.add(mntmNewMenuItem_1);
+        
         JMenu mnNewMenu_1 = new JMenu("Administracion");
         menuBar1.add(mnNewMenu_1);
         
@@ -85,25 +98,26 @@ public class Principal extends JFrame {
         
      // Panel central con mensaje de bienvenida
         JPanel panelCentral = new JPanel();
-        panelCentral.setBounds(0, 0, 505, 275);
+        panelCentral.setBounds(0, 0, 1360, 668);
         panelCentral.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         contentPane.add(panelCentral);
         panelCentral.setLayout(null);
 
         // Mensaje de bienvenida
         JLabel lblNewLabel = new JLabel("Bienvenidos al sistema de Eventos de la PUCMM  ");
-        lblNewLabel.setBounds(117, 8, 271, 32);
+        lblNewLabel.setBounds(572, 11, 410, 32);
         lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/java/swing/plaf/windows/icons/Inform.gif")));
         panelCentral.add(lblNewLabel);
         
      
         JLabel lblImagen = new JLabel();
-        lblImagen.setBounds(195, 0, 193, 235); // Ajusta el tamaño y posición según necesidad
+        lblImagen.setIcon(new ImageIcon("C:\\Users\\user\\OneDrive - Pontificia Universidad Cat\u00F3lica Madre y Maestra\\Escritorio\\Marca PUCMM (Color).png"));
+        lblImagen.setBounds(71, 123, 1279, 405); // Ajusta el tamaño y posición según necesidad
         panelCentral.add(lblImagen);
 
        
-        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/visual/Marca PUCMM (Color).png"));
-        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
-        lblImagen.setIcon(new ImageIcon("C:\\Users\\user\\OneDrive - Pontificia Universidad Cat\u00F3lica Madre y Maestra\\Escritorio\\Logo PUCMM (L\u00EDneas1).png"));
+        //ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/visual/Marca PUCMM (Color).png"));
+       // Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
+       // lblImagen.setIcon(new ImageIcon("C:\\Users\\user\\OneDrive - Pontificia Universidad Cat\u00F3lica Madre y Maestra\\Escritorio\\Logo PUCMM (L\u00EDneas1).png"));
     }
 }
