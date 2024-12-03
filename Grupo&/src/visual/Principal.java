@@ -31,7 +31,7 @@ public class Principal extends JFrame {
     	setTitle("Gestor de eventos");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/javax/swing/plaf/metal/icons/ocean/paletteClose-pressed.gif")));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(50, 100, 521, 363);
+        setBounds(50, 100, 521, 335);
         Dimension dim = getToolkit().getScreenSize();
         //setSize(dim.width+10,dim.height-40);
         setLocationRelativeTo(null);
@@ -42,6 +42,8 @@ public class Principal extends JFrame {
         contentPane = new JPanel();
         contentPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         setContentPane(contentPane);
+        
+        
         
         // Barra de menÃº
         JMenuBar menuBar1 = new JMenuBar();
@@ -68,13 +70,11 @@ public class Principal extends JFrame {
         });
         mnArchivo.add(mntmSalir);
         contentPane.setLayout(null);
-        
-
-      
+   
         
      // Panel central con mensaje de bienvenida
         JPanel panelCentral = new JPanel();
-        panelCentral.setBounds(0, 0, 505, 303);
+        panelCentral.setBounds(0, 0, 505, 275);
         panelCentral.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         contentPane.add(panelCentral);
         panelCentral.setLayout(null);
@@ -85,7 +85,14 @@ public class Principal extends JFrame {
         lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/com/sun/java/swing/plaf/windows/icons/Inform.gif")));
         panelCentral.add(lblNewLabel);
         
-        ImageIcon ico = new ImageIcon(getClass().getResource("Marca PUCMM (Color).png"));
-        ImageIcon img = new ImageIcon(ico.getImage().getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(), Image.SCALE_SMOOTH));
+     
+        JLabel lblImagen = new JLabel();
+        lblImagen.setBounds(195, 0, 193, 235); // Ajusta el tamaño y posición según necesidad
+        panelCentral.add(lblImagen);
+
+       
+        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/visual/Marca PUCMM (Color).png"));
+        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
+        lblImagen.setIcon(new ImageIcon("C:\\Users\\user\\OneDrive - Pontificia Universidad Cat\u00F3lica Madre y Maestra\\Escritorio\\Logo PUCMM (L\u00EDneas1).png"));
     }
 }
