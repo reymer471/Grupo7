@@ -46,6 +46,8 @@ public class CrearComision extends JDialog {
 	public CrearComision() {
 		setTitle("Registrar Comision");
 		setBounds(100, 100, 450, 340);
+		
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

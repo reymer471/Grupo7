@@ -99,6 +99,12 @@ public class SPEC {
 		}
 	}
 	
+	public void eliminarComision(Comision comision) {
+		if (comision != null) {
+			misComisiones.remove(comision);
+		}
+	}
+	
 	public void eliminarEvento(Evento evento) {
 		if (evento != null) {
 			misEventos.remove(evento);

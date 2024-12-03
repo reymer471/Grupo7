@@ -1,6 +1,7 @@
 package logico;
 
-class Recurso {
+public class Recurso {
+	
     private String id;
     private String tipoRecurso;
     private String nombre;

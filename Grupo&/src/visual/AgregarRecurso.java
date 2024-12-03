@@ -30,6 +30,7 @@ public class AgregarRecurso extends JDialog {
 	private JTextField txtNombreRecurso;
 	private Recurso nuevoRecurso;
 	private JSpinner spnCantidadRecurso;
+	private JComboBox cbxTIpoRecurso;
 
 	/**
 	 * Launch the application.
@@ -103,7 +104,7 @@ public class AgregarRecurso extends JDialog {
 				panel.add(spnCantidadRecurso);
 			}
 			{
-				JComboBox cbxTIpoRecurso = new JComboBox();
+				cbxTIpoRecurso = new JComboBox();
 				cbxTIpoRecurso.setBounds(101, 140, 117, 20);
 				panel.add(cbxTIpoRecurso);
 			}
@@ -116,7 +117,7 @@ public class AgregarRecurso extends JDialog {
 				JButton RegistrarButton = new JButton("Registrar");
 				RegistrarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						nuevoRecurso = new Recurso(txtCodigoRecurso.getText(), txtNombreRecurso.getText(), (int) spnCantidadRecurso.getValue());
+						nuevoRecurso = new Recurso(txtCodigoRecurso.getText(),cbxTIpoRecurso.getSelectedItem().toString(),txtNombreRecurso.getText(), (int) spnCantidadRecurso.getValue());
 						SPEC.getInstance().insertarRecurso(nuevoRecurso);
 						clean();
 					}

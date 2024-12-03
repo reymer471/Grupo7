@@ -39,6 +39,8 @@ public class RegistrarEvento extends JDialog {
 	public RegistrarEvento() {
 		setTitle("Registrar Evento");
 		setBounds(100, 100, 452, 309);
+		
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

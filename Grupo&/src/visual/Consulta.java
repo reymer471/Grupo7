@@ -106,6 +106,7 @@ public class Consulta extends JDialog {
 	public Consulta() {
 		setTitle("Hacer Consulta");
 		setBounds(100, 100, 501, 723);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -670,6 +671,7 @@ public class Consulta extends JDialog {
 			}
 		}
 	}
+	
 	protected void loadRecurso(Recurso recurBucando2) {
 		// TODO Auto-generated method stub
 		txtCodRecurso.setText(recurBucando2.getId());
@@ -721,9 +723,9 @@ public class Consulta extends JDialog {
 		txtCodigoEvento.setText(eventoBuscando2.getIdEvento());
 		txtTituloEvento.setText(eventoBuscando2.getNombre());
 		txtFechaEvento.setText(eventoBuscando2.getFechaEvento().toString());
-		txtDuracionEvento.setText(eventoBuscando2.getiEvento().getDuracionEvento());
-		txtCapacidadEvento.setText(eventoBuscando2.getiEvento().getNumeroPersonas());
-		txtTemaEvento.setText(eventoBuscando2.getiEvento().getTemaEvento());
+		txtDuracionEvento.setText(eventoBuscando2.getInfoEvento().getDuracionEvento());
+		txtCapacidadEvento.setText(eventoBuscando2.getInfoEvento().getNumeroPersonas());
+		txtTemaEvento.setText(eventoBuscando2.getInfoEvento().getTemaEvento());
 	}
 
 	protected void visualizarPanelDescriptivo(int encontrado) {
