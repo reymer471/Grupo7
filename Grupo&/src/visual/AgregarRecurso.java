@@ -25,6 +25,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class AgregarRecurso extends JDialog {
 
@@ -52,6 +54,7 @@ public class AgregarRecurso extends JDialog {
 	 * Create the dialog.
 	 */
 	public AgregarRecurso() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarRecurso.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaVolumeThumb.png")));
 		setTitle("Agregar recurso");
 		setBounds(100, 100, 458, 255);
 		setLocationRelativeTo(null);
@@ -62,11 +65,13 @@ public class AgregarRecurso extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(Color.LIGHT_GRAY);
 			panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
 				JLabel lblCodigo = new JLabel("Codigo:");
+				lblCodigo.setIcon(new ImageIcon(AgregarRecurso.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
 				lblCodigo.setBounds(10, 24, 78, 14);
 				panel.add(lblCodigo);
 			}
@@ -75,41 +80,44 @@ public class AgregarRecurso extends JDialog {
 				txtCodigoRecurso.setText("R-" + SPEC.getInstance().codRecurso);
 				txtCodigoRecurso.setEditable(false);
 				txtCodigoRecurso.setEnabled(false);
-				txtCodigoRecurso.setBounds(101, 21, 117, 20);
+				txtCodigoRecurso.setBounds(141, 21, 117, 20);
 				panel.add(txtCodigoRecurso);
 				txtCodigoRecurso.setColumns(10);
 			}
 			{
 				JLabel lblNombre = new JLabel("Nombre:");
-				lblNombre.setBounds(10, 76, 46, 14);
+				lblNombre.setIcon(new ImageIcon(AgregarRecurso.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
+				lblNombre.setBounds(10, 76, 78, 14);
 				panel.add(lblNombre);
 			}
 			{
 				JLabel lblTIpoRecurso = new JLabel("Tipo de recurso:");
-				lblTIpoRecurso.setBounds(10, 126, 78, 14);
+				lblTIpoRecurso.setIcon(new ImageIcon(AgregarRecurso.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
+				lblTIpoRecurso.setBounds(10, 126, 117, 14);
 				panel.add(lblTIpoRecurso);
 			}
 			{
 				txtNombreRecurso = new JTextField();
 				txtNombreRecurso.setColumns(10);
-				txtNombreRecurso.setBounds(101, 73, 309, 20);
+				txtNombreRecurso.setBounds(141, 73, 117, 20);
 				panel.add(txtNombreRecurso);
 			}
 			{
 				JLabel lblCantidad = new JLabel("Cantidad:");
-				lblCantidad.setBounds(237, 126, 72, 14);
+				lblCantidad.setIcon(new ImageIcon(AgregarRecurso.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
+				lblCantidad.setBounds(270, 24, 84, 14);
 				panel.add(lblCantidad);
 			}
 			{
 				spnCantidadRecurso = new JSpinner();
 				spnCantidadRecurso.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-				spnCantidadRecurso.setBounds(293, 123, 117, 20);
+				spnCantidadRecurso.setBounds(346, 21, 78, 20);
 				panel.add(spnCantidadRecurso);
 			}
 			{
 				cbxTIpoRecurso = new JComboBox();
 				cbxTIpoRecurso.setModel(new DefaultComboBoxModel(new String[] {"<seleccione>", "Visual", "Audio"}));
-				cbxTIpoRecurso.setBounds(101, 123, 117, 20);
+				cbxTIpoRecurso.setBounds(141, 123, 117, 20);
 				panel.add(cbxTIpoRecurso);
 			}
 		}
