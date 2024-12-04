@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
 
 public class AgregarRecurso extends JDialog {
 
@@ -107,6 +108,7 @@ public class AgregarRecurso extends JDialog {
 			}
 			{
 				cbxTIpoRecurso = new JComboBox();
+				cbxTIpoRecurso.setModel(new DefaultComboBoxModel(new String[] {"<seleccione>", "Visual", "Audio"}));
 				cbxTIpoRecurso.setBounds(101, 123, 117, 20);
 				panel.add(cbxTIpoRecurso);
 			}

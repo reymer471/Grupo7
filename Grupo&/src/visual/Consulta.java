@@ -57,9 +57,6 @@ public class Consulta extends JDialog {
 	private JTextField txtNombreRecurso;
 	private JTextField txtTipoRecurso;
 	private JTextField txtCantidadRecurso;
-	private JTable tableJuradosEnCom;
-	private JTextField txtCodComision;
-	private JTextField txtNombreComision;
 	private JTextField txtCodParticipante;
 	private JTextField txtNombreParticipante;
 	private JTextField txtApellidoParticipante;
@@ -69,7 +66,6 @@ public class Consulta extends JDialog {
 	private JPanel panel_DescripTc;
 	private JPanel panel_DescripEvento;
 	private JPanel panel_DescripRecurso;
-	private JPanel panel_DescripComision;
 	private JPanel panel_DescripParticipante;
 	private JTextField txtCodigoJurado;
 	private JTextField txtNombreJurado;
@@ -87,6 +83,11 @@ public class Consulta extends JDialog {
 	private JTextField txtDuracionEvento;
 	private JTextField txtTemaEvento;
 	private JTextField txtCapacidadEvento;
+	private JLabel lblCodComision;
+	private JLabel lblNombreComision;
+	private JTextField txtNombreComision;
+	private JPanel panel_DescripComision;
+	private JTextField txtCodComision;
 
 	/**
 	 * Launch the application.
@@ -106,7 +107,7 @@ public class Consulta extends JDialog {
 	 */
 	public Consulta() {
 		setTitle("Hacer consulta");
-		setBounds(100, 100, 501, 636);
+		setBounds(100, 100, 501, 699);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
@@ -118,9 +119,98 @@ public class Consulta extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
+			panel_DescripComision = new JPanel();
+			panel_DescripComision.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			panel_DescripComision.setBounds(10, 308, 455, 299);
+			panel.add(panel_DescripComision);
+			panel_DescripComision.setLayout(null);
+			
+			JPanel panel_2 = new JPanel();
+			panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			panel_2.setBounds(10, 35, 435, 250);
+			panel_DescripComision.add(panel_2);
+			panel_2.setLayout(null);
+			
+			lblCodComision = new JLabel("Codigo:");
+			lblCodComision.setBounds(10, 28, 46, 14);
+			panel_2.add(lblCodComision);
+			
+			lblNombreComision = new JLabel("Nombre:");
+			lblNombreComision.setBounds(10, 69, 46, 14);
+			panel_2.add(lblNombreComision);
+			
+			txtCodComision = new JTextField();
+			txtCodComision.setBounds(73, 25, 86, 20);
+			panel_2.add(txtCodComision);
+			txtCodComision.setColumns(10);
+			
+			txtNombreComision = new JTextField();
+			txtNombreComision.setBounds(73, 66, 86, 20);
+			panel_2.add(txtNombreComision);
+			txtNombreComision.setColumns(10);
+			
+			JLabel lblDescripComision = new JLabel("Comision");
+			lblDescripComision.setBounds(10, 11, 46, 14);
+			panel_DescripComision.add(lblDescripComision);
+			
+			panel_DescripRecurso = new JPanel();
+			panel_DescripRecurso.setBounds(10, 308, 455, 299);
+			panel.add(panel_DescripRecurso);
+			panel_DescripRecurso.setLayout(null);
+			
+			JPanel panelno = new JPanel();
+			panelno.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			panelno.setBounds(10, 36, 435, 250);
+			panel_DescripRecurso.add(panelno);
+			panelno.setLayout(null);
+			
+			JLabel lblCodigoDesRecurso = new JLabel("Codigo:");
+			lblCodigoDesRecurso.setBounds(10, 22, 46, 14);
+			panelno.add(lblCodigoDesRecurso);
+			
+			JLabel lblNewLabel_4 = new JLabel("Nombre:");
+			lblNewLabel_4.setBounds(10, 61, 46, 14);
+			panelno.add(lblNewLabel_4);
+			
+			JLabel lblTipoRecursoDescRecurso = new JLabel("Tipo de recurso");
+			lblTipoRecursoDescRecurso.setBounds(10, 100, 86, 14);
+			panelno.add(lblTipoRecursoDescRecurso);
+			
+			JLabel lblCantidadDesRecurso = new JLabel("Cantidad");
+			lblCantidadDesRecurso.setBounds(10, 139, 79, 14);
+			panelno.add(lblCantidadDesRecurso);
+			
+			txtCodRecurso = new JTextField();
+			txtCodRecurso.setEditable(false);
+			txtCodRecurso.setBounds(105, 19, 154, 20);
+			panelno.add(txtCodRecurso);
+			txtCodRecurso.setColumns(10);
+			
+			txtNombreRecurso = new JTextField();
+			txtNombreRecurso.setEditable(false);
+			txtNombreRecurso.setBounds(105, 58, 154, 20);
+			panelno.add(txtNombreRecurso);
+			txtNombreRecurso.setColumns(10);
+			
+			txtTipoRecurso = new JTextField();
+			txtTipoRecurso.setEditable(false);
+			txtTipoRecurso.setBounds(105, 97, 154, 20);
+			panelno.add(txtTipoRecurso);
+			txtTipoRecurso.setColumns(10);
+			
+			txtCantidadRecurso = new JTextField();
+			txtCantidadRecurso.setEditable(false);
+			txtCantidadRecurso.setBounds(105, 136, 154, 20);
+			panelno.add(txtCantidadRecurso);
+			txtCantidadRecurso.setColumns(10);
+			
+			JLabel lblRecursoDescrip = new JLabel("Recurso");
+			lblRecursoDescrip.setBounds(10, 11, 46, 14);
+			panel_DescripRecurso.add(lblRecursoDescrip);
+			
 			panel_DescripTc = new JPanel();
 			panel_DescripTc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			panel_DescripTc.setBounds(10, 308, 455, 236);
+			panel_DescripTc.setBounds(10, 308, 455, 299);
 			panel.add(panel_DescripTc);
 			panel_DescripTc.setLayout(null);
 			
@@ -130,7 +220,7 @@ public class Consulta extends JDialog {
 			
 			JPanel panel_5 = new JPanel();
 			panel_5.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_5.setBounds(10, 36, 435, 200);
+			panel_5.setBounds(10, 36, 435, 250);
 			panel_DescripTc.add(panel_5);
 			panel_5.setLayout(null);
 			
@@ -175,7 +265,7 @@ public class Consulta extends JDialog {
 			txtComisionTc.setColumns(10);
 			
 			JScrollPane scrollPane_1 = new JScrollPane();
-			scrollPane_1.setBounds(0, 218, 435, 52);
+			scrollPane_1.setBounds(0, 123, 435, 126);
 			panel_5.add(scrollPane_1);
 			
 			tableParticipantesTc = new JTable();
@@ -186,68 +276,68 @@ public class Consulta extends JDialog {
 			panel_5.add(lblParticipantes);
 			
 			JPanel panel_6 = new JPanel();
-			panel_6.setBounds(10, 160, 435, 76);
+			panel_6.setBounds(10, 160, 435, 126);
 			panel_DescripTc.add(panel_6);
 			
 			panel_DescripParticipante = new JPanel();
 			panel_DescripParticipante.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			panel_DescripParticipante.setBounds(10, 308, 455, 236);
+			panel_DescripParticipante.setBounds(10, 308, 455, 299);
 			panel.add(panel_DescripParticipante);
 			panel_DescripParticipante.setLayout(null);
 			
 			JPanel panel_3 = new JPanel();
 			panel_3.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_3.setBounds(10, 36, 435, 270);
+			panel_3.setBounds(10, 36, 435, 250);
 			panel_DescripParticipante.add(panel_3);
 			panel_3.setLayout(null);
 			
 			JLabel lblNewLabel_8 = new JLabel("Codigo:");
-			lblNewLabel_8.setBounds(10, 35, 46, 14);
+			lblNewLabel_8.setBounds(10, 17, 46, 14);
 			panel_3.add(lblNewLabel_8);
 			
 			JLabel lblNewLabel_9 = new JLabel("Nombre:");
-			lblNewLabel_9.setBounds(10, 84, 46, 14);
+			lblNewLabel_9.setBounds(10, 66, 46, 14);
 			panel_3.add(lblNewLabel_9);
 			
 			JLabel lblApellido = new JLabel("Apellido:");
-			lblApellido.setBounds(10, 133, 74, 14);
+			lblApellido.setBounds(10, 115, 74, 14);
 			panel_3.add(lblApellido);
 			
 			JLabel lblDireccion = new JLabel("Direccion:");
-			lblDireccion.setBounds(10, 182, 74, 14);
+			lblDireccion.setBounds(10, 164, 74, 14);
 			panel_3.add(lblDireccion);
 			
 			JLabel lblEmail = new JLabel("Email:");
-			lblEmail.setBounds(10, 231, 74, 14);
+			lblEmail.setBounds(10, 213, 74, 14);
 			panel_3.add(lblEmail);
 			
 			txtCodParticipante = new JTextField();
 			txtCodParticipante.setEditable(false);
-			txtCodParticipante.setBounds(64, 29, 168, 20);
+			txtCodParticipante.setBounds(64, 11, 168, 20);
 			panel_3.add(txtCodParticipante);
 			txtCodParticipante.setColumns(10);
 			
 			txtNombreParticipante = new JTextField();
 			txtNombreParticipante.setEditable(false);
-			txtNombreParticipante.setBounds(64, 78, 168, 20);
+			txtNombreParticipante.setBounds(64, 60, 168, 20);
 			panel_3.add(txtNombreParticipante);
 			txtNombreParticipante.setColumns(10);
 			
 			txtApellidoParticipante = new JTextField();
 			txtApellidoParticipante.setEditable(false);
-			txtApellidoParticipante.setBounds(64, 127, 168, 20);
+			txtApellidoParticipante.setBounds(64, 109, 168, 20);
 			panel_3.add(txtApellidoParticipante);
 			txtApellidoParticipante.setColumns(10);
 			
 			txtDireccionParticipante = new JTextField();
 			txtDireccionParticipante.setEditable(false);
-			txtDireccionParticipante.setBounds(64, 176, 168, 20);
+			txtDireccionParticipante.setBounds(64, 158, 168, 20);
 			panel_3.add(txtDireccionParticipante);
 			txtDireccionParticipante.setColumns(10);
 			
 			txtEmailParticipante = new JTextField();
 			txtEmailParticipante.setEditable(false);
-			txtEmailParticipante.setBounds(64, 225, 168, 20);
+			txtEmailParticipante.setBounds(64, 207, 168, 20);
 			panel_3.add(txtEmailParticipante);
 			txtEmailParticipante.setColumns(10);
 			
@@ -255,119 +345,65 @@ public class Consulta extends JDialog {
 			lblNewLabel_7.setBounds(10, 11, 136, 14);
 			panel_DescripParticipante.add(lblNewLabel_7);
 			
-			panel_DescripRecurso = new JPanel();
-			panel_DescripRecurso.setBounds(10, 308, 455, 236);
-			panel.add(panel_DescripRecurso);
-			panel_DescripRecurso.setLayout(null);
-			
-			JPanel lblNombreDescRecurso = new JPanel();
-			lblNombreDescRecurso.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			lblNombreDescRecurso.setBounds(10, 36, 435, 194);
-			panel_DescripRecurso.add(lblNombreDescRecurso);
-			lblNombreDescRecurso.setLayout(null);
-			
-			JLabel lblCodigoDesRecurso = new JLabel("Codigo:");
-			lblCodigoDesRecurso.setBounds(10, 22, 46, 14);
-			lblNombreDescRecurso.add(lblCodigoDesRecurso);
-			
-			JLabel lblNewLabel_4 = new JLabel("Nombre:");
-			lblNewLabel_4.setBounds(10, 61, 46, 14);
-			lblNombreDescRecurso.add(lblNewLabel_4);
-			
-			JLabel lblTipoRecursoDescRecurso = new JLabel("Tipo de recurso");
-			lblTipoRecursoDescRecurso.setBounds(10, 100, 86, 14);
-			lblNombreDescRecurso.add(lblTipoRecursoDescRecurso);
-			
-			JLabel lblCantidadDesRecurso = new JLabel("Cantidad");
-			lblCantidadDesRecurso.setBounds(10, 139, 79, 14);
-			lblNombreDescRecurso.add(lblCantidadDesRecurso);
-			
-			txtCodRecurso = new JTextField();
-			txtCodRecurso.setEditable(false);
-			txtCodRecurso.setBounds(105, 19, 154, 20);
-			lblNombreDescRecurso.add(txtCodRecurso);
-			txtCodRecurso.setColumns(10);
-			
-			txtNombreRecurso = new JTextField();
-			txtNombreRecurso.setEditable(false);
-			txtNombreRecurso.setBounds(105, 58, 154, 20);
-			lblNombreDescRecurso.add(txtNombreRecurso);
-			txtNombreRecurso.setColumns(10);
-			
-			txtTipoRecurso = new JTextField();
-			txtTipoRecurso.setEditable(false);
-			txtTipoRecurso.setBounds(105, 97, 154, 20);
-			lblNombreDescRecurso.add(txtTipoRecurso);
-			txtTipoRecurso.setColumns(10);
-			
-			txtCantidadRecurso = new JTextField();
-			txtCantidadRecurso.setEditable(false);
-			txtCantidadRecurso.setBounds(105, 136, 154, 20);
-			lblNombreDescRecurso.add(txtCantidadRecurso);
-			txtCantidadRecurso.setColumns(10);
-			
-			JLabel lblRecursoDescrip = new JLabel("Recurso");
-			lblRecursoDescrip.setBounds(10, 11, 46, 14);
-			panel_DescripRecurso.add(lblRecursoDescrip);
-			
 			panel_DescripJurado = new JPanel();
 			panel_DescripJurado.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			panel_DescripJurado.setBounds(10, 308, 455, 290);
+			panel_DescripJurado.setBounds(10, 308, 455, 299);
 			panel.add(panel_DescripJurado);
 			panel_DescripJurado.setLayout(null);
 			
 			JPanel panel_4 = new JPanel();
-			panel_4.setBounds(10, 36, 435, 270);
+			panel_4.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			panel_4.setBounds(10, 36, 435, 250);
 			panel_DescripJurado.add(panel_4);
 			panel_4.setLayout(null);
 			
 			JLabel lblNewLabel_11 = new JLabel("Codigo");
-			lblNewLabel_11.setBounds(10, 33, 46, 14);
+			lblNewLabel_11.setBounds(10, 27, 46, 14);
 			panel_4.add(lblNewLabel_11);
 			
 			JLabel lblNewLabel_12 = new JLabel("Nombre");
-			lblNewLabel_12.setBounds(10, 80, 46, 14);
+			lblNewLabel_12.setBounds(10, 74, 46, 14);
 			panel_4.add(lblNewLabel_12);
 			
 			JLabel lblNewLabel_13 = new JLabel("Apellido");
-			lblNewLabel_13.setBounds(10, 127, 46, 14);
+			lblNewLabel_13.setBounds(10, 121, 46, 14);
 			panel_4.add(lblNewLabel_13);
 			
 			JLabel lblNewLabel_14 = new JLabel("Especialidad");
-			lblNewLabel_14.setBounds(10, 174, 91, 14);
+			lblNewLabel_14.setBounds(10, 168, 91, 14);
 			panel_4.add(lblNewLabel_14);
 			
 			JLabel lblNewLabel_15 = new JLabel("Experiencia");
-			lblNewLabel_15.setBounds(10, 221, 75, 14);
+			lblNewLabel_15.setBounds(10, 215, 75, 14);
 			panel_4.add(lblNewLabel_15);
 			
 			txtCodigoJurado = new JTextField();
 			txtCodigoJurado.setEditable(false);
-			txtCodigoJurado.setBounds(93, 30, 167, 20);
+			txtCodigoJurado.setBounds(93, 24, 167, 20);
 			panel_4.add(txtCodigoJurado);
 			txtCodigoJurado.setColumns(10);
 			
 			txtNombreJurado = new JTextField();
 			txtNombreJurado.setEditable(false);
-			txtNombreJurado.setBounds(93, 77, 167, 20);
+			txtNombreJurado.setBounds(93, 71, 167, 20);
 			panel_4.add(txtNombreJurado);
 			txtNombreJurado.setColumns(10);
 			
 			txtApellidoJurado = new JTextField();
 			txtApellidoJurado.setEditable(false);
-			txtApellidoJurado.setBounds(93, 124, 167, 20);
+			txtApellidoJurado.setBounds(93, 118, 167, 20);
 			panel_4.add(txtApellidoJurado);
 			txtApellidoJurado.setColumns(10);
 			
 			txtEspecialJurado = new JTextField();
 			txtEspecialJurado.setEditable(false);
-			txtEspecialJurado.setBounds(93, 171, 167, 20);
+			txtEspecialJurado.setBounds(93, 165, 167, 20);
 			panel_4.add(txtEspecialJurado);
 			txtEspecialJurado.setColumns(10);
 			
 			txtExperienciaJurado = new JTextField();
 			txtExperienciaJurado.setEditable(false);
-			txtExperienciaJurado.setBounds(93, 218, 167, 20);
+			txtExperienciaJurado.setBounds(93, 212, 167, 20);
 			panel_4.add(txtExperienciaJurado);
 			txtExperienciaJurado.setColumns(10);
 			
@@ -376,17 +412,13 @@ public class Consulta extends JDialog {
 			panel_DescripJurado.add(lblNewLabel_10);
 			
 			panel_DescripEvento = new JPanel();
-			panel_DescripEvento.setBorder(new EmptyBorder(0, 0, 0, 0));
-			panel_DescripEvento.setBounds(10, 308, 455, 317);
+			panel_DescripEvento.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			panel_DescripEvento.setBounds(10, 308, 455, 299);
 			panel.add(panel_DescripEvento);
 			panel_DescripEvento.setLayout(null);
 			
-			JLabel lblDescripEvent = new JLabel("Evento");
-			lblDescripEvent.setBounds(10, 11, 46, 14);
-			panel_DescripEvento.add(lblDescripEvent);
-			
 			JPanel panel_1 = new JPanel();
-			panel_1.setBounds(10, 36, 435, 270);
+			panel_1.setBounds(10, 36, 435, 250);
 			panel_DescripEvento.add(panel_1);
 			panel_1.setLayout(null);
 			
@@ -450,6 +482,10 @@ public class Consulta extends JDialog {
 			panel_1.add(txtCapacidadEvento);
 			txtCapacidadEvento.setColumns(10);
 			
+			JLabel lblDescripEvent = new JLabel("Evento");
+			lblDescripEvent.setBounds(10, 11, 46, 14);
+			panel_DescripEvento.add(lblDescripEvent);
+			
 			JPanel panel_IngreseCodigo = new JPanel();
 			panel_IngreseCodigo.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 			panel_IngreseCodigo.setBounds(10, 216, 455, 60);
@@ -464,53 +500,6 @@ public class Consulta extends JDialog {
 			txtCodigo.setBounds(66, 19, 379, 20);
 			panel_IngreseCodigo.add(txtCodigo);
 			txtCodigo.setColumns(10);
-			
-			panel_DescripComision = new JPanel();
-			panel_DescripComision.setBounds(10, 94, 424, 245);
-			panel_IngreseCodigo.add(panel_DescripComision);
-			panel_DescripComision.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_DescripComision.setLayout(null);
-			
-			JPanel panel_2 = new JPanel();
-			panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_2.setBounds(10, 34, 435, 286);
-			panel_DescripComision.add(panel_2);
-			panel_2.setLayout(null);
-			
-			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(0, 132, 436, 75);
-			panel_2.add(scrollPane);
-			
-			tableJuradosEnCom = new JTable();
-			scrollPane.setViewportView(tableJuradosEnCom);
-			
-			JLabel lblNewLabel_3 = new JLabel("Codigo comision:");
-			lblNewLabel_3.setBounds(10, 27, 136, 14);
-			panel_2.add(lblNewLabel_3);
-			
-			JLabel lblNewLabel_5 = new JLabel("Nombre Comision:");
-			lblNewLabel_5.setBounds(10, 62, 108, 14);
-			panel_2.add(lblNewLabel_5);
-			
-			txtCodComision = new JTextField();
-			txtCodComision.setEditable(false);
-			txtCodComision.setBounds(130, 24, 86, 20);
-			panel_2.add(txtCodComision);
-			txtCodComision.setColumns(10);
-			
-			txtNombreComision = new JTextField();
-			txtNombreComision.setEditable(false);
-			txtNombreComision.setBounds(128, 59, 252, 20);
-			panel_2.add(txtNombreComision);
-			txtNombreComision.setColumns(10);
-			
-			JLabel lblNewLabel_6 = new JLabel("Jurados de la Comision:");
-			lblNewLabel_6.setBounds(10, 107, 136, 14);
-			panel_2.add(lblNewLabel_6);
-			
-			JLabel lblNewLabel_2 = new JLabel("Comision");
-			lblNewLabel_2.setBounds(10, 9, 126, 14);
-			panel_DescripComision.add(lblNewLabel_2);
 			
 			JPanel panel_IngreseNombre = new JPanel();
 			panel_IngreseNombre.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -704,8 +693,8 @@ public class Consulta extends JDialog {
 
 	protected void loadComision(Comision comisionBuscando2) {
 		// TODO Auto-generated method stub
-		txtCodComision.setText(comisionBuscando2.getCodigo());
-		txtNombreComision.setText(comisionBuscando2.getNombreComision());
+		lblCodComision.setText(comisionBuscando2.getCodigo());
+		lblNombreComision.setText(comisionBuscando2.getNombreComision());
 		
 		//Tabla jurados
 	}
