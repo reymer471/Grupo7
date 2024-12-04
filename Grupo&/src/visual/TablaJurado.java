@@ -52,7 +52,7 @@ public class TablaJurado extends JFrame {
         contentPane.add(buttonPane, BorderLayout.SOUTH);
         
         btnCerrar = new JButton("Cerrar");
-        btnCerrar.addActionListener(e -> dispose()); // Cierra la ventana
+        btnCerrar.addActionListener(e -> dispose()); 
         buttonPane.add(btnCerrar);
     }
 }
