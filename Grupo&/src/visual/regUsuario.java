@@ -8,11 +8,15 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
+import javax.swing.border.EtchedBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class regUsuario extends JDialog {
 
@@ -40,31 +44,31 @@ public class regUsuario extends JDialog {
 	public regUsuario() {
 		setBounds(100, 100, 405, 229);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, Color.DARK_GRAY));
+		contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 		contentPanel.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Nombre Usuario:");
-		lblNewLabel.setBounds(10, 11, 101, 14);
-		panel.add(lblNewLabel);
+		JLabel nombre = new JLabel("Nombre Usuario:");
+		nombre.setBounds(10, 11, 101, 14);
+		panel.add(nombre);
 		
-		JLabel lblNewLabel_1 = new JLabel("Password:");
-		lblNewLabel_1.setBounds(203, 11, 73, 14);
-		panel.add(lblNewLabel_1);
+		JLabel password = new JLabel("Password:");
+		password.setBounds(203, 11, 73, 14);
+		panel.add(password);
 		
-		JLabel lblNewLabel_2 = new JLabel("Tipo:");
-		lblNewLabel_2.setBounds(10, 78, 46, 14);
-		panel.add(lblNewLabel_2);
+		JLabel tipo = new JLabel("Tipo:");
+		tipo.setBounds(10, 78, 46, 14);
+		panel.add(tipo);
 		
-		JLabel lblNewLabel_3 = new JLabel("Confirm Password:");
-		lblNewLabel_3.setBounds(203, 78, 135, 14);
-		panel.add(lblNewLabel_3);
+		JLabel confirmpassword = new JLabel("Confirm Password:");
+		confirmpassword.setBounds(203, 78, 135, 14);
+		panel.add(confirmpassword);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Administrador", "Comercial"}));
@@ -91,16 +95,67 @@ public class regUsuario extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Ingresar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						  // Obtener los valores ingresados por el usuario
+		                String nombreUsuario = textField.getText().trim();
+		                String password = textField_1.getText().trim();
+		                String confirmPassword = textField_2.getText().trim();
+		                String tipoUsuario = comboBox.getSelectedItem().toString();
+
+		                // Validar que los campos no estén vacíos
+		                if (nombreUsuario.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || "<Seleccione>".equals(tipoUsuario)) {
+		                    JOptionPane.showMessageDialog(
+		                        regUsuario.this,
+		                        "Por favor complete todos los campos.",
+		                        "Campos incompletos",
+		                        JOptionPane.WARNING_MESSAGE
+		                    );
+		                } else if (!password.equals(confirmPassword)) {
+		                    // Validar que las contraseñas coincidan
+		                    JOptionPane.showMessageDialog(
+		                        regUsuario.this,
+		                        "Las contraseñas no coinciden.",
+		                        "Error de contraseña",
+		                        JOptionPane.ERROR_MESSAGE
+		                    );
+		                } else {
+		                    // Si todo está completo, mostrar un mensaje de éxito
+		                    JOptionPane.showMessageDialog(
+		                        regUsuario.this,
+		                        "Usuario registrado exitosamente.",
+		                        "Registro completado",
+		                        JOptionPane.INFORMATION_MESSAGE
+		                    );
+		                    // Aquí puedes agregar lógica adicional, como guardar el usuario
+		                }
+		            }
+		        
+					
+				});
+				
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
+	
+	
+    
+
+	
 }
