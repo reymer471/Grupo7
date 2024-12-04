@@ -81,6 +81,52 @@ public class Principal extends JFrame {
         });
         mnNewMenu_2.add(mntmNewMenuItem_1);
         
+        JMenu mnNewMenu_3 = new JMenu("Consultas");
+        menuBar1.add(mnNewMenu_3);
+        
+        JMenuItem mntmNewMenuItem_2 = new JMenuItem("Hacer consulta");
+        mntmNewMenuItem_2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		Consulta dialog = new Consulta();
+        		dialog.setVisible(true);
+        	}
+        });
+        mnNewMenu_3.add(mntmNewMenuItem_2);
+        
+        JMenu mnNewMenu_4 = new JMenu("Tablas");
+        mnNewMenu_3.add(mnNewMenu_4);
+        
+        JMenuItem mntmNewMenuItem_3 = new JMenuItem("Jurado");
+        mntmNewMenuItem_3.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		TablajJurados frame = new TablajJurados();
+        		frame.setVisible(true);
+        	}
+        });
+        mnNewMenu_4.add(mntmNewMenuItem_3);
+        
+        JMenuItem mntmNewMenuItem_4 = new JMenuItem("Participantes");
+        mntmNewMenuItem_4.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		TablaParticipante frame = new TablaParticipante();
+        		frame.setVisible(true);
+        	}
+        });
+        mnNewMenu_4.add(mntmNewMenuItem_4);
+        
+        JMenuItem mntmNewMenuItem_5 = new JMenuItem("Trabajo cientifico");
+        mntmNewMenuItem_5.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		TablaTrabajoCientifico frame = new TablaTrabajoCientifico();
+        		frame.setVisible(true);
+        	}
+        });
+        mnNewMenu_4.add(mntmNewMenuItem_5);
+        
         JMenu mnNewMenu_1 = new JMenu("Administracion");
         //if (!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")) {
 			// ((Object) mnAdministracin).setEnable(false);
@@ -121,7 +167,7 @@ public class Principal extends JFrame {
      
         JLabel lblImagen = new JLabel();
         lblImagen.setIcon(new ImageIcon("C:\\Users\\user\\OneDrive - Pontificia Universidad Cat\u00F3lica Madre y Maestra\\Escritorio\\Marca PUCMM (Color).png"));
-        lblImagen.setBounds(71, 123, 1279, 405); // Ajusta el tamaño y posición según necesidad
+        lblImagen.setBounds(71, 123, 1279, 405); 
         panelCentral.add(lblImagen);
 
        
