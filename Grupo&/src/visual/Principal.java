@@ -133,7 +133,7 @@ public class Principal extends JFrame {
         mntmNewMenuItem_3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		TablajJurados frame = new TablajJurados();
+        		TablaJurado frame = new TablaJurado();
         		frame.setVisible(true);
         	}
         });

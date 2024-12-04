@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Toolkit;
 
 public class TablaJurado extends JFrame {
 
@@ -32,6 +33,7 @@ public class TablaJurado extends JFrame {
      * Create the frame.
      */
     public TablaJurado() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(TablaJurado.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
         setTitle("Tabla de Jurados");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 600, 400);
