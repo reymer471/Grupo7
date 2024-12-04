@@ -2,41 +2,57 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+public class TablaJurado extends JFrame {
 
-public class TablajJurados extends JFrame {
+    private JPanel contentPane;
+    private JTable table;
+    private DefaultTableModel model;
+    private JButton btnCerrar;
 
-	private JPanel contentPane;
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    TablaJurado frame = new TablaJurado();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TablajJurados frame = new TablajJurados();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    /**
+     * Create the frame.
+     */
+    public TablaJurado() {
+        setTitle("Tabla de Jurados");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 600, 400);
+        contentPane = new JPanel();
+        contentPane.setLayout(new BorderLayout());
+        setContentPane(contentPane);
 
-	/**
-	 * Create the frame.
-	 */
-	public TablajJurados() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-	}
+        // Tabla para mostrar los jurados
+        String[] columnNames = {"Código", "Nombre", "Apellido", "Experiencia", "Especialidad"};
+        model = new DefaultTableModel();
+        model.setColumnIdentifiers(columnNames);
+        table = new JTable(model);
+        JScrollPane scrollPane = new JScrollPane(table);
+        contentPane.add(scrollPane, BorderLayout.CENTER);
 
+        // Botón para cerrar
+        JPanel buttonPane = new JPanel();
+        contentPane.add(buttonPane, BorderLayout.SOUTH);
+        
+        btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(e -> dispose()); // Cierra la ventana
+        buttonPane.add(btnCerrar);
+    }
 }
