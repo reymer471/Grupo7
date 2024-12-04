@@ -51,7 +51,7 @@ public class AgregarPersona extends JDialog {
     	setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarPersona.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
         setBounds(150, 150, 413, 432);
         getContentPane().setLayout(new BorderLayout());
-        contentPanel.setBackground(Color.WHITE);
+        contentPanel.setBackground(Color.LIGHT_GRAY);
         contentPanel.setLayout(null);
         contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
