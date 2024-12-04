@@ -22,6 +22,7 @@ import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.DefaultComboBoxModel;
 
 public class AgregarPersona extends JDialog {
 
@@ -46,7 +47,7 @@ public class AgregarPersona extends JDialog {
     }
 
     public AgregarPersona() {
-    	setTitle("Agregar tipo de Persona");
+    	setTitle("Agregar tipo de persona");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarPersona.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
         setBounds(150, 150, 413, 432);
         getContentPane().setLayout(new BorderLayout());
@@ -88,7 +89,7 @@ public class AgregarPersona extends JDialog {
         contentPanel.add(lblTipoPersona);
 
         tipoPersonaComboBox = new JComboBox<>();
-        tipoPersonaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Participante", "Jurado" }));
+        tipoPersonaComboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Participante", "Jurado"}));
         tipoPersonaComboBox.setBounds(120, 140, 200, 20);
         contentPanel.add(tipoPersonaComboBox);
 

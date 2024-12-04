@@ -22,6 +22,8 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.border.EtchedBorder;
+import java.awt.Color;
 
 public class AgregarRecurso extends JDialog {
 
@@ -49,17 +51,17 @@ public class AgregarRecurso extends JDialog {
 	 * Create the dialog.
 	 */
 	public AgregarRecurso() {
-		setTitle("Agregar Recurso");
-		setBounds(100, 100, 458, 276);
+		setTitle("Agregar recurso");
+		setBounds(100, 100, 458, 255);
 		setLocationRelativeTo(null);
 		
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
@@ -78,34 +80,34 @@ public class AgregarRecurso extends JDialog {
 			}
 			{
 				JLabel lblNombre = new JLabel("Nombre:");
-				lblNombre.setBounds(10, 99, 46, 14);
+				lblNombre.setBounds(10, 76, 46, 14);
 				panel.add(lblNombre);
 			}
 			{
 				JLabel lblTIpoRecurso = new JLabel("Tipo de recurso:");
-				lblTIpoRecurso.setBounds(10, 143, 78, 14);
+				lblTIpoRecurso.setBounds(10, 126, 78, 14);
 				panel.add(lblTIpoRecurso);
 			}
 			{
 				txtNombreRecurso = new JTextField();
 				txtNombreRecurso.setColumns(10);
-				txtNombreRecurso.setBounds(101, 96, 321, 20);
+				txtNombreRecurso.setBounds(101, 73, 309, 20);
 				panel.add(txtNombreRecurso);
 			}
 			{
 				JLabel lblCantidad = new JLabel("Cantidad:");
-				lblCantidad.setBounds(240, 143, 72, 14);
+				lblCantidad.setBounds(237, 126, 72, 14);
 				panel.add(lblCantidad);
 			}
 			{
 				spnCantidadRecurso = new JSpinner();
 				spnCantidadRecurso.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-				spnCantidadRecurso.setBounds(305, 140, 117, 20);
+				spnCantidadRecurso.setBounds(293, 123, 117, 20);
 				panel.add(spnCantidadRecurso);
 			}
 			{
 				cbxTIpoRecurso = new JComboBox();
-				cbxTIpoRecurso.setBounds(101, 140, 117, 20);
+				cbxTIpoRecurso.setBounds(101, 123, 117, 20);
 				panel.add(cbxTIpoRecurso);
 			}
 		}
@@ -127,7 +129,7 @@ public class AgregarRecurso extends JDialog {
 				getRootPane().setDefaultButton(RegistrarButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

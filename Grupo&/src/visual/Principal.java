@@ -68,6 +68,16 @@ public class Principal extends JFrame {
         });
         mnNewMenu.add(mntmNewMenuItem);
         
+        JMenuItem mntmNewMenuItem_7 = new JMenuItem("Agregar persona");
+        mntmNewMenuItem_7.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		AgregarPersona dialog = new AgregarPersona();
+        		dialog.setVisible(true);
+        	}
+        });
+        mnNewMenu.add(mntmNewMenuItem_7);
+        
         JMenu mnNewMenu_2 = new JMenu("Eventos");
         menuBar1.add(mnNewMenu_2);
         
@@ -94,8 +104,30 @@ public class Principal extends JFrame {
         });
         mnNewMenu_3.add(mntmNewMenuItem_2);
         
+        JMenu mnNewMenu_5 = new JMenu("Recursos disponibles");
+        menuBar1.add(mnNewMenu_5);
+        
+        JMenuItem mntmNewMenuItem_6 = new JMenuItem("Recursos ");
+        mntmNewMenuItem_6.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		AgregarRecurso dialog = new AgregarRecurso();
+        		dialog.setVisible(true);
+        		
+        	}
+        });
+        mnNewMenu_5.add(mntmNewMenuItem_6);
+        
+        JMenu mnNewMenu_1 = new JMenu("Administracion");
+        //if (!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")) {
+			// ((Object) mnAdministracin).setEnable(false);
+        	
+			
+		//}
+        menuBar1.add(mnNewMenu_1);
+        
         JMenu mnNewMenu_4 = new JMenu("Tablas");
-        mnNewMenu_3.add(mnNewMenu_4);
+        mnNewMenu_1.add(mnNewMenu_4);
         
         JMenuItem mntmNewMenuItem_3 = new JMenuItem("Jurado");
         mntmNewMenuItem_3.addActionListener(new ActionListener() {
@@ -126,14 +158,6 @@ public class Principal extends JFrame {
         	}
         });
         mnNewMenu_4.add(mntmNewMenuItem_5);
-        
-        JMenu mnNewMenu_1 = new JMenu("Administracion");
-        //if (!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")) {
-			// ((Object) mnAdministracin).setEnable(false);
-        	
-			
-		//}
-        menuBar1.add(mnNewMenu_1);
         
         // Menú Archivo
         JMenu mnArchivo = new JMenu("Emergencia");
