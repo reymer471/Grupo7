@@ -17,6 +17,8 @@ import logico.Evento;
 import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import java.awt.Toolkit;
+import java.awt.SystemColor;
+import javax.swing.border.EtchedBorder;
 
 public class RegistrarEvento extends JDialog {
 
@@ -47,21 +49,21 @@ public class RegistrarEvento extends JDialog {
     public RegistrarEvento() {
     	setForeground(Color.GRAY);
     	setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarEvento.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
-        setTitle("Registrar Evento");
-        setBounds(100, 100, 452, 309);
+        setTitle("Registrar evento");
+        setBounds(100, 100, 452, 292);
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
-        contentPanel.setBackground(Color.LIGHT_GRAY);
-        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPanel.setBackground(SystemColor.menu);
+        contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
 
-        JLabel lblCodEvento = new JLabel("Evento código:");
+        JLabel lblCodEvento = new JLabel("Evento codigo:");
         lblCodEvento.setBounds(10, 26, 100, 14);
         contentPanel.add(lblCodEvento);
 
         txtEventoCodigo = new JTextField();
-        txtEventoCodigo.setBounds(110, 23, 120, 20);
+        txtEventoCodigo.setBounds(99, 23, 120, 20);
         contentPanel.add(txtEventoCodigo);
         txtEventoCodigo.setColumns(10);
 
@@ -70,7 +72,7 @@ public class RegistrarEvento extends JDialog {
         contentPanel.add(lblNombre);
 
         txtNombre = new JTextField();
-        txtNombre.setBounds(110, 74, 300, 20);
+        txtNombre.setBounds(99, 74, 300, 20);
         contentPanel.add(txtNombre);
         txtNombre.setColumns(10);
 
@@ -79,7 +81,7 @@ public class RegistrarEvento extends JDialog {
         contentPanel.add(lblTipoEvento);
 
         cbxTipoEvento = new JComboBox<>();
-        cbxTipoEvento.setBounds(110, 117, 120, 20);
+        cbxTipoEvento.setBounds(99, 117, 120, 20);
         cbxTipoEvento.addItem("Conferencia");
         cbxTipoEvento.addItem("Seminario");
         cbxTipoEvento.addItem("Taller");
@@ -87,11 +89,11 @@ public class RegistrarEvento extends JDialog {
         contentPanel.add(cbxTipoEvento);
 
         JLabel lblFechas = new JLabel("Fecha:");
-        lblFechas.setBounds(244, 120, 100, 14);
+        lblFechas.setBounds(229, 120, 100, 14);
         contentPanel.add(lblFechas);
 
         spnFecha = new JSpinner(new SpinnerDateModel());
-        spnFecha.setBounds(300, 117, 120, 20);
+        spnFecha.setBounds(289, 117, 120, 20);
         contentPanel.add(spnFecha);
 
         JLabel lblCapacidad = new JLabel("Capacidad:");
@@ -99,15 +101,15 @@ public class RegistrarEvento extends JDialog {
         contentPanel.add(lblCapacidad);
 
         spnCapacidad = new JSpinner();
-        spnCapacidad.setBounds(110, 160, 120, 20);
+        spnCapacidad.setBounds(99, 160, 120, 20);
         contentPanel.add(spnCapacidad);
 
-        JLabel lblDuracion = new JLabel("Duración (hrs):");
-        lblDuracion.setBounds(244, 163, 100, 14);
+        JLabel lblDuracion = new JLabel("Duracion (hrs):");
+        lblDuracion.setBounds(229, 163, 100, 14);
         contentPanel.add(lblDuracion);
 
         spnDuracion = new JSpinner();
-        spnDuracion.setBounds(330, 160, 90, 20);
+        spnDuracion.setBounds(311, 160, 100, 20);
         contentPanel.add(spnDuracion);
 
         // Botones de acción
@@ -137,7 +139,7 @@ public class RegistrarEvento extends JDialog {
 
             // Validaciones
             if (codigo.isEmpty()) {
-                mostrarMensaje("El código del evento es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
+                mostrarMensaje("El codigo del evento es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
