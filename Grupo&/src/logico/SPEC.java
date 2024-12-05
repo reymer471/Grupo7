@@ -357,6 +357,12 @@ public class SPEC implements Serializable {
             System.err.println("Error al cargar los datos: " + e.getMessage());
         }
     }
+
+	public void insertarEvento(Evento evento) {
+		// TODO Auto-generated method stub
+		misEventos.add(evento);
+		codEvento++;
+	}
 	
 
 }

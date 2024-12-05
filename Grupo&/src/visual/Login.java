@@ -80,12 +80,12 @@ public class Login extends JFrame {
 					e.printStackTrace();
 				}
 				
-				/*try {
+				try {
 					Login frame = new Login();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}*/
+				}
 			}
 		});
 	}

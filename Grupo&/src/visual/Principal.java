@@ -44,25 +44,13 @@ public class Principal extends JFrame {
 
     public Principal() {
     	
-    	addWindowListener(new WindowAdapter() {
-    		@Override
-    		public void windowClosing(WindowEvent e ) {
-    			FileOutputStream gestion2;
-    			ObjectOutputStream gestionWrite;
-    			
-    			try {
-    				gestion2 = new FileOutputStream("gestion.dat");
-    				gestionWrite = new ObjectOutputStream(gestion2);
-    				gestionWrite.writeObject(Control.getInstance());
-    				
-    			}catch(FileNotFoundException e1){
-    				e1.printStackTrace();
-    			}catch (IOException e1) {
-    				e1.printStackTrace();
-    			}
+    	  addWindowListener(new java.awt.event.WindowAdapter() {
+              @Override
+              public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                  SPEC.getInstance().guardarDatos("SPEC.dat");
+        		
     		}	
 		});
-    	
     	
     	
     	
