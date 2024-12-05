@@ -37,7 +37,7 @@ public class TablaParticipante extends JFrame {
     	setForeground(Color.WHITE);
     	setIconImage(Toolkit.getDefaultToolkit().getImage(TablaParticipante.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-more-details@2x.png")));
         setTitle("Tabla de Participantes");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 600, 400);
         contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());

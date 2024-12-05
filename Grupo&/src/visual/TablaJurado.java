@@ -35,7 +35,7 @@ public class TablaJurado extends JFrame {
     public TablaJurado() {
     	setIconImage(Toolkit.getDefaultToolkit().getImage(TablaJurado.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
         setTitle("Tabla de Jurados");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 600, 400);
         contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
