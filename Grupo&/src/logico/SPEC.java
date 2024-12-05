@@ -365,7 +365,7 @@ public class SPEC implements Serializable {
     }
 
 
-	public void insertarEvento(Evento evento) {
+	public void insertarEvento1(Evento evento) {
 		// TODO Auto-generated method stub
 		misEventos.add(evento);
 		codEvento++;
