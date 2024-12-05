@@ -14,6 +14,8 @@ import logico.Control;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -21,6 +23,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.SystemColor;
 
 public class Login extends JFrame {
 
@@ -60,7 +63,7 @@ public class Login extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBackground(SystemColor.menu);
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -92,9 +95,31 @@ public class Login extends JFrame {
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Loggin");
+		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				btnNewButton.addActionListener(new ActionListener() {
+				    public void actionPerformed(ActionEvent e) {
+				        String username = textField.getText().trim();  
+				        String password = textField_1.getText().trim();  
+
+				        if (username.isEmpty() || password.isEmpty()) {  // Verificación si los campos están vacíos
+				            JOptionPane.showMessageDialog(Login.this, "Por favor, complete todos los campos.", "Campos Vacíos", JOptionPane.WARNING_MESSAGE);  // Mostrar mensaje si hay campos vacíos
+				        } else {
+				            if (Control.getInstance().confirmLogin(username, password)) { 
+				                Principal frame = new Principal(); 
+				                dispose();  
+				                frame.setVisible(true);  // Mostrar la ventana Principal
+				            } else {
+				                JOptionPane.showMessageDialog(Login.this, "Usuario o contraseña incorrectos.", "Error de Login", JOptionPane.ERROR_MESSAGE);  // Mostrar mensaje si las credenciales son incorrectas
+				            }
+				        }
+				    }
+				});
+	
+				
+				
 				if(Control.getInstance().confirmLogin(textField.getText(), textField_1.getText())) {
 					Principal frame = new Principal();
 					dispose();
