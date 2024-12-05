@@ -114,6 +114,13 @@ public class Evento {
 				trabajosCientificos.remove(trabajo);
 			}
 		}
+		
+		public void eliminarRecursoDeEvento(Recurso recurso) {
+			// TODO Auto-generated method stub
+			if (recurso != null) {
+				recursosEvento.remove(recurso);
+			}
+		}
 	    
 		 public void crearEvento() {
 		        System.out.println("Evento creado: " + nombre);
@@ -130,6 +137,9 @@ public class Evento {
 		    public void agregarComision(Comision comision) {
 		        comisiones.add(comision);
 		    }
+
+
+			
 
 
 			

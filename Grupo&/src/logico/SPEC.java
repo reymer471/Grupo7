@@ -292,6 +292,43 @@ public class SPEC {
 		}
 	}
 
+	public Recurso buscarRecursoById(String codRecurso2) {
+		// TODO Auto-generated method stub
+		Recurso recurso = null;
+		boolean found = false; 
+		int i = 0; 
+		
+		while(i < misRecursos.size() && !found) {
+			if (misRecursos.get(i).getId().equalsIgnoreCase(codRecurso2)) {
+				recurso = misRecursos.get(i);
+				found = true;
+			}
+			i++;
+		}
+		return recurso;
+	}
+	
+	private void eliminarRecursoDeAlgunEvento(Recurso recurso2) {
+		
+		for (Evento evento : misEventos) {
+			for (Recurso recurso : evento.getRecursosEvento()) {
+				
+				if(recurso2.getId().equalsIgnoreCase(recurso.getId())){
+					
+					evento.eliminarRecursoDeEvento(recurso);
+				}
+			}
+			
+		}
+	}
+
+	public void eliminarRecurso(Recurso recurso) {
+		// TODO Auto-generated method stub
+		if (recurso != null) {
+			misRecursos.remove(recurso);
+		}
+	}
+
 	
 
 	
