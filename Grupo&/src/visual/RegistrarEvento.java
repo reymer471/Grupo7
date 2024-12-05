@@ -14,6 +14,8 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import logico.Evento;
+import logico.SPEC;
+
 import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import java.awt.Toolkit;
@@ -63,6 +65,8 @@ public class RegistrarEvento extends JDialog {
         contentPanel.add(lblCodEvento);
 
         txtEventoCodigo = new JTextField();
+        txtEventoCodigo.setText("E-" + SPEC.getInstance().codEvento);
+        txtEventoCodigo.setEditable(false);
         txtEventoCodigo.setBounds(99, 23, 120, 20);
         contentPanel.add(txtEventoCodigo);
         txtEventoCodigo.setColumns(10);
