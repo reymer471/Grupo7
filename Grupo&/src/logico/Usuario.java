@@ -5,17 +5,27 @@ import java.io.Serializable;
 public class Usuario implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
+	private String tipo;
 	private String username;
-	private String contrasena;
 	private String pass;
 	
-	public Usuario(String username, String contrasena, String pass) {
+	public Usuario(String username, String tipo, String pass) {
 		super();
 		this.username = username;
-		this.contrasena = contrasena;
+		this.tipo= tipo;
 		this.pass = pass;
 	}
+	
+	public String getTipo1() {
+		return tipo;
+	}
 
+	public void setTipo(String tipo) {
+		this.tipo =tipo;
+	}
+	
+	
 	public String getUsername() {
 		return username;
 	}
@@ -24,28 +34,19 @@ public class Usuario implements Serializable{
 		this.username = username;
 	}
 
-	public String getContrasena() {
-		return contrasena;
-	}
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
-
 	public String getPass() {
 		return pass;
+		
 	}
-
+	
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
 
-	public String getTipo() {
+	public Object getLoginUser() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
    
 	
 }

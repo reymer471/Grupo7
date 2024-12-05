@@ -109,7 +109,7 @@ public class Login extends JFrame {
 				        } else {
 				            if (Control.getInstance().confirmLogin(username, password)) { 
 				                Principal frame = new Principal(); 
-				                if (Control.getLoginUser().getTipo().equalsIgnoreCase("comercial")) {
+				                if (Control.getLoginUser().getTipo1().equalsIgnoreCase("comercial")) {
 		                            // Bloquear el menú de administración para usuario comercial
 		                            frame.desactivarMenuAdministracion();
 		                        }

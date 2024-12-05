@@ -3,6 +3,10 @@ package visual;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import logico.Jurado;
 import logico.Persona;
 import logico.Participante;
@@ -149,6 +153,8 @@ public class AgregarPersona extends JDialog {
                 }
             }
         });
+        
+        
 
         // Acciones de los botones
         Agregar.addActionListener(new ActionListener() {
@@ -156,6 +162,7 @@ public class AgregarPersona extends JDialog {
                 String codigo = txtCodigo.getText();
                 String nombre = txtNombre.getText();
                 String apellido = txtApellido.getText();
+                
 
                 if (codigo.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -175,7 +182,7 @@ public class AgregarPersona extends JDialog {
                             persona instanceof Jurado ? ((Jurado) persona).getExperiencia() : "",
                             persona instanceof Jurado ? ((Jurado) persona).getEspecialidad() : ""});
                     
-                    JOptionPane.showMessageDialog(null, "Se ha agregado correctamente a " + persona.getNombre() + " " + persona.getApellido(), "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Se ha agregado correctamente a " + persona.getNombre() + " " + persona.getApellido(), "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
                     dispose();  // Cierra el diálogo
                 }
             }
