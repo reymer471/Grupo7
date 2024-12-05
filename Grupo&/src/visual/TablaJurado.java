@@ -37,7 +37,7 @@ public class TablaJurado extends JFrame {
         setContentPane(contentPane);
 
         // Tabla para mostrar los jurados
-        String[] columnNames = {"Código", "Nombre", "Apellido", "Experiencia", "Especialidad"};
+        String[] columnNames = {"Codigo", "Nombre", "Apellido", "Experiencia", "Especialidad"};
         model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
         table = new JTable(model);

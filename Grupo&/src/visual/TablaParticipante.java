@@ -37,7 +37,7 @@ public class TablaParticipante extends JFrame {
         setContentPane(contentPane);
 
         // Tabla para mostrar los participantes
-        String[] columnNames = {"Código", "Nombre", "Apellido", "Dirección", "Email"};
+        String[] columnNames = {"Codigo", "Nombre", "Apellido", "Direccion", "Email"};
         model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
         table = new JTable(model);

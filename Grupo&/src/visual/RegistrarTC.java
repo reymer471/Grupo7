@@ -24,6 +24,7 @@ import logico.TrabajoCientifico;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class RegistrarTC extends JDialog {
 
@@ -54,10 +55,10 @@ public class RegistrarTC extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarTC() {
-		setTitle("Registrar Trabajo Cientifico");
-		setBounds(100, 100, 450, 300);
+		setTitle("Registrar trabajo cientifico");
+		setBounds(100, 100, 494, 334);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
@@ -67,40 +68,40 @@ public class RegistrarTC extends JDialog {
 			panel.setLayout(new BorderLayout(0, 0));
 			{
 				JPanel panel_1 = new JPanel();
-				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 				panel.add(panel_1, BorderLayout.CENTER);
 				panel_1.setLayout(null);
 				
 				JLabel lblCodigoTc = new JLabel("Codigo:");
-				lblCodigoTc.setBounds(10, 11, 46, 14);
+				lblCodigoTc.setBounds(10, 24, 46, 14);
 				panel_1.add(lblCodigoTc);
 				
 				JLabel lblTituloTc = new JLabel("Titulo:");
-				lblTituloTc.setBounds(10, 50, 46, 14);
+				lblTituloTc.setBounds(10, 64, 46, 14);
 				panel_1.add(lblTituloTc);
 				
 				JLabel lblComision = new JLabel("Comision:");
-				lblComision.setBounds(10, 126, 46, 14);
+				lblComision.setBounds(10, 153, 46, 14);
 				panel_1.add(lblComision);
 				
 				cbxComision = new JComboBox();		
-				cbxComision.setBounds(66, 123, 348, 20);
+				cbxComision.setBounds(87, 150, 348, 20);
 				panel_1.add(cbxComision);
 				
 				txtTItuloTc = new JTextField();
-				txtTItuloTc.setBounds(66, 47, 348, 20);
+				txtTItuloTc.setBounds(87, 61, 348, 20);
 				panel_1.add(txtTItuloTc);
 				txtTItuloTc.setColumns(10);
 				
 				txtCodigoTc = new JTextField();
 				txtCodigoTc.setText("TC-" + SPEC.getInstance().codTrajCientifico);
 				txtCodigoTc.setEditable(false);
-				txtCodigoTc.setBounds(66, 8, 86, 20);
+				txtCodigoTc.setBounds(87, 21, 86, 20);
 				panel_1.add(txtCodigoTc);
 				txtCodigoTc.setColumns(10);
 				
 				JLabel lblNewLabel = new JLabel("Participantes:");
-				lblNewLabel.setBounds(10, 169, 116, 14);
+				lblNewLabel.setBounds(10, 194, 116, 14);
 				panel_1.add(lblNewLabel);
 				
 				JButton btnAgregar = new JButton("Agregar");
@@ -123,20 +124,20 @@ public class RegistrarTC extends JDialog {
 						}
 					}
 				});
-				btnAgregar.setBounds(325, 165, 89, 23);
+				btnAgregar.setBounds(325, 190, 89, 23);
 				panel_1.add(btnAgregar);
 				
 				txtEntradaParticipante = new JTextField();
-				txtEntradaParticipante.setBounds(91, 166, 224, 20);
+				txtEntradaParticipante.setBounds(87, 191, 224, 20);
 				panel_1.add(txtEntradaParticipante);
 				txtEntradaParticipante.setColumns(10);
 				
-				JLabel lblDescrip = new JLabel("Descripcion");
-				lblDescrip.setBounds(10, 86, 59, 14);
+				JLabel lblDescrip = new JLabel("Descripcion:");
+				lblDescrip.setBounds(10, 108, 59, 14);
 				panel_1.add(lblDescrip);
 				
 				txtDescripTc = new JTextField();
-				txtDescripTc.setBounds(66, 83, 348, 20);
+				txtDescripTc.setBounds(87, 105, 348, 20);
 				panel_1.add(txtDescripTc);
 				txtDescripTc.setColumns(10);
 			}
@@ -158,7 +159,7 @@ public class RegistrarTC extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

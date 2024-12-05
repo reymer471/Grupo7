@@ -78,7 +78,7 @@ public class Principal extends JFrame {
         });
         mnNewMenu.add(mntmNewMenuItem_7);
         
-        JMenu mnNewMenu_2 = new JMenu("Gestion Eventos");
+        JMenu mnNewMenu_2 = new JMenu("Gestion eventos");
         menuBar1.add(mnNewMenu_2);
         
         JMenuItem mntmNewMenuItem_1 = new JMenuItem("Registrar evento");
@@ -91,19 +91,30 @@ public class Principal extends JFrame {
         });
         mnNewMenu_2.add(mntmNewMenuItem_1);
         
-        JMenuItem mntmNewMenuItem_8 = new JMenuItem("Listar Eventos");
+        JMenuItem mntmNewMenuItem_8 = new JMenuItem("Listar eventos");
         mntmNewMenuItem_8.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		ListadoEventos listadoE = new ListadoEventos();
         		listadoE.setVisible(true);
         	}
         });
+        
+        JMenuItem mntmNewMenuItem_10 = new JMenuItem("Registrar trabajo cientifico");
+        mntmNewMenuItem_10.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		RegistrarTC dialog = new RegistrarTC();
+        		dialog.setVisible(true);
+        		
+        	}
+        });
+        mnNewMenu_2.add(mntmNewMenuItem_10);
         mnNewMenu_2.add(mntmNewMenuItem_8);
         
-        JMenu mnNewMenu_5 = new JMenu("Gestion Recursos");
+        JMenu mnNewMenu_5 = new JMenu("Gestion recursos");
         menuBar1.add(mnNewMenu_5);
         
-        JMenuItem mntmNewMenuItem_6 = new JMenuItem("Registrar Recursos");
+        JMenuItem mntmNewMenuItem_6 = new JMenuItem("Registrar recursos");
         mntmNewMenuItem_6.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
@@ -114,7 +125,15 @@ public class Principal extends JFrame {
         });
         mnNewMenu_5.add(mntmNewMenuItem_6);
         
-        JMenuItem mntmNewMenuItem_9 = new JMenuItem("Listar Recursos");
+        JMenuItem mntmNewMenuItem_9 = new JMenuItem("Listar recursos");
+        mntmNewMenuItem_9.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		ListadoRecursos dialog = new ListadoRecursos();
+        		dialog.setVisible(true);
+        		
+        	}
+        });
         mnNewMenu_5.add(mntmNewMenuItem_9);
         
         JMenu mnNewMenu_3 = new JMenu("Consultas");
