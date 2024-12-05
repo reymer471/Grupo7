@@ -1,28 +1,15 @@
 package visual;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JDialog;
-import javax.swing.border.EmptyBorder;
-
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import logico.Jurado;
-import logico.Participante;
 import logico.Persona;
+import logico.Participante;
 
-import javax.swing.ImageIcon;
-import java.awt.Toolkit;
-import java.awt.Color;
-import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 public class AgregarPersona extends JDialog {
 
@@ -35,6 +22,7 @@ public class AgregarPersona extends JDialog {
     private JTextField txtExperiencia;
     private JTextField txtEspecialidad;
     private JComboBox<String> tipoPersonaComboBox;
+    private DefaultTableModel model;
 
     public static void main(String[] args) {
         try {
@@ -47,8 +35,9 @@ public class AgregarPersona extends JDialog {
     }
 
     public AgregarPersona() {
-    	setTitle("Agregar tipo de persona");
-    	setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarPersona.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
+        this.model = model;  // Se pasa el modelo de la tabla como parámetro
+        setTitle("Agregar tipo de persona");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarPersona.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
         setBounds(150, 150, 413, 432);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(Color.LIGHT_GRAY);
@@ -56,7 +45,7 @@ public class AgregarPersona extends JDialog {
         contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         setLocationRelativeTo(null);
-        
+
         // Etiquetas comunes
         JLabel lblCodigo = new JLabel("Codigo:");
         lblCodigo.setBounds(10, 20, 100, 20);
@@ -83,7 +72,7 @@ public class AgregarPersona extends JDialog {
         txtApellido.setBounds(120, 100, 200, 20);
         contentPanel.add(txtApellido);
 
-        // Seleccion de tipo de persona 
+        // Selección de tipo de persona
         JLabel lblTipoPersona = new JLabel("Tipo de Persona:");
         lblTipoPersona.setBounds(10, 140, 100, 20);
         contentPanel.add(lblTipoPersona);
@@ -93,7 +82,7 @@ public class AgregarPersona extends JDialog {
         tipoPersonaComboBox.setBounds(120, 140, 200, 20);
         contentPanel.add(tipoPersonaComboBox);
 
-        // Campos especificos para Participante
+        // Campos específicos para Participante
         JLabel lblDireccion = new JLabel("Direccion:");
         lblDireccion.setBounds(10, 180, 100, 20);
         contentPanel.add(lblDireccion);
@@ -127,7 +116,7 @@ public class AgregarPersona extends JDialog {
         txtEspecialidad.setBounds(120, 300, 200, 20);
         contentPanel.add(txtEspecialidad);
 
-        // Botones de acción 
+        // Botones de acción
         JPanel buttonPane = new JPanel();
         buttonPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -167,49 +156,30 @@ public class AgregarPersona extends JDialog {
                 String codigo = txtCodigo.getText();
                 String nombre = txtNombre.getText();
                 String apellido = txtApellido.getText();
-                
-                
+
                 if (codigo.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
-                    javax.swing.JOptionPane.showMessageDialog(
-                        null,
-                        "Por favor, complete todos los campos obligatorios.",
-                        "Error",
-                        javax.swing.JOptionPane.ERROR_MESSAGE
-                    );
-                    return; 
+                    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
-                // Crear la persona según el tipo seleccionado
                 Persona persona = null;
                 if (tipoPersonaComboBox.getSelectedItem().equals("Participante")) {
-                    persona = new Participante(txtCodigo.getText(), txtNombre.getText(), txtApellido.getText(),txtDireccion.getText(),txtEmail.getText());
-                    ((Participante) persona).setDireccion(txtDireccion.getText());
-                    ((Participante) persona).setEmail(txtEmail.getText());
+                    persona = new Participante(codigo, nombre, apellido, txtDireccion.getText(), txtEmail.getText());
                 } else if (tipoPersonaComboBox.getSelectedItem().equals("Jurado")) {
-                	persona = new Jurado(txtCodigo.getText(), txtNombre.getText(), txtApellido.getText(), txtExperiencia.getText(), txtEspecialidad.getText());
-                    ((Jurado) persona).setExperiencia(txtExperiencia.getText());
-                    ((Jurado) persona).setEspecialidad(txtEspecialidad.getText());
-                    
-                    if (persona != null) {
-                        // Muestra un mensaje de confirmación
-                        javax.swing.JOptionPane.showMessageDialog(
-                            null, 
-                            "Se ha agregado correctamente a " + persona.getNombre() + " " + persona.getApellido(), 
-                            "Confirmación", 
-                            javax.swing.JOptionPane.INFORMATION_MESSAGE
-                 );}
+                    persona = new Jurado(codigo, nombre, apellido, txtExperiencia.getText(), txtEspecialidad.getText());
                 }
-             
-                persona.setCodigo(codigo);
-                persona.setNombre(nombre);
-                persona.setApellido(apellido);
-               
 
-                dispose();
+                if (persona != null) {
+                    // Agregar la persona a la tabla
+                    model.addRow(new Object[]{persona.getCodigo(), persona.getNombre(), persona.getApellido(),
+                            persona instanceof Jurado ? ((Jurado) persona).getExperiencia() : "",
+                            persona instanceof Jurado ? ((Jurado) persona).getEspecialidad() : ""});
+                    
+                    JOptionPane.showMessageDialog(null, "Se ha agregado correctamente a " + persona.getNombre() + " " + persona.getApellido(), "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();  // Cierra el diálogo
+                }
             }
-            
         });
-        
 
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

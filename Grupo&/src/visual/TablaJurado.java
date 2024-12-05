@@ -1,10 +1,11 @@
 package visual;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.Toolkit;
+
+import logico.Jurado;
+
+import java.awt.*;
 
 public class TablaJurado extends JFrame {
 
@@ -13,9 +14,6 @@ public class TablaJurado extends JFrame {
     private DefaultTableModel model;
     private JButton btnCerrar;
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -29,11 +27,8 @@ public class TablaJurado extends JFrame {
         });
     }
 
-    /**
-     * Create the frame.
-     */
     public TablaJurado() {
-    	setIconImage(Toolkit.getDefaultToolkit().getImage(TablaJurado.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(TablaJurado.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
         setTitle("Tabla de Jurados");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 600, 400);
@@ -52,9 +47,13 @@ public class TablaJurado extends JFrame {
         // Botón para cerrar
         JPanel buttonPane = new JPanel();
         contentPane.add(buttonPane, BorderLayout.SOUTH);
-        
+
         btnCerrar = new JButton("Cerrar");
-        btnCerrar.addActionListener(e -> dispose()); 
+        btnCerrar.addActionListener(e -> dispose());
         buttonPane.add(btnCerrar);
+    }
+
+    public void agregarJurados(Jurado jurado) {
+        model.addRow(new Object[]{jurado.getCodigo(), jurado.getNombre(), jurado.getApellido(), jurado.getExperiencia(), jurado.getEspecialidad()});
     }
 }
