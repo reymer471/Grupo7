@@ -35,13 +35,13 @@ public class AgregarPersona extends JDialog {
         contentPanel.setLayout(null);
         getContentPane().add(contentPanel, BorderLayout.CENTER);
 
-        // Add form components
+       
         addFormComponents(contentPanel);
 
-        // Add button panel
+        
         addButtonPanel();
 
-        // Set initial field states
+      
         updateFieldState();
     }
 
