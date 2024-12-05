@@ -11,8 +11,8 @@ public class Evento {
 	    private String tipoEvento;
 	    private infoEvento infoEvento;
 	    private ArrayList<Recurso> recursosEvento;
-	    private ArrayList<String> trabajosCientificos; 
-	    private ArrayList<String> comisiones; 
+	    private ArrayList<TrabajoCientifico> trabajosCientificos; 
+	    private ArrayList<Comision> comisiones; 
 
 	    
 	    public Evento(String nombre, String idEvento, Date fechaEvento, String tipoEvento, infoEvento infoEvento) {
@@ -87,23 +87,32 @@ public class Evento {
 		}
 
 
-		public ArrayList<String> getTrabajosCientificos() {
+		public ArrayList<TrabajoCientifico> getTrabajosCientificos() {
 			return trabajosCientificos;
 		}
 
 
-		public void setTrabajosCientificos(ArrayList<String> trabajosCientificos) {
+		public void setTrabajosCientificos(ArrayList<TrabajoCientifico> trabajosCientificos) {
 			this.trabajosCientificos = trabajosCientificos;
 		}
 
 
-		public ArrayList<String> getComisiones() {
+		public ArrayList<Comision> getComisiones() {
 			return comisiones;
 		}
 
 
-		public void setComisiones(ArrayList<String> comisiones) {
+		public void setComisiones(ArrayList<Comision> comisiones) {
 			this.comisiones = comisiones;
+		}
+		
+		
+		
+		public void eliminarTcDeEvento(TrabajoCientifico trabajo) {
+			// TODO Auto-generated method stub
+			if (trabajo != null) {
+				trabajosCientificos.remove(trabajo);
+			}
 		}
 	    
 		 public void crearEvento() {
@@ -114,12 +123,17 @@ public class Evento {
 		        recursosEvento.add(recurso);
 		    }
 
-		    public void agregarTrabajoCientifico(String trabajo) {
+		    public void agregarTrabajoCientifico(TrabajoCientifico trabajo) {
 		        trabajosCientificos.add(trabajo);
 		    }
 
-		    public void agregarComision(String comision) {
+		    public void agregarComision(Comision comision) {
 		        comisiones.add(comision);
 		    }
+
+
+			
+		    
+		    
 
 }

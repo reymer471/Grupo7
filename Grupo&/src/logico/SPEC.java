@@ -270,23 +270,30 @@ public class SPEC {
 		return null;
 	}
 
-	public void eliminarTrabajoCientifico(TrabajoCientifico tCi) {
-		// TODO Auto-generated method stub
-		if(tCi != null) {
-			mistrabajosCientificos.remove(tCi);
+	private void eliminarTcDeAlgunEvento(TrabajoCientifico tci) {
+		
+		for (Evento evento : misEventos) {
+			for (TrabajoCientifico trabajo : evento.getTrabajosCientificos()) {
+				
+				if(tci.getCodTrabajo().equalsIgnoreCase(trabajo.getCodTrabajo())) {
+					
+					evento.eliminarTcDeEvento(trabajo);
+				}
+			}
+			
 		}
 	}
 	
-	private void eliminarDeAlgunEvento (TrabajoCientifico tci) {
-		
+	public void eliminarTrabajoCientifico(TrabajoCientifico tCi) {
+		// TODO Auto-generated method stub
+		if(tCi != null) {
+			eliminarTcDeAlgunEvento(tCi);
+			mistrabajosCientificos.remove(tCi);
+		}
 	}
 
 	
 
-	
-
-
-	
 	
 
 }
