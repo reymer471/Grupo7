@@ -3,6 +3,8 @@ package logico;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.swing.JTextField;
+
 public class Control implements Serializable{
 	
 	private static final long  serialVersionUID = 1L;
@@ -74,6 +76,12 @@ public class Control implements Serializable{
 			}
 		}
 		return login;
+	}
+
+
+	public boolean confirmLogin(JTextField textField, String text) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

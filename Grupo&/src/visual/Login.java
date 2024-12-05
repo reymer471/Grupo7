@@ -98,6 +98,16 @@ public class Login extends JFrame {
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(Control.getInstance().confirmLogin(textField, textField_1.getText())) {
+					Principal frame = new Principal();
+					dispose();
+					frame.setVisible(true);
+							
+				};
+				
+			}
+		});	
+				
 				
 				btnNewButton.addActionListener(new ActionListener() {
 				    public void actionPerformed(ActionEvent e) {
@@ -124,13 +134,6 @@ public class Login extends JFrame {
 	
 				
 				
-				if(Control.getInstance().confirmLogin(textField.getText(), textField_1.getText())) {
-					Principal frame = new Principal();
-					dispose();
-					frame.setVisible(true);
-				}
-			}
-		});
 		btnNewButton.setBounds(235, 212, 89, 23);
 		panel.add(btnNewButton);
 		
