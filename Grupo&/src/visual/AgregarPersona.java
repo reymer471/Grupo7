@@ -27,6 +27,7 @@ public class AgregarPersona extends JDialog {
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
     }
 
     private void initializeComponents() {
