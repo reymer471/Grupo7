@@ -78,7 +78,7 @@ public class Principal extends JFrame {
         });
         mnNewMenu.add(mntmNewMenuItem_7);
         
-        JMenu mnNewMenu_2 = new JMenu("Eventos");
+        JMenu mnNewMenu_2 = new JMenu("Gestion Eventos");
         menuBar1.add(mnNewMenu_2);
         
         JMenuItem mntmNewMenuItem_1 = new JMenuItem("Registrar evento");
@@ -90,6 +90,32 @@ public class Principal extends JFrame {
         	}
         });
         mnNewMenu_2.add(mntmNewMenuItem_1);
+        
+        JMenuItem mntmNewMenuItem_8 = new JMenuItem("Listar Eventos");
+        mntmNewMenuItem_8.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ListadoEventos listadoE = new ListadoEventos();
+        		listadoE.setVisible(true);
+        	}
+        });
+        mnNewMenu_2.add(mntmNewMenuItem_8);
+        
+        JMenu mnNewMenu_5 = new JMenu("Gestion Recursos");
+        menuBar1.add(mnNewMenu_5);
+        
+        JMenuItem mntmNewMenuItem_6 = new JMenuItem("Registrar Recursos");
+        mntmNewMenuItem_6.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		AgregarRecurso dialog = new AgregarRecurso();
+        		dialog.setVisible(true);
+        		
+        	}
+        });
+        mnNewMenu_5.add(mntmNewMenuItem_6);
+        
+        JMenuItem mntmNewMenuItem_9 = new JMenuItem("Listar Recursos");
+        mnNewMenu_5.add(mntmNewMenuItem_9);
         
         JMenu mnNewMenu_3 = new JMenu("Consultas");
         menuBar1.add(mnNewMenu_3);
@@ -103,20 +129,6 @@ public class Principal extends JFrame {
         	}
         });
         mnNewMenu_3.add(mntmNewMenuItem_2);
-        
-        JMenu mnNewMenu_5 = new JMenu("Recursos disponibles");
-        menuBar1.add(mnNewMenu_5);
-        
-        JMenuItem mntmNewMenuItem_6 = new JMenuItem("Recursos ");
-        mntmNewMenuItem_6.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		AgregarRecurso dialog = new AgregarRecurso();
-        		dialog.setVisible(true);
-        		
-        	}
-        });
-        mnNewMenu_5.add(mntmNewMenuItem_6);
         
         JMenu mnNewMenu_1 = new JMenu("Administracion");
         menuBar1.add(mnNewMenu_1);
