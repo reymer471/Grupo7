@@ -270,6 +270,17 @@ public class SPEC {
 		return null;
 	}
 
+	public void eliminarTrabajoCientifico(TrabajoCientifico tCi) {
+		// TODO Auto-generated method stub
+		if(tCi != null) {
+			mistrabajosCientificos.remove(tCi);
+		}
+	}
+	
+	private void eliminarDeAlgunEvento (TrabajoCientifico tci) {
+		
+	}
+
 	
 
 	

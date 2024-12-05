@@ -704,7 +704,7 @@ public class Consulta extends JDialog {
 		txtCodTrabajoCient.setText(trabajoBuscando2.getCodTrabajo());
 		txtTItuloTc.setText(trabajoBuscando2.getTitulo());
 		txtContextoTc.setText(trabajoBuscando2.getContexto());
-		txtComisionTc.setText(trabajoBuscando2.getAreacomision());
+		txtComisionTc.setText(trabajoBuscando2.getComisiontc().getNombreComision());
 		
 		//table participantes
 	}

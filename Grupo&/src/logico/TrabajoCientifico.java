@@ -7,15 +7,15 @@ public class TrabajoCientifico {
 	private String codTrabajo;
 	private String titulo;
 	private String contexto;
-	private String areacomision;
+	private Comision comisiontc;
 	private ArrayList<Participante> particiantes;
 	
-	public TrabajoCientifico(String numTrabajo, String titulo, String contexto, String areacomision) {
+	public TrabajoCientifico(String numTrabajo, String titulo, String contexto, Comision comisiontc) {
 		super();
 		this.codTrabajo = numTrabajo;
 		this.titulo = titulo;
 		this.contexto = contexto;
-		this.areacomision = areacomision;
+		this.comisiontc = comisiontc;
 		particiantes = new ArrayList<>();
 	}
 
@@ -43,14 +43,6 @@ public class TrabajoCientifico {
 		this.contexto = contexto;
 	}
 
-	public String getAreacomision() {
-		return areacomision;
-	}
-
-	public void setAreacomision(String areacomision) {
-		this.areacomision = areacomision;
-	}
-
 	public ArrayList<Participante> getParticiantes() {
 		return particiantes;
 	}
@@ -66,6 +58,14 @@ public class TrabajoCientifico {
     public void eliminarParticipante(Participante participante) {
         this.particiantes.remove(participante);
     }
+
+	public Comision getComisiontc() {
+		return comisiontc;
+	}
+
+	public void setComisiontc(Comision comisiontc) {
+		this.comisiontc = comisiontc;
+	}
 	
 
 }
