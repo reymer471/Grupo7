@@ -85,19 +85,8 @@ public class Principal extends JFrame {
         menuBar1.setBackground(UIManager.getColor("Button.darkShadow"));
         setJMenuBar(menuBar1);
         
-        JMenu mnNewMenu = new JMenu("Clientes");
+        JMenu mnNewMenu = new JMenu("Gestion Personas");
         menuBar1.add(mnNewMenu);
-        
-        JMenuItem mntmNewMenuItem = new JMenuItem("Registrar usuario");
-        mntmNewMenuItem.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		regUsuario dialog = new regUsuario();
-        		dialog.setVisible(true);
-        		
-        	}
-        });
-        mnNewMenu.add(mntmNewMenuItem);
         
         JMenuItem mntmNewMenuItem_7 = new JMenuItem("Agregar persona");
         mntmNewMenuItem_7.addActionListener(new ActionListener() {
