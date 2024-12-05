@@ -1,6 +1,10 @@
 package logico;
 
 public class Participante extends Persona {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String direccion;
 	private String email;
 	

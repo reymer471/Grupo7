@@ -1,9 +1,14 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TrabajoCientifico {
+public class TrabajoCientifico implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String codTrabajo;
 	private String titulo;
 	private String contexto;

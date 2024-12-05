@@ -17,6 +17,7 @@ import javax.swing.border.SoftBevelBorder;
 import com.sun.xml.internal.messaging.saaj.soap.ver1_1.Envelope1_1Impl;
 
 import logico.Control;
+import logico.SPEC;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
@@ -27,6 +28,8 @@ public class Principal extends JFrame {
 	private Object mnAdministracion;
     
     public static void main(String[] args) {
+    	SPEC.getInstance();
+		SPEC.cargarDatos("SPEC.dat");
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

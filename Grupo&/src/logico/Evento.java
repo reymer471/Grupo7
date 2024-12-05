@@ -1,11 +1,16 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Evento {
+public class Evento implements Serializable {
 	
-	    private String nombre;
+	    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		private String nombre;
 	    private String idEvento;
 	    private Date fechaEvento;
 	    private String tipoEvento;

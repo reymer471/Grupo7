@@ -121,6 +121,7 @@ public class ListadoEventos extends JDialog {
 							 if(evento != null) {
 								 
 								 SPEC.getInstance().eliminarEvento(evento);
+								 SPEC.getInstance().guardarDatos("SPEC.dat");
 								 JOptionPane.showMessageDialog(
 										 null, 
 						             "El evento fue eliminado correctamente."
