@@ -109,7 +109,11 @@ public class Login extends JFrame {
 				        } else {
 				            if (Control.getInstance().confirmLogin(username, password)) { 
 				                Principal frame = new Principal(); 
-				                dispose();  
+				                if (Control.getLoginUser().getTipo().equalsIgnoreCase("comercial")) {
+		                            // Bloquear el menú de administración para usuario comercial
+		                            frame.desactivarMenuAdministracion();
+		                        }
+		                        dispose();
 				                frame.setVisible(true);  // Mostrar la ventana Principal
 				            } else {
 				                JOptionPane.showMessageDialog(Login.this, "Usuario o contraseña incorrectos.", "Error de Login", JOptionPane.ERROR_MESSAGE);  // Mostrar mensaje si las credenciales son incorrectas
@@ -143,3 +147,14 @@ public class Login extends JFrame {
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -119,11 +119,6 @@ public class Principal extends JFrame {
         mnNewMenu_5.add(mntmNewMenuItem_6);
         
         JMenu mnNewMenu_1 = new JMenu("Administracion");
-        //if (!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")) {
-			// ((Object) mnAdministracin).setEnable(false);
-        	
-			
-		//}
         menuBar1.add(mnNewMenu_1);
         
         JMenu mnNewMenu_4 = new JMenu("Tablas");
@@ -199,4 +194,14 @@ public class Principal extends JFrame {
        // Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
        // lblImagen.setIcon(new ImageIcon("C:\\Users\\user\\OneDrive - Pontificia Universidad Cat\u00F3lica Madre y Maestra\\Escritorio\\Logo PUCMM (L\u00EDneas1).png"));
     }
+
+	public void desactivarMenuAdministracion(Component mnNewMenu_1) {
+		 mnNewMenu_1.setEnabled(false);
+		
+	}
+
+	public void desactivarMenuAdministracion() {
+		// TODO Auto-generated method stub
+		
+	}
 }
