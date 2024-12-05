@@ -8,10 +8,18 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
+import logico.Comision;
+import logico.Jurado;
+import logico.Recurso;
+import logico.SPEC;
+
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
@@ -20,13 +28,15 @@ import java.awt.Color;
 public class CrearComision extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtNombre;
+	private JTextField txtNombreComision;
 	private JTextField txtCodigoComision;
 	private JTextField txtJurado1;
 	private JTextField txtJurado2;
 	private JTextField txtJurado3;
 	private JTextField txtJurado4;
 	private JTextField txtJurado5;
+	private int response;
+	private ArrayList<Jurado> newjurados;
 
 	/**
 	 * Launch the application.
@@ -73,10 +83,10 @@ public class CrearComision extends JDialog {
 					panel_1.add(lblNombre);
 				}
 				{
-					txtNombre = new JTextField();
-					txtNombre.setBounds(110, 50, 227, 20);
-					panel_1.add(txtNombre);
-					txtNombre.setColumns(10);
+					txtNombreComision = new JTextField();
+					txtNombreComision.setBounds(110, 50, 227, 20);
+					panel_1.add(txtNombreComision);
+					txtNombreComision.setColumns(10);
 				}
 				
 				JPanel panel_2 = new JPanel();
@@ -153,6 +163,7 @@ public class CrearComision extends JDialog {
 				}
 				
 				txtCodigoComision = new JTextField();
+				txtCodigoComision.setText("C-" + SPEC.getInstance().codComision);
 				txtCodigoComision.setEnabled(false);
 				txtCodigoComision.setColumns(10);
 				txtCodigoComision.setBounds(110, 8, 136, 20);
@@ -168,7 +179,62 @@ public class CrearComision extends JDialog {
 				JButton okButton = new JButton("Registrar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+				
+					        if (txtNombreComision.getText().trim().isEmpty()) {
+					            JOptionPane.showMessageDialog(
+					                null,
+					                "El campo 'Nombre' es obligatorio.",
+					                "Error",
+					                JOptionPane.ERROR_MESSAGE
+					            );
+					        } else if (cantjurados() < 2) {
+					            JOptionPane.showMessageDialog(
+					                null,
+					                "Debe incluir al menos 3 jurados en la comisión.",
+					                "Error",
+					                JOptionPane.ERROR_MESSAGE
+					            );
+					        } else {
+					            boolean todosValidos = true;
+
+					            // Verificar jurado 1
+					            if (!verificarJurado(txtJurado1.getText(), txtJurado1, "1")) {
+					                todosValidos = false;
+					            }
+
+					            // Verificar jurado 2
+					            if (!verificarJurado(txtJurado2.getText(), txtJurado2, "2")) {
+					                todosValidos = false;
+					            }
+
+					            // Verificar jurado 3
+					            if (!verificarJurado(txtJurado3.getText(), txtJurado3, "3")) {
+					                todosValidos = false;
+					            }
+					            
+					            // Verificar jurado 4
+					            if (!verificarJurado(txtJurado3.getText(), txtJurado3, "4")) {
+					                todosValidos = false;
+					            }
+					            
+					            // Verificar jurado 5
+					            if (!verificarJurado(txtJurado3.getText(), txtJurado3, "5")) {
+					                todosValidos = false;
+					            }
+					        
+					            if (todosValidos) {
+						        	agregarcomision();
+					                JOptionPane.showMessageDialog(
+					                    null,
+					                    "Comisión registrada exitosamente.",
+					                    "Éxito",
+					                    JOptionPane.INFORMATION_MESSAGE
+					                );
+						        }
+					        }
+					        
 					}
+					       
 				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
@@ -185,5 +251,85 @@ public class CrearComision extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	protected void agregarcomision() {
+		// TODO Auto-generated method stub
+		Comision nueva = new Comision(txtNombreComision.getText(), txtCodigoComision.getText());
+		nueva.setLosJurados(newjurados);
+	}
+
+	protected void cleancomision() {
+		// TODO Auto-generated method stub
+		txtNombreComision.setText(" ");
+		txtJurado1.setText(" ");
+		txtJurado2.setText(" ");
+		txtJurado3.setText(" ");
+		txtJurado4.setText(" ");
+		txtJurado5.setText(" ");
+	}
+
+	private int cantjurados() {
+		// TODO Auto-generated method stub
+		int cantjurados = 0;
+		
+		if(!txtJurado1.getText().isEmpty()) {
+			cantjurados++;
+		}else if (!txtJurado2.getText().isEmpty()) {
+			cantjurados++;
+		}else if (!txtJurado3.getText().isEmpty()) {
+			cantjurados++;
+		}else if (!txtJurado4.getText().isEmpty()) {
+			cantjurados++;
+		}else if (!txtJurado5.getText().isEmpty()) {
+			cantjurados++;
+		}
+				
+		return cantjurados;
+	}
+	
+	private boolean juradoencontrado(String jurado) {
+		boolean encontrado = false;
+		
+		return encontrado;
+	}
+	
+	private boolean verificarJurado(String jurado, JTextField campoJurado, String numeroJurado) {
+		
+		 if (jurado.trim().isEmpty()) {
+		        return true;
+		   }
+	
+	    if (!juradoencontrado(jurado)) {
+	        int response = JOptionPane.showConfirmDialog(
+	            null,
+	            "El jurado No. " + numeroJurado + " no existe. ¿Deseas volver a intentar?",
+	            "Confirmación",
+	            JOptionPane.YES_NO_OPTION,
+	            JOptionPane.QUESTION_MESSAGE
+	        );
+	        
+
+	        if (response == JOptionPane.YES_OPTION) {
+	            campoJurado.setText("");
+	            return false; 
+	        } else {
+	            JOptionPane.showMessageDialog(
+	                null,
+	                "No hemos podido crear la comisión.",
+	                "Error",
+	                JOptionPane.ERROR_MESSAGE
+	            );
+	            cleancomision();
+	            return false; 
+	        }
+	    }
+	    else {
+	    	
+	    Jurado jurado2 = SPEC.getInstance().buscarJuradoById(jurado);
+	    	newjurados.add(jurado2);
+	    }
+	    
+	    return true; 
 	}
 }
