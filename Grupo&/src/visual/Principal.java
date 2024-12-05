@@ -2,7 +2,12 @@ package visual;
 
 import javax.swing.*;
 import java.awt.*;
+
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import javax.swing.border.EmptyBorder;
@@ -21,7 +26,16 @@ public class Principal extends JFrame {
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
+            	
+            	 FileInputStream empresa;
+                 FileOutputStream empresa2;
+                 ObjectInputStream empresaRead;
+                 ObjectOutputStream empresaWrite;
+            	
+            	
+            	
                 try {
+     
                     Principal frame = new Principal();
                     frame.setVisible(true);
                 } catch (Exception e) {

@@ -39,12 +39,12 @@ public class Control implements Serializable{
 	}
 
 
-	public static Usuario getLoginUser() {
+	public static  Usuario getLoginUser() {
 		return LoginUser;
 	}
 
 
-	public static void setLoginUser(Usuario loginUser) {
+	public void setLoginUser(Usuario loginUser) {
 		LoginUser = loginUser;
 	}
 
@@ -58,7 +58,7 @@ public class Control implements Serializable{
 		this.misUsers = misUsers;
 	}
 	
-	public static void setLoginUser1(Usuario loginUser) {
+	public void setLoginUser1(Usuario loginUser) {
 		Control.LoginUser = loginUser;
 	}
 	
