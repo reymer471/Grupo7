@@ -27,6 +27,7 @@ import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 
 public class AgregarRecurso extends JDialog {
 
@@ -65,7 +66,7 @@ public class AgregarRecurso extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBackground(Color.LIGHT_GRAY);
+			panel.setBackground(SystemColor.menu);
 			panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
@@ -129,11 +130,48 @@ public class AgregarRecurso extends JDialog {
 				JButton RegistrarButton = new JButton("Registrar");
 				RegistrarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						nuevoRecurso = new Recurso(txtCodigoRecurso.getText(),cbxTIpoRecurso.getSelectedItem().toString(),txtNombreRecurso.getText(), (int) spnCantidadRecurso.getValue());
-						SPEC.getInstance().insertarRecurso(nuevoRecurso);
-						clean();
+						// Validar si algún campo está vacío o no seleccionado
+						if (txtNombreRecurso.getText().trim().isEmpty()) {
+							javax.swing.JOptionPane.showMessageDialog(
+								null,
+								"El campo 'Nombre' es obligatorio.",
+								"Error",
+								javax.swing.JOptionPane.ERROR_MESSAGE
+							);
+						} else if (cbxTIpoRecurso.getSelectedIndex() == 0) {
+							javax.swing.JOptionPane.showMessageDialog(
+								null,
+								"Debe seleccionar un tipo de recurso.",
+								"Error",
+								javax.swing.JOptionPane.ERROR_MESSAGE
+							);
+						} else if ((int) spnCantidadRecurso.getValue() == 0) {
+							javax.swing.JOptionPane.showMessageDialog(
+								null,
+								"La cantidad debe ser mayor a 0.",
+								"Error",
+								javax.swing.JOptionPane.ERROR_MESSAGE
+							);
+						} else {
+							// Si pasa las validaciones, se registra el recurso
+							nuevoRecurso = new Recurso(
+								txtCodigoRecurso.getText(),
+								cbxTIpoRecurso.getSelectedItem().toString(),
+								txtNombreRecurso.getText(),
+								(int) spnCantidadRecurso.getValue()
+							);
+							SPEC.getInstance().insertarRecurso(nuevoRecurso);
+							javax.swing.JOptionPane.showMessageDialog(
+								null,
+								"Recurso registrado exitosamente.",
+								"Información",
+								javax.swing.JOptionPane.INFORMATION_MESSAGE
+							);
+							clean();
+						}
 					}
 				});
+						
 				RegistrarButton.setActionCommand("OK");
 				buttonPane.add(RegistrarButton);
 				getRootPane().setDefaultButton(RegistrarButton);
