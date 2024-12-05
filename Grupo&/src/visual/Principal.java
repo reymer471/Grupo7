@@ -148,7 +148,7 @@ public class Principal extends JFrame {
         mntmNewMenuItem_5.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		TablaTrabajoCientifico frame = new TablaTrabajoCientifico();
+        		ListadoTrabajosC frame = new ListadoTrabajosC();
         		frame.setVisible(true);
         	}
         });
