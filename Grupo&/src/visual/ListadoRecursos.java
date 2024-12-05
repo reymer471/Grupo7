@@ -89,7 +89,7 @@ public class ListadoRecursos extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				eliminarBTn = new JButton("Eliminar Recurso");
+				eliminarBTn = new JButton("Eliminar recurso");
 				eliminarBTn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
