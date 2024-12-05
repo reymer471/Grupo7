@@ -10,7 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import org.omg.PortableInterceptor.USER_EXCEPTION;
+
+//import com.sun.java.util.jar.pack.Package.File;
+
 import logico.Control;
+import logico.Usuario;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -21,6 +26,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
@@ -37,12 +49,40 @@ public class Login extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				FileInputStream gestion;
+				FileOutputStream gestion2;
+				ObjectInputStream gestionRead;
+				ObjectOutputStream gestionWrite;
+				
 				try {
+					gestion = new FileInputStream("gestion.dat");
+					gestionRead = new ObjectInputStream(gestion);
+					Control temp = (Control)gestionRead.readObject();
+					Control.setControl(temp);
+					gestion.close();
+					gestionRead.close();
+					
+				}catch (FileNotFoundException e) {
+					try {
+						gestion2 = new FileOutputStream("gestion.dat");
+						gestionWrite = new ObjectOutputStream(gestion2);
+						Usuario aux = new Usuario("Administrador", "Admin" , "Admin");
+						Control.getInstance().regUsuario(aux);
+						gestionWrite.writeObject(Control.getInstance());
+						gestion2.close();
+						gestionWrite.close();
+					}catch(FileNotFoundException e1) {
+					}catch (IOException e1) {
+					}
+				}catch(IOException e) {
+				}
+				
+				/*try {
 					Login frame = new Login();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}*/
 			}
 		});
 	}

@@ -2,16 +2,19 @@ package visual;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
+
+import com.sun.xml.internal.messaging.saaj.soap.ver1_1.Envelope1_1Impl;
 
 import logico.Control;
 
@@ -26,16 +29,7 @@ public class Principal extends JFrame {
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-            	
-            	 FileInputStream empresa;
-                 FileOutputStream empresa2;
-                 ObjectInputStream empresaRead;
-                 ObjectOutputStream empresaWrite;
-            	
-            	
-            	
                 try {
-     
                     Principal frame = new Principal();
                     frame.setVisible(true);
                 } catch (Exception e) {
@@ -46,6 +40,29 @@ public class Principal extends JFrame {
     }
 
     public Principal() {
+    	
+    	addWindowListener(new WindowAdapter() {
+    		@Override
+    		public void windowClosing(WindowEvent e ) {
+    			FileOutputStream gestion2;
+    			ObjectOutputStream gestionWrite;
+    			
+    			try {
+    				gestion2 = new FileOutputStream("gestion.dat");
+    				gestionWrite = new ObjectOutputStream(gestion2);
+    				gestionWrite.writeObject(Control.getInstance());
+    				
+    			}catch(FileNotFoundException e1){
+    				e1.printStackTrace();
+    			}catch (IOException e1) {
+    				e1.printStackTrace();
+    			}
+    		}	
+		});
+    	
+    	
+    	
+    	
     	setTitle("Gestor de eventos");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/javax/swing/plaf/metal/icons/ocean/paletteClose-pressed.gif")));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,7 +88,7 @@ public class Principal extends JFrame {
         JMenu mnNewMenu = new JMenu("Clientes");
         menuBar1.add(mnNewMenu);
         
-        JMenuItem mntmNewMenuItem = new JMenuItem("Registrar cliente");
+        JMenuItem mntmNewMenuItem = new JMenuItem("Registrar usuario");
         mntmNewMenuItem.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
@@ -125,6 +142,15 @@ public class Principal extends JFrame {
         mnNewMenu_2.add(mntmNewMenuItem_10);
         mnNewMenu_2.add(mntmNewMenuItem_8);
         
+        JMenuItem mntmNewMenuItem_11 = new JMenuItem("Listar Trabajos CIentificos");
+        mntmNewMenuItem_11.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ListadoTrabajosC list = new ListadoTrabajosC();
+        		list.setVisible(true);
+        	}
+        });
+        mnNewMenu_2.add(mntmNewMenuItem_11);
+        
         JMenu mnNewMenu_5 = new JMenu("Gestion recursos");
         menuBar1.add(mnNewMenu_5);
         
@@ -150,6 +176,27 @@ public class Principal extends JFrame {
         });
         mnNewMenu_5.add(mntmNewMenuItem_9);
         
+        JMenu mnNewMenu_6 = new JMenu("Gestion Comisiones");
+        menuBar1.add(mnNewMenu_6);
+        
+        JMenuItem mntmNewMenuItem_5 = new JMenuItem("Agregar Comision");
+        mntmNewMenuItem_5.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		CrearComision crearcomi = new CrearComision();
+        		crearcomi.setVisible(true);
+        	}
+        });
+        mnNewMenu_6.add(mntmNewMenuItem_5);
+        
+        JMenuItem mntmNewMenuItem_12 = new JMenuItem("Listar Comisiones");
+        mntmNewMenuItem_12.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ListadoComisiones listco = new ListadoComisiones();
+        		listco.setVisible(true);
+        	}
+        });
+        mnNewMenu_6.add(mntmNewMenuItem_12);
+        
         JMenu mnNewMenu_3 = new JMenu("Consultas");
         menuBar1.add(mnNewMenu_3);
         
@@ -165,6 +212,15 @@ public class Principal extends JFrame {
         
         JMenu mnNewMenu_1 = new JMenu("Administracion");
         menuBar1.add(mnNewMenu_1);
+        
+        JMenuItem mntmNewMenuItem_13 = new JMenuItem("Registrar Usuario");
+        mntmNewMenuItem_13.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		regUsuario regU = new regUsuario();
+        		regU.setVisible(true);
+        	}
+        });
+        mnNewMenu_1.add(mntmNewMenuItem_13);
         
         JMenu mnNewMenu_4 = new JMenu("Tablas");
         mnNewMenu_1.add(mnNewMenu_4);
@@ -188,16 +244,6 @@ public class Principal extends JFrame {
         	}
         });
         mnNewMenu_4.add(mntmNewMenuItem_4);
-        
-        JMenuItem mntmNewMenuItem_5 = new JMenuItem("Trabajo cientifico");
-        mntmNewMenuItem_5.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		ListadoTrabajosC frame = new ListadoTrabajosC();
-        		frame.setVisible(true);
-        	}
-        });
-        mnNewMenu_4.add(mntmNewMenuItem_5);
         
         // Menú Archivo
         JMenu mnArchivo = new JMenu("Emergencia");

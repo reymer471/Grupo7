@@ -39,12 +39,12 @@ public class Control implements Serializable{
 	}
 
 
-	public static  Usuario getLoginUser() {
+	public static Usuario getLoginUser() {
 		return LoginUser;
 	}
 
 
-	public void setLoginUser(Usuario loginUser) {
+	public static void setLoginUser(Usuario loginUser) {
 		LoginUser = loginUser;
 	}
 
@@ -58,7 +58,7 @@ public class Control implements Serializable{
 		this.misUsers = misUsers;
 	}
 	
-	public void setLoginUser1(Usuario loginUser) {
+	public static void setLoginUser1(Usuario loginUser) {
 		Control.LoginUser = loginUser;
 	}
 	
@@ -78,13 +78,10 @@ public class Control implements Serializable{
 		return login;
 	}
 
-
 	public boolean confirmLogin(JTextField textField, String text) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
 
 	
 	
