@@ -92,6 +92,12 @@ public class SPEC implements Serializable {
 		codComision++;
 	}
 	
+	public void insertarEvento(Evento evento) {
+		// TODO Auto-generated method stub
+		misEventos.add(evento);
+		codEvento++;
+	}
+	
 	public void insertarRecurso(Recurso nuevoRecurso) {
 		// TODO Auto-generated method stub
 		misRecursos.add(nuevoRecurso);
@@ -358,11 +364,14 @@ public class SPEC implements Serializable {
         }
     }
 
+
 	public void insertarEvento(Evento evento) {
 		// TODO Auto-generated method stub
 		misEventos.add(evento);
 		codEvento++;
 	}
+
+	
 	
 
 }
