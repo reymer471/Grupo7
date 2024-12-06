@@ -29,7 +29,7 @@ public class Principal extends JFrame {
     
     public static void main(String[] args) {
     	SPEC.getInstance();
-		SPEC.cargarDatos("SPEC.dat");
+		SPEC.cargarDatos("gestion.dat");
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -47,7 +47,7 @@ public class Principal extends JFrame {
     	  addWindowListener(new java.awt.event.WindowAdapter() {
               @Override
               public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                  SPEC.getInstance().guardarDatos("SPEC.dat");
+                  SPEC.getInstance().guardarDatos("gestion.dat");
         		
     		}	
 		});

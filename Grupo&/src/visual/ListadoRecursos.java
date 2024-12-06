@@ -14,6 +14,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import logico.Comision;
+import logico.Evento;
 import logico.Recurso;
 import logico.SPEC;
 
@@ -125,6 +127,16 @@ public class ListadoRecursos extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		
+		cargarTabla();
+	}
+
+	
+	
+	
+	private void cargarTabla() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	protected void eliminarRecurso(String codRecurso2) {
@@ -150,4 +162,9 @@ public class ListadoRecursos extends JDialog {
 		
 	}
 
+	
+	
+	
+	
+	
 }

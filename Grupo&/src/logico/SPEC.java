@@ -371,6 +371,16 @@ public class SPEC implements Serializable {
 		codEvento++;
 	}
 
+	public static void setSPEC(SPEC temp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void regUsuario(Usuario aux) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 

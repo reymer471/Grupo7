@@ -15,6 +15,7 @@ import org.omg.PortableInterceptor.USER_EXCEPTION;
 //import com.sun.java.util.jar.pack.Package.File;
 
 import logico.Control;
+import logico.SPEC;
 import logico.Usuario;
 
 import java.awt.Color;
@@ -57,8 +58,8 @@ public class Login extends JFrame {
 				try {
 					gestion = new FileInputStream("gestion.dat");
 					gestionRead = new ObjectInputStream(gestion);
-					Control temp = (Control)gestionRead.readObject();
-					Control.setControl(temp);
+					SPEC temp = (SPEC)gestionRead.readObject();
+                    SPEC.setSPEC(temp);
 					gestion.close();
 					gestionRead.close();
 					
@@ -67,7 +68,7 @@ public class Login extends JFrame {
 						gestion2 = new FileOutputStream("gestion.dat");
 						gestionWrite = new ObjectOutputStream(gestion2);
 						Usuario aux = new Usuario("Administrador", "Admin" , "Admin");
-						Control.getInstance().regUsuario(aux);
+						SPEC.getInstance().regUsuario(aux);
 						gestionWrite.writeObject(Control.getInstance());
 						gestion2.close();
 						gestionWrite.close();

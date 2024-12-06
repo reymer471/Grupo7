@@ -180,7 +180,7 @@ public class RegistrarEvento extends JDialog {
             // Confirmación
             mostrarMensaje("Evento registrado exitosamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
 
-            SPEC.getInstance().guardarDatos("SPEC.dat");
+            SPEC.getInstance().guardarDatos("gestion.dat");
             // Cerrar la ventana
             dispose();
         } catch (Exception ex) {
