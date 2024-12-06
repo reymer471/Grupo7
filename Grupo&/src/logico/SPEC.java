@@ -30,6 +30,7 @@ public class SPEC implements Serializable {
 		misEventos = new ArrayList<>();
 		misPersonas = new ArrayList<>();
 		misComisiones = new ArrayList<>();
+		 misRecursos = new ArrayList<>(); 
 	}
 	
 	public static SPEC getInstance() {
@@ -99,9 +100,12 @@ public class SPEC implements Serializable {
 	}
 	
 	public void insertarRecurso(Recurso nuevoRecurso) {
-		// TODO Auto-generated method stub
-		misRecursos.add(nuevoRecurso);
-		codRecurso++;
+	    if (misRecursos == null) {
+	        misRecursos = new ArrayList<>();
+	    }
+	    misRecursos.add(nuevoRecurso);
+	    codRecurso++;
+	    System.out.println("Recurso insertado: " + nuevoRecurso.getNombre()); // Para debug lo use
 	}
 	
 	public void eliminarPersona(Persona persona) {
@@ -304,19 +308,22 @@ public class SPEC implements Serializable {
 	}
 
 	public Recurso buscarRecursoById(String codRecurso2) {
-		// TODO Auto-generated method stub
-		Recurso recurso = null;
-		boolean found = false; 
-		int i = 0; 
-		
-		while(i < misRecursos.size() && !found) {
-			if (misRecursos.get(i).getId().equalsIgnoreCase(codRecurso2)) {
-				recurso = misRecursos.get(i);
-				found = true;
-			}
-			i++;
-		}
-		return recurso;
+	    if (misRecursos == null) {
+	        return null;
+	    }
+	    
+	    Recurso recurso = null;
+	    boolean found = false; 
+	    int i = 0; 
+	    
+	    while(i < misRecursos.size() && !found) {
+	        if (misRecursos.get(i).getId().equalsIgnoreCase(codRecurso2)) {
+	            recurso = misRecursos.get(i);
+	            found = true;
+	        }
+	        i++;
+	    }
+	    return recurso;
 	}
 	
 	private void eliminarRecursoDeAlgunEvento(Recurso recurso2) {
@@ -382,6 +389,13 @@ public class SPEC implements Serializable {
 	}
 
 	
+	public ArrayList<Recurso> getMisRecursos() {
+	    return misRecursos;
+	}
+
+	public void setMisRecursos(ArrayList<Recurso> misRecursos) {
+	    this.misRecursos = misRecursos;
+	}
 	
 
 }

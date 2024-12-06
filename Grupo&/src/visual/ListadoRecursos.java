@@ -2,169 +2,154 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.EtchedBorder;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import logico.Comision;
-import logico.Evento;
-import logico.Recurso;
 import logico.SPEC;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import logico.Recurso;
 
 public class ListadoRecursos extends JDialog {
 
-	private final JPanel contentPanel = new JPanel();
-	private JTable table;
-	private static DefaultTableModel model;
-	private int respuesta;
-	private String codRecurso;
-	private int indexclick;
-	private JButton eliminarBTn;
+    private static final long serialVersionUID = 1L;
+    private final JPanel contentPanel = new JPanel();
+    private static JTable table;
+    private static DefaultTableModel modelo;
+    private static Object[] row;
+    private Recurso selected = null;
+    private JButton btnEliminar;
+    private JButton btnModificar;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			ListadoRecursos dialog = new ListadoRecursos();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
-	public ListadoRecursos() {
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new BorderLayout(0, 0));
-		{
-			JPanel panel = new JPanel();
-			panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			contentPanel.add(panel, BorderLayout.CENTER);
-			panel.setLayout(new BorderLayout(0, 0));
-			{
-				JPanel panel_1 = new JPanel();
-				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel.add(panel_1, BorderLayout.CENTER);
-				panel_1.setLayout(new BorderLayout(0, 0));
-				{
-					JScrollPane scrollPane = new JScrollPane();
-					panel_1.add(scrollPane, BorderLayout.CENTER);
-					{
-						table = new JTable();
-						table.addMouseListener(new MouseAdapter() {
-							@Override
-							public void mouseClicked(MouseEvent e) {
-								indexclick = table.getSelectedRow();
-								
-								if (indexclick >= 0) {
-									eliminarBTn.setEnabled(true);
-								}
-							}
-						});
-						scrollPane.setViewportView(table);
-					}
-				}
-			}
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				eliminarBTn = new JButton("Eliminar recurso");
-				eliminarBTn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						respuesta = JOptionPane.showConfirmDialog(
-								null, 
-					           "�Est�s seguro de que quieres eliminar este recurso?", 
-					           "Confirmaci�n", 
-					         JOptionPane.YES_NO_OPTION
-					         );
-							 
-						if (respuesta == JOptionPane.YES_OPTION) { 
-						
-							if(indexclick >= 0)
-							{
-								codRecurso = (String) table.getValueAt(indexclick, 0);
-								eliminarRecurso(codRecurso);
-							}
-						}
-					}
-				});
-				eliminarBTn.setActionCommand("OK");
-				buttonPane.add(eliminarBTn);
-				getRootPane().setDefaultButton(eliminarBTn);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-					}
-				});
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
-		}
-		
-		cargarTabla();
-	}
-
-	
-	
-	
-	private void cargarTabla() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	protected void eliminarRecurso(String codRecurso2) {
-		// TODO Auto-generated method stub
-		Recurso recurso = SPEC.getInstance().buscarRecursoById(codRecurso2);
-		
-		if (recurso != null) {
-		
-			SPEC.getInstance().eliminarRecurso(recurso);
-			
-			JOptionPane.showMessageDialog(
-					 null, 
-	             "El evento fue eliminado correctamente."
-	         );
-		}else {
-			javax.swing.JOptionPane.showMessageDialog(
-					null,
-					"No pudo eliminarse este recurso",
-					"Error",
-					javax.swing.JOptionPane.ERROR_MESSAGE
-				);
-		}
-		
-	}
-
-	
-	
-	
-	
-	
+    public ListadoRecursos() {
+        setTitle("Listado de Recursos");
+        setBounds(100, 100, 650, 400);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        getContentPane().setLayout(new BorderLayout());
+        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        getContentPane().add(contentPanel, BorderLayout.CENTER);
+        contentPanel.setLayout(new BorderLayout(0, 0));
+        
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(null, "Listado de Recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        contentPanel.add(panel, BorderLayout.CENTER);
+        panel.setLayout(new BorderLayout(0, 0));
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        panel.add(scrollPane, BorderLayout.CENTER);
+        
+        modelo = new DefaultTableModel() {
+            private static final long serialVersionUID = 1L;
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        String[] headers = {"Código", "Tipo de Recurso", "Nombre", "Cantidad Disponible"};
+        modelo.setColumnIdentifiers(headers);
+        
+        table = new JTable(modelo);
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int index = table.getSelectedRow();
+                if (index >= 0) {
+                    btnModificar.setEnabled(true);
+                    btnEliminar.setEnabled(true);
+                    String codigo = table.getValueAt(index, 0).toString();
+                    selected = SPEC.getInstance().buscarRecursoById(codigo);
+                }
+            }
+        });
+        scrollPane.setViewportView(table);
+        
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        getContentPane().add(buttonPane, BorderLayout.SOUTH);
+        
+        JButton btnAgregar = new JButton("Agregar");
+        btnAgregar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                AgregarRecurso agregarRecurso = new AgregarRecurso(null);
+                agregarRecurso.setModal(true);
+                agregarRecurso.setVisible(true);
+                loadRecursos();
+            }
+        });
+        buttonPane.add(btnAgregar);
+        
+        btnModificar = new JButton("Modificar");
+        btnModificar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (selected != null) {
+                    AgregarRecurso modificarRecurso = new AgregarRecurso(selected);
+                    modificarRecurso.setModal(true);
+                    modificarRecurso.setVisible(true);
+                    btnModificar.setEnabled(false);
+                    btnEliminar.setEnabled(false);
+                    loadRecursos();
+                }
+            }
+        });
+        btnModificar.setEnabled(false);
+        buttonPane.add(btnModificar);
+        
+        btnEliminar = new JButton("Eliminar");
+        btnEliminar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (selected != null) {
+                    int option = JOptionPane.showConfirmDialog(null,
+                            "¿Está seguro que desea eliminar el recurso: " + selected.getNombre() + "?",
+                            "Confirmar eliminación",
+                            JOptionPane.YES_NO_OPTION);
+                    if (option == JOptionPane.YES_OPTION) {
+                        SPEC.getInstance().eliminarRecurso(selected);
+                        btnEliminar.setEnabled(false);
+                        btnModificar.setEnabled(false);
+                        loadRecursos();
+                        JOptionPane.showMessageDialog(null, "Recurso eliminado exitosamente", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        });
+        btnEliminar.setEnabled(false);
+        buttonPane.add(btnEliminar);
+        
+        JButton btnCancelar = new JButton("Cerrar");
+        btnCancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        buttonPane.add(btnCancelar);
+        
+        loadRecursos();
+    }
+    
+    public static void loadRecursos() {
+        modelo.setRowCount(0);
+        row = new Object[modelo.getColumnCount()];
+        
+        for (Recurso recurso : SPEC.getInstance().getMisRecursos()) {
+            row[0] = recurso.getId();
+            row[1] = recurso.getTiporecurso();
+            row[2] = recurso.getNombre();
+            row[3] = recurso.getCantidadTotal();
+            modelo.addRow(row);
+        }
+    }
 }

@@ -131,31 +131,35 @@ public class Principal extends JFrame {
         });
         mnNewMenu_2.add(mntmNewMenuItem_11);
         
-        JMenu mnNewMenu_5 = new JMenu("Gestion recursos");
+        JMenu mnNewMenu_5 = new JMenu("Gestión recursos");
         menuBar1.add(mnNewMenu_5);
-        
+
+        // Menú para Registrar recursos
         JMenuItem mntmNewMenuItem_6 = new JMenuItem("Registrar recursos");
         mntmNewMenuItem_6.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		AgregarRecurso dialog = new AgregarRecurso();
-        		dialog.setVisible(true);
-        		
-        	}
+            public void actionPerformed(ActionEvent e) {
+                AgregarRecurso dialog = new AgregarRecurso(null); 
+                dialog.setModal(true);  
+                dialog.setLocationRelativeTo(null); 
+                dialog.setVisible(true);
+            }
         });
         mnNewMenu_5.add(mntmNewMenuItem_6);
-        
+
+       
+        mnNewMenu_5.addSeparator();
+
+       
         JMenuItem mntmNewMenuItem_9 = new JMenuItem("Listar recursos");
         mntmNewMenuItem_9.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		ListadoRecursos dialog = new ListadoRecursos();
-        		dialog.setVisible(true);
-        		
-        	}
+            public void actionPerformed(ActionEvent e) {
+                ListadoRecursos dialog = new ListadoRecursos();
+                dialog.setModal(true);  
+                dialog.setLocationRelativeTo(null);  
+                dialog.setVisible(true);
+            }
         });
         mnNewMenu_5.add(mntmNewMenuItem_9);
-        
         JMenu mnNewMenu_6 = new JMenu("Gestion Comisiones");
         menuBar1.add(mnNewMenu_6);
         
