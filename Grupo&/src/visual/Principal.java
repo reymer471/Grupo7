@@ -130,7 +130,7 @@ public class Principal extends JFrame {
         	}
         });
         mnNewMenu_2.add(mntmNewMenuItem_11);
-        
+        //funciona por favor
         JMenu mnNewMenu_5 = new JMenu("Gestión recursos");
         menuBar1.add(mnNewMenu_5);
 
