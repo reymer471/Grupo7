@@ -25,6 +25,7 @@ public class TablaJurado extends JDialog {
 
     public TablaJurado() {
     	setResizable(false);
+    	setModal(true);
         setTitle("Listado de Jurados");
         setBounds(100, 100, 700, 400);
         setLocationRelativeTo(null);

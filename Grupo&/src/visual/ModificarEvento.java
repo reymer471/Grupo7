@@ -39,6 +39,7 @@ public class ModificarEvento extends JDialog {
 
         setTitle("Modificar evento");
         setBounds(100, 100, 452, 292);
+        
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(SystemColor.menu);

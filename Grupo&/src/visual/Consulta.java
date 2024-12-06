@@ -108,6 +108,7 @@ public class Consulta extends JDialog {
 	public Consulta() {
 		setResizable(false);
 		setTitle("Hacer consulta");
+		setModal(true);
 		setBounds(100, 100, 501, 699);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -119,6 +120,72 @@ public class Consulta extends JDialog {
 			panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
+			
+			panel_DescripJurado = new JPanel();
+			panel_DescripJurado.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			panel_DescripJurado.setBounds(10, 308, 455, 299);
+			panel.add(panel_DescripJurado);
+			panel_DescripJurado.setLayout(null);
+			
+			JPanel panel_4 = new JPanel();
+			panel_4.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			panel_4.setBounds(10, 36, 435, 250);
+			panel_DescripJurado.add(panel_4);
+			panel_4.setLayout(null);
+			
+			JLabel lblNewLabel_11 = new JLabel("Codigo");
+			lblNewLabel_11.setBounds(10, 27, 46, 14);
+			panel_4.add(lblNewLabel_11);
+			
+			JLabel lblNewLabel_12 = new JLabel("Nombre");
+			lblNewLabel_12.setBounds(10, 74, 46, 14);
+			panel_4.add(lblNewLabel_12);
+			
+			JLabel lblNewLabel_13 = new JLabel("Apellido");
+			lblNewLabel_13.setBounds(10, 121, 46, 14);
+			panel_4.add(lblNewLabel_13);
+			
+			JLabel lblNewLabel_14 = new JLabel("Especialidad");
+			lblNewLabel_14.setBounds(10, 168, 91, 14);
+			panel_4.add(lblNewLabel_14);
+			
+			JLabel lblNewLabel_15 = new JLabel("Experiencia");
+			lblNewLabel_15.setBounds(10, 215, 75, 14);
+			panel_4.add(lblNewLabel_15);
+			
+			txtCodigoJurado = new JTextField();
+			txtCodigoJurado.setEditable(false);
+			txtCodigoJurado.setBounds(93, 24, 167, 20);
+			panel_4.add(txtCodigoJurado);
+			txtCodigoJurado.setColumns(10);
+			
+			txtNombreJurado = new JTextField();
+			txtNombreJurado.setEditable(false);
+			txtNombreJurado.setBounds(93, 71, 167, 20);
+			panel_4.add(txtNombreJurado);
+			txtNombreJurado.setColumns(10);
+			
+			txtApellidoJurado = new JTextField();
+			txtApellidoJurado.setEditable(false);
+			txtApellidoJurado.setBounds(93, 118, 167, 20);
+			panel_4.add(txtApellidoJurado);
+			txtApellidoJurado.setColumns(10);
+			
+			txtEspecialJurado = new JTextField();
+			txtEspecialJurado.setEditable(false);
+			txtEspecialJurado.setBounds(93, 165, 167, 20);
+			panel_4.add(txtEspecialJurado);
+			txtEspecialJurado.setColumns(10);
+			
+			txtExperienciaJurado = new JTextField();
+			txtExperienciaJurado.setEditable(false);
+			txtExperienciaJurado.setBounds(93, 212, 167, 20);
+			panel_4.add(txtExperienciaJurado);
+			txtExperienciaJurado.setColumns(10);
+			
+			JLabel lblNewLabel_10 = new JLabel("Jurado");
+			lblNewLabel_10.setBounds(10, 11, 46, 14);
+			panel_DescripJurado.add(lblNewLabel_10);
 			
 			panel_DescripComision = new JPanel();
 			panel_DescripComision.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -141,12 +208,12 @@ public class Consulta extends JDialog {
 			panel_2.add(lblNombreComision);
 			
 			txtCodComision = new JTextField();
-			txtCodComision.setBounds(73, 25, 86, 20);
+			txtCodComision.setBounds(73, 25, 165, 20);
 			panel_2.add(txtCodComision);
 			txtCodComision.setColumns(10);
 			
 			txtNombreComision = new JTextField();
-			txtNombreComision.setBounds(73, 66, 86, 20);
+			txtNombreComision.setBounds(73, 66, 165, 20);
 			panel_2.add(txtNombreComision);
 			txtNombreComision.setColumns(10);
 			
@@ -345,72 +412,6 @@ public class Consulta extends JDialog {
 			JLabel lblNewLabel_7 = new JLabel("Participante");
 			lblNewLabel_7.setBounds(10, 11, 136, 14);
 			panel_DescripParticipante.add(lblNewLabel_7);
-			
-			panel_DescripJurado = new JPanel();
-			panel_DescripJurado.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			panel_DescripJurado.setBounds(10, 308, 455, 299);
-			panel.add(panel_DescripJurado);
-			panel_DescripJurado.setLayout(null);
-			
-			JPanel panel_4 = new JPanel();
-			panel_4.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			panel_4.setBounds(10, 36, 435, 250);
-			panel_DescripJurado.add(panel_4);
-			panel_4.setLayout(null);
-			
-			JLabel lblNewLabel_11 = new JLabel("Codigo");
-			lblNewLabel_11.setBounds(10, 27, 46, 14);
-			panel_4.add(lblNewLabel_11);
-			
-			JLabel lblNewLabel_12 = new JLabel("Nombre");
-			lblNewLabel_12.setBounds(10, 74, 46, 14);
-			panel_4.add(lblNewLabel_12);
-			
-			JLabel lblNewLabel_13 = new JLabel("Apellido");
-			lblNewLabel_13.setBounds(10, 121, 46, 14);
-			panel_4.add(lblNewLabel_13);
-			
-			JLabel lblNewLabel_14 = new JLabel("Especialidad");
-			lblNewLabel_14.setBounds(10, 168, 91, 14);
-			panel_4.add(lblNewLabel_14);
-			
-			JLabel lblNewLabel_15 = new JLabel("Experiencia");
-			lblNewLabel_15.setBounds(10, 215, 75, 14);
-			panel_4.add(lblNewLabel_15);
-			
-			txtCodigoJurado = new JTextField();
-			txtCodigoJurado.setEditable(false);
-			txtCodigoJurado.setBounds(93, 24, 167, 20);
-			panel_4.add(txtCodigoJurado);
-			txtCodigoJurado.setColumns(10);
-			
-			txtNombreJurado = new JTextField();
-			txtNombreJurado.setEditable(false);
-			txtNombreJurado.setBounds(93, 71, 167, 20);
-			panel_4.add(txtNombreJurado);
-			txtNombreJurado.setColumns(10);
-			
-			txtApellidoJurado = new JTextField();
-			txtApellidoJurado.setEditable(false);
-			txtApellidoJurado.setBounds(93, 118, 167, 20);
-			panel_4.add(txtApellidoJurado);
-			txtApellidoJurado.setColumns(10);
-			
-			txtEspecialJurado = new JTextField();
-			txtEspecialJurado.setEditable(false);
-			txtEspecialJurado.setBounds(93, 165, 167, 20);
-			panel_4.add(txtEspecialJurado);
-			txtEspecialJurado.setColumns(10);
-			
-			txtExperienciaJurado = new JTextField();
-			txtExperienciaJurado.setEditable(false);
-			txtExperienciaJurado.setBounds(93, 212, 167, 20);
-			panel_4.add(txtExperienciaJurado);
-			txtExperienciaJurado.setColumns(10);
-			
-			JLabel lblNewLabel_10 = new JLabel("Jurado");
-			lblNewLabel_10.setBounds(10, 11, 46, 14);
-			panel_DescripJurado.add(lblNewLabel_10);
 			
 			panel_DescripEvento = new JPanel();
 			panel_DescripEvento.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -617,27 +618,37 @@ public class Consulta extends JDialog {
 				panel.add(buscarButton);
 				buscarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						clean();
 						int encontrado = ObjetoBuscado();
+						System.out.println("ENcontre objeto: " + encontrado);
 						
 						if (encontrado != -1) {
+							
 							visualizarPanelDescriptivo(encontrado);
 						
 							if (encontrado == 1) {
 								loadEvento(eventoBuscando);
+								panel_DescripJurado.repaint();
 							}else if (encontrado == 2) {
 								loadTc(trabajoBuscando);
+								panel_DescripJurado.repaint();
 							}else if (encontrado == 3) {
 								loadComision(comisionBuscando);
+								panel_DescripJurado.repaint();
 							}else if(encontrado == 4) {
 								loadJurado(juradoBuscando);
+								panel_DescripJurado.setVisible(true);
+								panel_DescripJurado.repaint();
 							}else if (encontrado == 5) {
 								loadParticipante(participanteBuscando);
+								panel_DescripJurado.repaint();
 							}else if (encontrado == 6) {
 								loadRecurso(recurBucando);
+								panel_DescripJurado.repaint();
 							}
 						}
 						
-						clean();
+						
 					}
 
 					
@@ -694,8 +705,8 @@ public class Consulta extends JDialog {
 
 	protected void loadComision(Comision comisionBuscando2) {
 		// TODO Auto-generated method stub
-		lblCodComision.setText(comisionBuscando2.getCodigo());
-		lblNombreComision.setText(comisionBuscando2.getNombreComision());
+		txtCodComision.setText(comisionBuscando2.getCodigo());
+		txtNombreComision.setText(comisionBuscando2.getNombreComision());
 		
 		//Tabla jurados
 	}
@@ -720,8 +731,9 @@ public class Consulta extends JDialog {
 		txtTemaEvento.setText(eventoBuscando2.getInfoEvento().getTemaEvento());
 	}
 
-	protected void visualizarPanelDescriptivo(int encontrado) {
+	private void visualizarPanelDescriptivo(int encontrado) {
 		// TODO Auto-generated method stub
+		System.out.println("En visupaneldeescrip encontrado =" + encontrado);
 		if (encontrado != -1) {
 			
 			panel_DescripComision.setVisible(false);
@@ -742,6 +754,7 @@ public class Consulta extends JDialog {
 				
 			}else if (encontrado == 4) {
 				panel_DescripJurado.setVisible(true);
+				System.out.println("Panel jurado visible");
 				
 			}else if (encontrado == 5) {
 				panel_DescripParticipante.setVisible(true);
@@ -762,8 +775,6 @@ public class Consulta extends JDialog {
 		panel_DescripRecurso.setVisible(false);
 		panel_DescripTc.setVisible(false );
 		
-		eventoBuscando = null;
-		recurBucando = null;
 		
 		//poner todoas las variables de objetosbuscando en null;
 	}
@@ -772,7 +783,8 @@ public class Consulta extends JDialog {
 		int encontrado = -1;
 		String codigo = txtCodigo.getText();
 		String nombre = txtNombre.getText();
-		
+		System.out.println(codigo);
+		System.out.println(nombre);
 		
 		//Evento = 1
 		if (radioButtonEvento.isSelected() && rdbtnCodigo.isSelected()) {

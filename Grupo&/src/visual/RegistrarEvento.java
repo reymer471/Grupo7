@@ -28,6 +28,7 @@ public class RegistrarEvento extends JDialog {
 
     public RegistrarEvento() {
     	setResizable(false);
+    	setModal(true);
         setTitle("Registrar evento");
         setBounds(100, 100, 573, 316);
         setLocationRelativeTo(null);

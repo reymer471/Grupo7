@@ -48,6 +48,7 @@ public class RegistrarTC extends JDialog {
 
     public RegistrarTC() {
     	setResizable(false);
+    	setModal(true);
         setTitle("Registrar trabajo cient\u00EDfico");
         setBounds(100, 100, 500, 307);
         setLocationRelativeTo(null);

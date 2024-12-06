@@ -56,6 +56,7 @@ public class CrearComision extends JDialog {
 	 */
 	public CrearComision() {
 		setResizable(false);
+		setModal(true);
 		setTitle("Registrar comision");
 		setBounds(100, 100, 450, 340);
 		

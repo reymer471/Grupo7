@@ -36,6 +36,7 @@ public class ListadoRecursos extends JDialog {
         setTitle("Listado de Recursos");
         setBounds(100, 100, 650, 400);
         setLocationRelativeTo(null);
+        setModal(true);
         setResizable(false);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -25,6 +25,7 @@ public class TablaParticipante extends JDialog {
 
     public TablaParticipante() {
     	setResizable(false);
+    	setModal(true);
         setTitle("Listado de Participantes");
         setBounds(100, 100, 700, 400);
         setLocationRelativeTo(null);

@@ -53,6 +53,7 @@ public class ListadoTrabajosC extends JDialog {
 	public ListadoTrabajosC() {
 		setTitle("Listado de Trabajos Cientificos");
 		setBounds(100, 100, 494, 332);
+		setModal(true);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

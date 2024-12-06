@@ -34,6 +34,7 @@ public class AgregarRecurso extends JDialog {
     public AgregarRecurso(Recurso recurso) {
     	setTitle("Registrar recurso");
     	setResizable(false);
+    	setModal(true);
         miRecurso = recurso;
         if(miRecurso == null) {
             setTitle("Registrar Recurso");

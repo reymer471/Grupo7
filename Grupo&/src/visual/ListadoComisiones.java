@@ -54,6 +54,7 @@ public class ListadoComisiones extends JDialog {
 	public ListadoComisiones() {
 		setTitle("Listado de comiciones");
 		setResizable(false);
+		setModal(true);
 		setBounds(100, 100, 450, 300);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());

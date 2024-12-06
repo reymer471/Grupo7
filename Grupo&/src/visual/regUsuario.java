@@ -43,6 +43,7 @@ public class regUsuario extends JDialog {
 	 */
 	public regUsuario() {
 		setResizable(false);
+		setModal(true);
 		setBounds(100, 100, 405, 229);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
