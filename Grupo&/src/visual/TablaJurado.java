@@ -1,163 +1,148 @@
 package visual;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import logico.SPEC;
 import logico.Jurado;
 import logico.Persona;
 
 public class TablaJurado extends JDialog {
+
+    private static final long serialVersionUID = 1L;
     private JTable table;
-    private DefaultTableModel model;
-    private JButton btnAgregar;
-    private JButton btnEliminar;
-    private JButton btnEditar;
+    private DefaultTableModel modelo;
+    private ArrayList<Jurado> jurados;
 
     public TablaJurado() {
-        initComponents();
-        cargarJurados();
-    }
-
-    private void initComponents() {
         setTitle("Listado de Jurados");
-        setSize(700, 500);
+        setBounds(100, 100, 700, 400);
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
-
-        // Configurar modelo de tabla
-        String[] columnNames = {"Código", "Nombre", "Apellido", "Experiencia", "Especialidad"};
-        model = new DefaultTableModel(columnNames, 0) {
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout(0, 0));
+        getContentPane().add(panel, BorderLayout.CENTER);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        panel.add(scrollPane, BorderLayout.CENTER);
+        
+        // Definir columnas
+        String[] columnNames = {"Código", "Nombre", "Apellido", "Especialidad", "Experiencia"};
+        modelo = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false;
+                return false; // Hacer la tabla no editable
             }
         };
-
-        // Crear tabla
-        table = new JTable(model);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JScrollPane scrollPane = new JScrollPane(table);
-        add(scrollPane, BorderLayout.CENTER);
-
+        
+        table = new JTable(modelo);
+        scrollPane.setViewportView(table);
+        
         // Panel de botones
         JPanel panelBotones = new JPanel();
-        btnAgregar = new JButton("Agregar");
-        btnEliminar = new JButton("Eliminar");
-        btnEditar = new JButton("Editar");
-
-        panelBotones.add(btnAgregar);
-        panelBotones.add(btnEditar);
-        panelBotones.add(btnEliminar);
-        add(panelBotones, BorderLayout.SOUTH);
-
-        // Configurar listeners
-        setupListeners();
-    }
-
-    private void setupListeners() {
-        // Listener para agregar nuevo jurado
-        btnAgregar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AgregarPersona dialog = new AgregarPersona();
-                dialog.setModal(true);
-                dialog.setVisible(true);
-                cargarJurados(); // Recargar lista después de agregar
-            }
-        });
-
-        // Listener para eliminar jurado
-        btnEliminar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedRow = table.getSelectedRow();
-                if (selectedRow >= 0) {
-                    String codigo = (String) model.getValueAt(selectedRow, 0);
-                    Jurado jurado = SPEC.getInstance().buscarJuradoById(codigo);
-                    
-                    if (jurado != null) {
-                        int confirmacion = JOptionPane.showConfirmDialog(
-                            TablaJurado.this, 
-                            "¿Está seguro que desea eliminar este jurado?", 
-                            "Confirmar Eliminación", 
-                            JOptionPane.YES_NO_OPTION
-                        );
-                        
-                        if (confirmacion == JOptionPane.YES_OPTION) {
-                            SPEC.getInstance().eliminarPersona(jurado);
-                            cargarJurados();
-                        }
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(
-                        TablaJurado.this, 
-                        "Seleccione un jurado para eliminar", 
-                        "Error", 
-                        JOptionPane.ERROR_MESSAGE
-                    );
-                }
-            }
-        });
-
-        // Listener para editar jurado
-        btnEditar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedRow = table.getSelectedRow();
-                if (selectedRow >= 0) {
-                    String codigo = (String) model.getValueAt(selectedRow, 0);
-                    Jurado jurado = SPEC.getInstance().buscarJuradoById(codigo);
-                    
-                    if (jurado != null) {
-                        // TODO: Implementar diálogo de edición de jurado
-                        JOptionPane.showMessageDialog(
-                            TablaJurado.this, 
-                            "Funcionalidad de edición pendiente", 
-                            "Información", 
-                            JOptionPane.INFORMATION_MESSAGE
-                        );
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(
-                        TablaJurado.this, 
-                        "Seleccione un jurado para editar", 
-                        "Error", 
-                        JOptionPane.ERROR_MESSAGE
-                    );
-                }
-            }
-        });
-    }
-
-
-    private void cargarJurados() {
-        // Limpiar tabla
-        model.setRowCount(0);
+        panel.add(panelBotones, BorderLayout.SOUTH);
         
-        // Obtener lista de jurados
-        ArrayList<Jurado> jurados = obtenerJurados();
+        JButton btnModificar = new JButton("Modificar");
+        btnModificar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                modificarJurado();
+            }
+        });
+        panelBotones.add(btnModificar);
+        
+        JButton btnEliminar = new JButton("Eliminar");
+        btnEliminar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                eliminarJurado();
+            }
+        });
+        panelBotones.add(btnEliminar);
+        
+        JButton btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        panelBotones.add(btnCerrar);
+        
+        cargarJurados();
+    }
+    
+    private void cargarJurados() {
+        modelo.setRowCount(0); // Limpiar tabla
+        
+        // Obtener jurados del sistema
+        jurados = new ArrayList<>();
+        for (Persona persona : SPEC.getInstance().getMisPersonas()) {
+            if (persona instanceof Jurado) {
+                jurados.add((Jurado) persona);
+            }
+        }
         
         // Llenar tabla
         for (Jurado jurado : jurados) {
-            Object[] rowData = {
+            Object[] fila = {
                 jurado.getCodigo(),
                 jurado.getNombre(),
                 jurado.getApellido(),
-                jurado.getExperiencia(),
-                jurado.getEspecialidad()
+                jurado.getEspecialidad(),
+                jurado.getExperiencia()
             };
-            model.addRow(rowData);
-        }}
-
-	private ArrayList<Jurado> obtenerJurados() {
-		// TODO Auto-generated method stub
-		return null;
-	}}
-
-
+            modelo.addRow(fila);
+        }
+    }
     
+    private void modificarJurado() {
+        int filaSeleccionada = table.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            Jurado juradoSeleccionado = jurados.get(filaSeleccionada);
+            
+            // Abrir diálogo de modificación
+            ModificarJurado modificar = new ModificarJurado(juradoSeleccionado);
+            modificar.setModal(true);
+            modificar.setVisible(true);
+            
+            // Recargar datos
+            cargarJurados();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Seleccione un jurado para modificar", 
+                "Advertencia", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    private void eliminarJurado() {
+        int filaSeleccionada = table.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            Jurado juradoSeleccionado = jurados.get(filaSeleccionada);
+            
+            int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
+                this, 
+                "¿Está seguro que desea eliminar este jurado?", 
+                "Confirmar Eliminación", 
+                javax.swing.JOptionPane.YES_NO_OPTION
+            );
+            
+            if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
+                SPEC.getInstance().eliminarPersona(juradoSeleccionado);
+                cargarJurados();
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Seleccione un jurado para eliminar", 
+                "Advertencia", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }
+}

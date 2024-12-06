@@ -39,6 +39,7 @@ public class AgregarPersona extends JDialog {
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
+        setLocationRelativeTo(null);
         
         JLabel lblCodigo = new JLabel("Código:");
         lblCodigo.setBounds(30, 30, 100, 20);
