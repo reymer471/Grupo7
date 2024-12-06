@@ -48,6 +48,8 @@ public class AgregarPersona extends JDialog {
         contentPanel.add(lblCodigo);
         
         txtCodigo = new JTextField();
+        txtCodigo.setEditable(false);
+        txtCodigo.setText("P-" + SPEC.getInstance().codPersona);
         txtCodigo.setBounds(126, 30, 250, 20);
         contentPanel.add(txtCodigo);
         txtCodigo.setColumns(10);
@@ -182,7 +184,7 @@ public class AgregarPersona extends JDialog {
     }
     
     private void limpiarCampos() {
-        txtCodigo.setText("");
+        txtCodigo.setText("P-" + SPEC.getInstance().codPersona);
         txtNombre.setText("");
         txtApellido.setText("");
         txtDireccionEmail.setText("");
