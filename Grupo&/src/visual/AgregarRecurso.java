@@ -128,6 +128,7 @@ public class AgregarRecurso extends JDialog {
                                 SPEC.getInstance().insertarRecurso(aux);
                                 JOptionPane.showMessageDialog(null, "Registro exitoso", "Informacion", 
                                         JOptionPane.INFORMATION_MESSAGE);
+                                cleanpantalla();
                             } else {
                                 miRecurso.setNombre(txtNombre.getText());
                                 miRecurso.setTiporecurso(cbxTipo.getSelectedItem().toString());
@@ -156,7 +157,16 @@ public class AgregarRecurso extends JDialog {
         }
     }
     
-    private boolean validarCampos() {
+    protected void cleanpantalla() {
+		// TODO Auto-generated method stub
+		txtCodigo.setText("R-" + SPEC.getInstance().codRecurso);
+		txtNombre.setText("");
+		spnCantidad.setValue(new Integer(0));
+		cbxTipo.setSelectedIndex(0);
+		
+	}
+
+	private boolean validarCampos() {
         String nombre = txtNombre.getText();
         String tipo = cbxTipo.getSelectedItem().toString();
         
