@@ -179,4 +179,4 @@ class infoEventoImpl extends infoEvento {
     public infoEventoImpl(String temaEvento, String numeroPersonas, String duracionEvento) {
         super(temaEvento, numeroPersonas, duracionEvento);
     }
-}
+}//que duro
