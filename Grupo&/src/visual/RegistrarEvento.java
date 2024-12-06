@@ -4,159 +4,179 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
 
 import logico.SPEC;
 import logico.Evento;
+import logico.infoEvento;
 
 public class RegistrarEvento extends JDialog {
-
     private static final long serialVersionUID = 1L;
     private final JPanel contentPanel = new JPanel();
-    private static JTable table;
-    private static DefaultTableModel modelo;
-    private static Object[] row;
-    private Evento selected = null;
-    private JButton btnEliminar;
-    private JButton btnModificar;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private JTextField txtNombre;
+    private JTextField txtTema;
+    private JTextField txtNumeroPersonas;
+    private JTextField txtDuracion;
+    private JComboBox<String> cbxTipoEvento;
+    private JSpinner spnFecha;
 
     public RegistrarEvento() {
-        setTitle("Listado de Eventos");
-        setBounds(100, 100, 800, 500);
+        setTitle("Registrar Evento");
+        setBounds(100, 100, 600, 400);
         setLocationRelativeTo(null);
-        setResizable(false);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
-        contentPanel.setLayout(new BorderLayout(0, 0));
-        
-        JPanel panel = new JPanel();
-        panel.setBorder(new TitledBorder(null, "Listado de Eventos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-        contentPanel.add(panel, BorderLayout.CENTER);
-        panel.setLayout(new BorderLayout(0, 0));
-        
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        panel.add(scrollPane, BorderLayout.CENTER);
-        
-        modelo = new DefaultTableModel() {
-            private static final long serialVersionUID = 1L;
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        String[] headers = {"Código", "Nombre", "Tipo de Evento", "Fecha"};
-        modelo.setColumnIdentifiers(headers);
-        
-        table = new JTable(modelo);
-        table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int index = table.getSelectedRow();
-                if (index >= 0) {
-                    btnModificar.setEnabled(true);
-                    btnEliminar.setEnabled(true);
-                    String codigo = table.getValueAt(index, 0).toString();
-                    selected = SPEC.getInstance().buscarEventoByCodigo(codigo);
-                }
-            }
-        });
-        scrollPane.setViewportView(table);
-        
+        contentPanel.setLayout(null);
+
+        JLabel lblNombre = new JLabel("Nombre:");
+        lblNombre.setBounds(20, 30, 80, 25);
+        contentPanel.add(lblNombre);
+
+        txtNombre = new JTextField();
+        txtNombre.setBounds(120, 30, 400, 25);
+        contentPanel.add(txtNombre);
+
+        JLabel lblTipo = new JLabel("Tipo:");
+        lblTipo.setBounds(20, 70, 80, 25);
+        contentPanel.add(lblTipo);
+
+        cbxTipoEvento = new JComboBox<>();
+        cbxTipoEvento.setModel(new DefaultComboBoxModel<>(new String[] {
+            "Conferencia", "Seminario", "Taller", "Congreso"
+        }));
+        cbxTipoEvento.setBounds(120, 70, 200, 25);
+        contentPanel.add(cbxTipoEvento);
+
+        JLabel lblFecha = new JLabel("Fecha:");
+        lblFecha.setBounds(20, 110, 80, 25);
+        contentPanel.add(lblFecha);
+
+        spnFecha = new JSpinner(new SpinnerDateModel());
+        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spnFecha, "dd/MM/yyyy");
+        spnFecha.setEditor(dateEditor);
+        spnFecha.setBounds(120, 110, 150, 25);
+        contentPanel.add(spnFecha);
+
+        JLabel lblTema = new JLabel("Tema:");
+        lblTema.setBounds(20, 150, 80, 25);
+        contentPanel.add(lblTema);
+
+        txtTema = new JTextField();
+        txtTema.setBounds(120, 150, 400, 25);
+        contentPanel.add(txtTema);
+
+        JLabel lblDuracion = new JLabel("Duración:");
+        lblDuracion.setBounds(20, 190, 80, 25);
+        contentPanel.add(lblDuracion);
+
+        txtDuracion = new JTextField();
+        txtDuracion.setBounds(120, 190, 150, 25);
+        contentPanel.add(txtDuracion);
+
+        JLabel lblCapacidad = new JLabel("Capacidad:");
+        lblCapacidad.setBounds(20, 230, 80, 25);
+        contentPanel.add(lblCapacidad);
+
+        txtNumeroPersonas = new JTextField();
+        txtNumeroPersonas.setBounds(120, 230, 150, 25);
+        contentPanel.add(txtNumeroPersonas);
+
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getContentPane().add(buttonPane, BorderLayout.SOUTH);
-        
+
         JButton btnRegistrar = new JButton("Registrar");
         btnRegistrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                RegistrarTC registrarEvento = new RegistrarTC();
-                registrarEvento.setModal(true);
-                registrarEvento.setVisible(true);
-                loadEventos();
-                btnModificar.setEnabled(false);
-                btnEliminar.setEnabled(false);
+                registrarEvento();
             }
         });
         buttonPane.add(btnRegistrar);
-        
-        btnModificar = new JButton("Modificar");
-        btnModificar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (selected != null) {
-                    // Aquí implementarás la modificación cuando tengas ModificarEvento
-                    // ModificarEvento modificarEvento = new ModificarEvento(selected);
-                    // modificarEvento.setModal(true);
-                    // modificarEvento.setVisible(true);
-                    btnModificar.setEnabled(false);
-                    btnEliminar.setEnabled(false);
-                    loadEventos();
-                }
-            }
-        });
-        btnModificar.setEnabled(false);
-        buttonPane.add(btnModificar);
-        
-        btnEliminar = new JButton("Eliminar");
-        btnEliminar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (selected != null) {
-                    int option = JOptionPane.showConfirmDialog(null,
-                            "¿Está seguro que desea eliminar el evento: " + selected.getNombre() + "?",
-                            "Confirmar eliminación",
-                            JOptionPane.YES_NO_OPTION);
-                    if (option == JOptionPane.YES_OPTION) {
-                        SPEC.getInstance().eliminarEvento(selected);
-                        loadEventos();
-                        btnEliminar.setEnabled(false);
-                        btnModificar.setEnabled(false);
-                        JOptionPane.showMessageDialog(null, "Evento eliminado exitosamente", 
-                            "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }
-            }
-        });
-        btnEliminar.setEnabled(false);
-        buttonPane.add(btnEliminar);
-        
-        JButton btnCerrar = new JButton("Cerrar");
-        btnCerrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
-        buttonPane.add(btnCerrar);
-        
-        loadEventos();
+
+        JButton btnCancelar = new JButton("Cancelar");
+        btnCancelar.addActionListener(e -> dispose());
+        buttonPane.add(btnCancelar);
     }
-    
-    private static void loadEventos() {
-        modelo.setRowCount(0);
-        row = new Object[modelo.getColumnCount()];
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
-        for (Evento evento : SPEC.getInstance().getMisEventos()) {
-            row[0] = evento.getIdEvento();
-            row[1] = evento.getNombre();
-            row[2] = evento.getTipoEvento();
-            row[3] = sdf.format(evento.getFechaEvento());
-            modelo.addRow(row);
+
+    private void registrarEvento() {
+        try {
+            // Validaciones
+            if (txtNombre.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un nombre para el evento", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (txtTema.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un tema para el evento", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (txtDuracion.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar la duración del evento", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (txtNumeroPersonas.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar la capacidad del evento", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            Date fechaSeleccionada = (Date) spnFecha.getValue();
+            if (fechaSeleccionada.before(new Date())) {
+                JOptionPane.showMessageDialog(null, "La fecha debe ser posterior a hoy", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Crear el objeto infoEvento con una clase concreta que extienda de infoEvento
+            infoEvento info = new infoEventoImpl(
+                txtTema.getText().trim(),
+                txtNumeroPersonas.getText().trim(),
+                txtDuracion.getText().trim()
+            );
+
+            // Crear el evento
+            String idEvento = "EVT-" + SPEC.codEvento;
+            Evento nuevoEvento = new Evento(
+                txtNombre.getText().trim(),
+                idEvento,
+                fechaSeleccionada,
+                cbxTipoEvento.getSelectedItem().toString(),
+                info
+            );
+
+            // Registrar el evento
+            SPEC.getInstance().insertarEvento(nuevoEvento);
+            
+            // Guardar en archivo
+            SPEC.getInstance().guardarDatos("SPEC.dat");
+
+            JOptionPane.showMessageDialog(null, 
+                "Evento registrado exitosamente\nCódigo: " + idEvento, 
+                "Registro exitoso", 
+                JOptionPane.INFORMATION_MESSAGE);
+            
+           
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, 
+                "Error al registrar el evento: " + e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
+    }
+}
+
+// Implementación concreta de infoEvento
+class infoEventoImpl extends infoEvento {
+    private static final long serialVersionUID = 1L;
+
+    public infoEventoImpl(String temaEvento, String numeroPersonas, String duracionEvento) {
+        super(temaEvento, numeroPersonas, duracionEvento);
     }
 }

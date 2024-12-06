@@ -2,166 +2,164 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.text.SimpleDateFormat;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import logico.Evento;
 import logico.SPEC;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.ListSelectionModel;
+import logico.Evento;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListadoEventos extends JDialog {
-
-    private final JPanel contentPanel = new JPanel();
+    
+    private static final long serialVersionUID = 1L;
+    private final JPanel contentPanel;
     private JTable table;
-    private static Object row[];
-    private static DefaultTableModel model;
-    private int respuesta;
-    private String codEvento;
-    private int indexClick;
-    private JButton eliminarBtn;
-    private JButton cancelButton;
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        try {
-            ListadoEventos dialog = new ListadoEventos();
-            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialog.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Create the dialog.
-     */
+    private DefaultTableModel modelo;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private JButton btnModificar;
+    private JButton btnEliminar;
+    private Evento selectedEvento;
+    
     public ListadoEventos() {
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setTitle("Listado de Eventos");
-        setBounds(100, 100, 600, 400);
-        getContentPane().setLayout(new BorderLayout());
+        setBounds(100, 100, 800, 500);
+        setModal(true);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        
+        // Panel principal
+        contentPanel = new JPanel();
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-        getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(new BorderLayout(0, 0));
-        {
-            JPanel panel = new JPanel();
-            panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-            contentPanel.add(panel, BorderLayout.CENTER);
-            panel.setLayout(new BorderLayout(0, 0));
-            {
-                JPanel panel_1 = new JPanel();
-                panel_1.setBorder(new TitledBorder(null, "Eventos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-                panel.add(panel_1, BorderLayout.CENTER);
-                panel_1.setLayout(new BorderLayout(0, 0));
-                {
-                    JScrollPane scrollPane = new JScrollPane();
-                    panel_1.add(scrollPane, BorderLayout.CENTER);
-                    {
-                        model = new DefaultTableModel();
-                        table = new JTable();
-                        table.addMouseListener(new MouseAdapter() {
-                            @Override
-                            public void mouseClicked(MouseEvent e) {
-                                indexClick = table.getSelectedRow();
-
-                                if (indexClick >= 0) {
-                                    eliminarBtn.setEnabled(true);
-                                }
-                            }
-                        });
-                        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                        String[] identificadores = { "C骴igo", "T韙ulo", "Tipo", "Fecha", "Duraci髇", "Capacidad" };
-                        model.setColumnIdentifiers(identificadores);
-                        table.setModel(model);
-                        scrollPane.setViewportView(table);
+        setContentPane(contentPanel);
+        
+        // Panel para la tabla
+        JPanel panelTabla = new JPanel();
+        panelTabla.setBorder(BorderFactory.createTitledBorder("Eventos Registrados"));
+        panelTabla.setLayout(new BorderLayout(0, 0));
+        contentPanel.add(panelTabla, BorderLayout.CENTER);
+        
+        // Crear tabla
+        String[] headers = {"C贸digo", "Nombre", "Tipo", "Fecha", "Tema", "Duraci贸n", "Capacidad"};
+        modelo = new DefaultTableModel(headers, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        table = new JTable(modelo);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int index = table.getSelectedRow();
+                if(index >= 0) {
+                    btnModificar.setEnabled(true);
+                    btnEliminar.setEnabled(true);
+                    String codigo = table.getValueAt(index, 0).toString();
+                    selectedEvento = SPEC.getInstance().buscarEventoByCodigo(codigo);
+                } else {
+                    btnModificar.setEnabled(false);
+                    btnEliminar.setEnabled(false);
+                }
+            }
+        });
+        
+        JScrollPane scrollPane = new JScrollPane(table);
+        panelTabla.add(scrollPane, BorderLayout.CENTER);
+        
+        // Panel de botones
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        contentPanel.add(buttonPane, BorderLayout.SOUTH);
+        
+        btnModificar = new JButton("Modificar");
+        btnModificar.setEnabled(false);
+        btnModificar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(selectedEvento != null) {
+                    ModificarEvento modEvento = new ModificarEvento(selectedEvento);
+                    modEvento.setModal(true);
+                    modEvento.setVisible(true);
+                    loadEventos();
+                    btnModificar.setEnabled(false);
+                    btnEliminar.setEnabled(false);
+                }
+            }
+        });
+        buttonPane.add(btnModificar);
+        
+        btnEliminar = new JButton("Eliminar");
+        btnEliminar.setEnabled(false);
+        btnEliminar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(selectedEvento != null) {
+                    int option = JOptionPane.showConfirmDialog(null,
+                            "驴Est谩 seguro que desea eliminar el evento: " + selectedEvento.getNombre() + "?",
+                            "Confirmar eliminaci贸n",
+                            JOptionPane.YES_NO_OPTION);
+                    if(option == JOptionPane.YES_OPTION) {
+                        SPEC.getInstance().eliminarEvento(selectedEvento);
+                        loadEventos();
+                        btnModificar.setEnabled(false);
+                        btnEliminar.setEnabled(false);
+                        JOptionPane.showMessageDialog(null, "Evento eliminado exitosamente", 
+                            "Eliminaci贸n exitosa", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
-        }
-        {
-            JPanel buttonPane = new JPanel();
-            buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-            getContentPane().add(buttonPane, BorderLayout.SOUTH);
-            {
-                eliminarBtn = new JButton("Eliminar evento");
-                eliminarBtn.setEnabled(false);
-                eliminarBtn.addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent e) {
-
-                        respuesta = JOptionPane.showConfirmDialog(null,
-                                "縀st醩 seguro de que quieres eliminar este evento?", "Confirmaci髇",
-                                JOptionPane.YES_NO_OPTION);
-
-                        if (respuesta == JOptionPane.YES_OPTION) {
-
-                            codEvento = table.getValueAt(indexClick, 0).toString();
-                            Evento evento = SPEC.getInstance().buscarEventoByCodigo(codEvento);
-
-                            if (evento != null) {
-
-                                SPEC.getInstance().eliminarEvento(evento);
-                                SPEC.getInstance().guardarDatos("SPEC.dat");
-                                JOptionPane.showMessageDialog(null, "El evento fue eliminado correctamente.");
-                                loadEventos(); // Actualiza la tabla despu閟 de eliminar
-                            }
-                        }
-                    }
-                });
-                eliminarBtn.setActionCommand("OK");
-                buttonPane.add(eliminarBtn);
-                getRootPane().setDefaultButton(eliminarBtn);
-            }
-            {
-                cancelButton = new JButton("Cancelar");
-                cancelButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        dispose();
-                    }
-                });
-                cancelButton.setActionCommand("Cancel");
-                buttonPane.add(cancelButton);
-            }
-        }
+        });
+        buttonPane.add(btnEliminar);
+        
+        JButton btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(e -> dispose());
+        buttonPane.add(btnCerrar);
+        
+        // Cargar datos
         loadEventos();
     }
-
+    
     private void loadEventos() {
-        model.setRowCount(0); // Limpia la tabla antes de cargar nuevos datos
-
-        if (SPEC.getInstance().getMisEventos() == null || SPEC.getInstance().getMisEventos().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No hay eventos para mostrar.", "Informaci髇", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
-        row = new Object[6]; // Aseg鷕ate de que el tama駉 coincida con las columnas
-
-        for (Evento evento : SPEC.getInstance().getMisEventos()) {
-            if (evento != null) {
-                row[0] = evento.getIdEvento();
-                row[1] = evento.getNombre();
-                row[2] = evento.getTipoEvento();
-                row[3] = evento.getFechaEvento();
-                row[4] = evento.getInfoEvento().getDuracionEvento();
-                row[5] = evento.getInfoEvento().getNumeroPersonas();
-
-                model.addRow(row);
+        modelo.setRowCount(0);
+        selectedEvento = null;
+        
+        try {
+            for (Evento evento : SPEC.getInstance().getMisEventos()) {
+                if (evento != null) {
+                    Object[] row = {
+                        evento.getIdEvento(),
+                        evento.getNombre(),
+                        evento.getTipoEvento(),
+                        sdf.format(evento.getFechaEvento()),
+                        evento.getInfoEvento().getTemaEvento(),
+                        evento.getInfoEvento().getDuracionEvento(),
+                        evento.getInfoEvento().getNumeroPersonas()
+                    };
+                    modelo.addRow(row);
+                }
             }
+
+            if(modelo.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, 
+                    "No hay eventos registrados en el sistema", 
+                    "Informaci贸n", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "Error al cargar los eventos: " + e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
 }

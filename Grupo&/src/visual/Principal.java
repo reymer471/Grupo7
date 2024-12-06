@@ -102,7 +102,14 @@ public class Principal extends JFrame {
         });
         mnNewMenu_2.add(mntmNewMenuItem_1);
         
-
+        JMenuItem mntmNewMenuItem_8 = new JMenuItem("Listar eventos");
+        mntmNewMenuItem_8.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ListadoEventos listadoE = new ListadoEventos();
+        		listadoE.setVisible(true);
+        	}
+        });
+        
         JMenuItem mntmNewMenuItem_10 = new JMenuItem("Registrar trabajo cientifico");
         mntmNewMenuItem_10.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -113,7 +120,7 @@ public class Principal extends JFrame {
         	}
         });
         mnNewMenu_2.add(mntmNewMenuItem_10);
-      
+        mnNewMenu_2.add(mntmNewMenuItem_8);
         
         JMenuItem mntmNewMenuItem_11 = new JMenuItem("Listar Trabajos CIentificos");
         mntmNewMenuItem_11.addActionListener(new ActionListener() {
