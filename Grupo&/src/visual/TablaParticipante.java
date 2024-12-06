@@ -36,7 +36,7 @@ public class TablaParticipante extends JDialog {
         panel.add(scrollPane, BorderLayout.CENTER);
         
         // Definir columnas
-        String[] columnNames = {"Código", "Nombre", "Apellido", "Email", "Dirección"};
+        String[] columnNames = {"Codigo", "Nombre", "Apellido", "Email", "Direccion"};
         modelo = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
