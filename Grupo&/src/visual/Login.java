@@ -37,12 +37,13 @@ import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -73,12 +74,15 @@ public class Login extends JFrame {
 						gestion2.close();
 						gestionWrite.close();
 					}catch(FileNotFoundException e1) {
+						createInitialAdminUser();
 					}catch (IOException e1) {
 					}
+					
 				}catch(IOException e) {
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al inicializar la aplicacion: "+ e.getMessage(), "Error de inicializacion", JOptionPane.ERROR_MESSAGE);
 				}
 				
 				try {
@@ -91,6 +95,32 @@ public class Login extends JFrame {
 		});
 	}
 
+	private static void loadSPECData() throws Exception {
+        try (FileInputStream fis = new FileInputStream("SPEC.dat");
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            
+            SPEC temp = (SPEC)ois.readObject();
+            SPEC.setSPEC(temp);
+        }
+        
+	}  
+	
+	
+	 private static void createInitialAdminUser() {
+	        try (FileOutputStream fos = new FileOutputStream("SPEC.dat");
+	             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+	            
+	            // Create default admin user
+	            Usuario adminUser = new Usuario("Administrador", "Admin", "Admin");
+	            SPEC.getInstance().regUsuario(adminUser);
+	            
+	            // Write the initial state
+	            oos.writeObject(Control.getInstance());
+	        } catch (IOException e1) {
+	            e1.printStackTrace();
+	        }
+	    }
+	
 	/**
 	 * Create the frame.
 	 */
@@ -134,15 +164,16 @@ public class Login extends JFrame {
 		lblNewLabel_2.setBounds(29, 164, 93, 14);
 		panel.add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(131, 161, 152, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(131, 161, 152, 20);
+		panel.add(passwordField);
+		passwordField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Control.getInstance().confirmLogin(textField, textField_1.getText())) {
+				
+				if(Control.getInstance().confirmLogin(textField, passwordField.getText())) {
 					Principal frame = new Principal();
 					dispose();
 					frame.setVisible(true);
@@ -156,7 +187,7 @@ public class Login extends JFrame {
 				btnNewButton.addActionListener(new ActionListener() {
 				    public void actionPerformed(ActionEvent e) {
 				        String username = textField.getText().trim();  
-				        String password = textField_1.getText().trim();  
+				        String password = passwordField.getText().trim();  
 
 				        if (username.isEmpty() || password.isEmpty()) {  // Verificación si los campos están vacíos
 				            JOptionPane.showMessageDialog(Login.this, "Por favor, complete todos los campos.", "Campos Vacíos", JOptionPane.WARNING_MESSAGE);  // Mostrar mensaje si hay campos vacíos

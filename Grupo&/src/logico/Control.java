@@ -70,7 +70,7 @@ public class Control implements Serializable{
 	public boolean confirmLogin(String text, String text2) {
 		boolean login = false;
 		for (Usuario usuario : misUsers) {
-			if(usuario.getUsername().equals(text) && usuario.getPass().equals(text2)) {
+			if(usuario.getUsername().equals(text) && usuario.getPassword().equals(text2)) {
 				LoginUser = usuario;
 				login = true;
 			}
@@ -79,11 +79,16 @@ public class Control implements Serializable{
 	}
 
 	public boolean confirmLogin(JTextField textField, String text) {
-		// TODO Auto-generated method stub
-		return false;
+		if (misUsers == null) {
+			return false;
+		}
+		String password= textField.getText();
+		return password.equals(text);
+		
+		
 	}
 
-	
+
 	
 }
 

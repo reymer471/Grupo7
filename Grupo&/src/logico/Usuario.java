@@ -34,7 +34,7 @@ public class Usuario implements Serializable{
 		this.username = username;
 	}
 
-	public String getPass() {
+	public String getPassword() {
 		return pass;
 		
 	}
