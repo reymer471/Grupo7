@@ -2,193 +2,161 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.util.Date;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SpinnerDateModel;
-import javax.swing.JSpinner;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import logico.Evento;
-import logico.SPEC;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
-import java.awt.Color;
-import javax.swing.border.CompoundBorder;
-import java.awt.Toolkit;
-import java.awt.SystemColor;
-import javax.swing.border.EtchedBorder;
+import logico.SPEC;
+import logico.Evento;
 
 public class RegistrarEvento extends JDialog {
 
+    private static final long serialVersionUID = 1L;
     private final JPanel contentPanel = new JPanel();
-    private JTextField txtNombre;
-    private JTextField txtEventoCodigo;
-    private JComboBox<String> cbxTipoEvento;
-    private JSpinner spnFecha;
-    private JSpinner spnCapacidad;
-    private JSpinner spnDuracion;
+    private static JTable table;
+    private static DefaultTableModel modelo;
+    private static Object[] row;
+    private Evento selected = null;
+    private JButton btnEliminar;
+    private JButton btnModificar;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        try {
-            RegistrarEvento dialog = new RegistrarEvento();
-            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialog.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Create the dialog.
-     */
     public RegistrarEvento() {
-    	setForeground(Color.GRAY);
-    	setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarEvento.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
-        setTitle("Registrar evento");
-        setBounds(100, 100, 452, 292);
+        setTitle("Listado de Eventos");
+        setBounds(100, 100, 800, 500);
         setLocationRelativeTo(null);
+        setResizable(false);
         getContentPane().setLayout(new BorderLayout());
-        contentPanel.setBackground(SystemColor.menu);
-        contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
+        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
-        contentPanel.setLayout(null);
-
-        JLabel lblCodEvento = new JLabel("Evento codigo:");
-        lblCodEvento.setBounds(10, 26, 100, 14);
-        contentPanel.add(lblCodEvento);
-
-        txtEventoCodigo = new JTextField();
-        txtEventoCodigo.setText("E-" + SPEC.getInstance().codEvento);
-        txtEventoCodigo.setEditable(false);
-        txtEventoCodigo.setBounds(99, 23, 120, 20);
-        contentPanel.add(txtEventoCodigo);
-        txtEventoCodigo.setColumns(10);
-
-        JLabel lblNombre = new JLabel("Nombre:");
-        lblNombre.setBounds(10, 77, 100, 14);
-        contentPanel.add(lblNombre);
-
-        txtNombre = new JTextField();
-        txtNombre.setBounds(99, 74, 300, 20);
-        contentPanel.add(txtNombre);
-        txtNombre.setColumns(10);
-
-        JLabel lblTipoEvento = new JLabel("Tipo de evento:");
-        lblTipoEvento.setBounds(10, 120, 100, 14);
-        contentPanel.add(lblTipoEvento);
-
-        cbxTipoEvento = new JComboBox<>();
-        cbxTipoEvento.setBounds(99, 117, 120, 20);
-        cbxTipoEvento.addItem("Conferencia");
-        cbxTipoEvento.addItem("Seminario");
-        cbxTipoEvento.addItem("Taller");
-        cbxTipoEvento.addItem("Congreso");
-        contentPanel.add(cbxTipoEvento);
-
-        JLabel lblFechas = new JLabel("Fecha:");
-        lblFechas.setBounds(229, 120, 100, 14);
-        contentPanel.add(lblFechas);
-
-        spnFecha = new JSpinner(new SpinnerDateModel());
-        spnFecha.setBounds(289, 117, 120, 20);
-        contentPanel.add(spnFecha);
-
-        JLabel lblCapacidad = new JLabel("Capacidad:");
-        lblCapacidad.setBounds(10, 163, 100, 14);
-        contentPanel.add(lblCapacidad);
-
-        spnCapacidad = new JSpinner();
-        spnCapacidad.setBounds(99, 160, 120, 20);
-        contentPanel.add(spnCapacidad);
-
-        JLabel lblDuracion = new JLabel("Duracion (hrs):");
-        lblDuracion.setBounds(229, 163, 100, 14);
-        contentPanel.add(lblDuracion);
-
-        spnDuracion = new JSpinner();
-        spnDuracion.setBounds(311, 160, 100, 20);
-        contentPanel.add(spnDuracion);
-
-        // Botones de acción
+        contentPanel.setLayout(new BorderLayout(0, 0));
+        
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(null, "Listado de Eventos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        contentPanel.add(panel, BorderLayout.CENTER);
+        panel.setLayout(new BorderLayout(0, 0));
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        panel.add(scrollPane, BorderLayout.CENTER);
+        
+        modelo = new DefaultTableModel() {
+            private static final long serialVersionUID = 1L;
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        String[] headers = {"Código", "Nombre", "Tipo de Evento", "Fecha"};
+        modelo.setColumnIdentifiers(headers);
+        
+        table = new JTable(modelo);
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int index = table.getSelectedRow();
+                if (index >= 0) {
+                    btnModificar.setEnabled(true);
+                    btnEliminar.setEnabled(true);
+                    String codigo = table.getValueAt(index, 0).toString();
+                    selected = SPEC.getInstance().buscarEventoByCodigo(codigo);
+                }
+            }
+        });
+        scrollPane.setViewportView(table);
+        
         JPanel buttonPane = new JPanel();
-        buttonPane.setBorder(new CompoundBorder());
         buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getContentPane().add(buttonPane, BorderLayout.SOUTH);
-
-        JButton cancelarButton = new JButton("Cancelar");
-        cancelarButton.addActionListener(e -> dispose());
-        buttonPane.add(cancelarButton);
-
-        JButton registrarButton = new JButton("Registrar");
-        registrarButton.addActionListener(e -> registrarEvento());
-        buttonPane.add(registrarButton);
+        
+        JButton btnRegistrar = new JButton("Registrar");
+        btnRegistrar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                RegistrarTC registrarEvento = new RegistrarTC();
+                registrarEvento.setModal(true);
+                registrarEvento.setVisible(true);
+                loadEventos();
+                btnModificar.setEnabled(false);
+                btnEliminar.setEnabled(false);
+            }
+        });
+        buttonPane.add(btnRegistrar);
+        
+        btnModificar = new JButton("Modificar");
+        btnModificar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (selected != null) {
+                    // Aquí implementarás la modificación cuando tengas ModificarEvento
+                    // ModificarEvento modificarEvento = new ModificarEvento(selected);
+                    // modificarEvento.setModal(true);
+                    // modificarEvento.setVisible(true);
+                    btnModificar.setEnabled(false);
+                    btnEliminar.setEnabled(false);
+                    loadEventos();
+                }
+            }
+        });
+        btnModificar.setEnabled(false);
+        buttonPane.add(btnModificar);
+        
+        btnEliminar = new JButton("Eliminar");
+        btnEliminar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (selected != null) {
+                    int option = JOptionPane.showConfirmDialog(null,
+                            "¿Está seguro que desea eliminar el evento: " + selected.getNombre() + "?",
+                            "Confirmar eliminación",
+                            JOptionPane.YES_NO_OPTION);
+                    if (option == JOptionPane.YES_OPTION) {
+                        SPEC.getInstance().eliminarEvento(selected);
+                        loadEventos();
+                        btnEliminar.setEnabled(false);
+                        btnModificar.setEnabled(false);
+                        JOptionPane.showMessageDialog(null, "Evento eliminado exitosamente", 
+                            "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        });
+        btnEliminar.setEnabled(false);
+        buttonPane.add(btnEliminar);
+        
+        JButton btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        buttonPane.add(btnCerrar);
+        
+        loadEventos();
     }
-
-    private void registrarEvento() {
-        try {
-            // Obtener los valores
-            String codigo = txtEventoCodigo.getText().trim();
-            String nombre = txtNombre.getText().trim();
-            String tipoEvento = (String) cbxTipoEvento.getSelectedItem();
-            Date fecha = (Date) spnFecha.getValue();
-            int capacidad = (Integer) spnCapacidad.getValue();
-            int duracion = (Integer) spnDuracion.getValue();
-
-            // Validaciones
-            if (codigo.isEmpty()) {
-                mostrarMensaje("El codigo del evento es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (nombre.isEmpty()) {
-                mostrarMensaje("El nombre del evento es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (capacidad <= 0) {
-                mostrarMensaje("La capacidad debe ser un número mayor a 0.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (duracion <= 0) {
-                mostrarMensaje("La duración debe ser un número mayor a 0.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            Date hoy = new Date();
-            if (fecha.before(hoy)) {
-                mostrarMensaje("La fecha del evento debe ser futura.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (tipoEvento == null || tipoEvento.isEmpty()) {
-                mostrarMensaje("Debe seleccionar un tipo de evento.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Crear el evento
-            Evento evento = new Evento(nombre, codigo, fecha, tipoEvento, null);
-            SPEC.getInstance().insertarEvento(evento);
-
-            // Confirmación
-            mostrarMensaje("Evento registrado exitosamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-
-            SPEC.getInstance().guardarDatos("gestion.dat");
-            // Cerrar la ventana
-            dispose();
-        } catch (Exception ex) {
-            mostrarMensaje("Ocurrió un error inesperado. Intente nuevamente.", "Error", JOptionPane.ERROR_MESSAGE);
+    
+    private static void loadEventos() {
+        modelo.setRowCount(0);
+        row = new Object[modelo.getColumnCount()];
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        for (Evento evento : SPEC.getInstance().getMisEventos()) {
+            row[0] = evento.getIdEvento();
+            row[1] = evento.getNombre();
+            row[2] = evento.getTipoEvento();
+            row[3] = sdf.format(evento.getFechaEvento());
+            modelo.addRow(row);
         }
-    }
-
-    private void mostrarMensaje(String mensaje, String titulo, int tipo) {
-        JOptionPane.showMessageDialog(this, mensaje, titulo, tipo);
     }
 }
