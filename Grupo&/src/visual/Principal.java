@@ -122,7 +122,7 @@ public class Principal extends JFrame {
         mnNewMenu_2.add(mntmNewMenuItem_10);
         mnNewMenu_2.add(mntmNewMenuItem_8);
         
-        JMenuItem mntmNewMenuItem_11 = new JMenuItem("Listar Trabajos CIentificos");
+        JMenuItem mntmNewMenuItem_11 = new JMenuItem("Listar Trabajos Cientificos");
         mntmNewMenuItem_11.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		ListadoTrabajosC list = new ListadoTrabajosC();
@@ -131,7 +131,7 @@ public class Principal extends JFrame {
         });
         mnNewMenu_2.add(mntmNewMenuItem_11);
         //funciona por favor
-        JMenu mnNewMenu_5 = new JMenu("Gestión recursos");
+        JMenu mnNewMenu_5 = new JMenu("Gestion recursos");
         menuBar1.add(mnNewMenu_5);
 
         // Menú para Registrar recursos

@@ -13,6 +13,8 @@ import javax.swing.border.TitledBorder;
 import logico.SPEC;
 import logico.Evento;
 import logico.infoEvento;
+import javax.swing.border.EtchedBorder;
+import java.awt.Color;
 
 public class RegistrarEvento extends JDialog {
     private static final long serialVersionUID = 1L;
@@ -25,65 +27,66 @@ public class RegistrarEvento extends JDialog {
     private JSpinner spnFecha;
 
     public RegistrarEvento() {
-        setTitle("Registrar Evento");
-        setBounds(100, 100, 600, 400);
+    	setResizable(false);
+        setTitle("Registrar evento");
+        setBounds(100, 100, 573, 316);
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
-        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
 
         JLabel lblNombre = new JLabel("Nombre:");
-        lblNombre.setBounds(20, 30, 80, 25);
+        lblNombre.setBounds(30, 21, 80, 25);
         contentPanel.add(lblNombre);
 
         txtNombre = new JTextField();
-        txtNombre.setBounds(120, 30, 400, 25);
+        txtNombre.setBounds(120, 21, 400, 25);
         contentPanel.add(txtNombre);
 
         JLabel lblTipo = new JLabel("Tipo:");
-        lblTipo.setBounds(20, 70, 80, 25);
+        lblTipo.setBounds(30, 57, 80, 25);
         contentPanel.add(lblTipo);
 
         cbxTipoEvento = new JComboBox<>();
         cbxTipoEvento.setModel(new DefaultComboBoxModel<>(new String[] {
             "Conferencia", "Seminario", "Taller", "Congreso"
         }));
-        cbxTipoEvento.setBounds(120, 70, 200, 25);
+        cbxTipoEvento.setBounds(120, 57, 200, 25);
         contentPanel.add(cbxTipoEvento);
 
         JLabel lblFecha = new JLabel("Fecha:");
-        lblFecha.setBounds(20, 110, 80, 25);
+        lblFecha.setBounds(30, 93, 80, 25);
         contentPanel.add(lblFecha);
 
         spnFecha = new JSpinner(new SpinnerDateModel());
         JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spnFecha, "dd/MM/yyyy");
         spnFecha.setEditor(dateEditor);
-        spnFecha.setBounds(120, 110, 150, 25);
+        spnFecha.setBounds(120, 93, 150, 25);
         contentPanel.add(spnFecha);
 
         JLabel lblTema = new JLabel("Tema:");
-        lblTema.setBounds(20, 150, 80, 25);
+        lblTema.setBounds(30, 129, 80, 25);
         contentPanel.add(lblTema);
 
         txtTema = new JTextField();
-        txtTema.setBounds(120, 150, 400, 25);
+        txtTema.setBounds(120, 129, 400, 25);
         contentPanel.add(txtTema);
 
-        JLabel lblDuracion = new JLabel("Duración:");
-        lblDuracion.setBounds(20, 190, 80, 25);
+        JLabel lblDuracion = new JLabel("Duracion:");
+        lblDuracion.setBounds(30, 165, 80, 25);
         contentPanel.add(lblDuracion);
 
         txtDuracion = new JTextField();
-        txtDuracion.setBounds(120, 190, 150, 25);
+        txtDuracion.setBounds(120, 165, 150, 25);
         contentPanel.add(txtDuracion);
 
         JLabel lblCapacidad = new JLabel("Capacidad:");
-        lblCapacidad.setBounds(20, 230, 80, 25);
+        lblCapacidad.setBounds(30, 201, 80, 25);
         contentPanel.add(lblCapacidad);
 
         txtNumeroPersonas = new JTextField();
-        txtNumeroPersonas.setBounds(120, 230, 150, 25);
+        txtNumeroPersonas.setBounds(120, 201, 150, 25);
         contentPanel.add(txtNumeroPersonas);
 
         JPanel buttonPane = new JPanel();

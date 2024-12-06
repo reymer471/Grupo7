@@ -59,7 +59,7 @@ public class ListadoRecursos extends JDialog {
                 return false;
             }
         };
-        String[] headers = {"Código", "Tipo de Recurso", "Nombre", "Cantidad Disponible"};
+        String[] headers = {"Codigo", "Tipo de Recurso", "Nombre", "Cantidad Disponible"};
         modelo.setColumnIdentifiers(headers);
         
         table = new JTable(modelo);
@@ -113,15 +113,15 @@ public class ListadoRecursos extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 if (selected != null) {
                     int option = JOptionPane.showConfirmDialog(null,
-                            "¿Está seguro que desea eliminar el recurso: " + selected.getNombre() + "?",
-                            "Confirmar eliminación",
+                            "�Estas� seguro que desea eliminar el recurso: " + selected.getNombre() + "?",
+                            "Confirmar eliminacion",
                             JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.YES_OPTION) {
                         SPEC.getInstance().eliminarRecurso(selected);
                         btnEliminar.setEnabled(false);
                         btnModificar.setEnabled(false);
                         loadRecursos();
-                        JOptionPane.showMessageDialog(null, "Recurso eliminado exitosamente", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Recurso eliminado exitosamente", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }

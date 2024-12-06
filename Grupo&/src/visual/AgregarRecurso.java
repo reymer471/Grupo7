@@ -19,6 +19,8 @@ import logico.Recurso;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.EtchedBorder;
+import java.awt.Color;
 
 public class AgregarRecurso extends JDialog {
 
@@ -30,6 +32,8 @@ public class AgregarRecurso extends JDialog {
     private Recurso miRecurso = null;
 
     public AgregarRecurso(Recurso recurso) {
+    	setTitle("Registrar recurso");
+    	setResizable(false);
         miRecurso = recurso;
         if(miRecurso == null) {
             setTitle("Registrar Recurso");
@@ -37,15 +41,15 @@ public class AgregarRecurso extends JDialog {
             setTitle("Modificar Recurso");
         }
         
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 410, 245);
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
-        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
         {
-            JLabel lblNewLabel = new JLabel("Código:");
-            lblNewLabel.setBounds(10, 25, 80, 14);
+            JLabel lblNewLabel = new JLabel("Codigo:");
+            lblNewLabel.setBounds(25, 25, 80, 14);
             contentPanel.add(lblNewLabel);
         }
         {
@@ -63,7 +67,7 @@ public class AgregarRecurso extends JDialog {
         }
         {
             JLabel lblNewLabel_1 = new JLabel("Nombre:");
-            lblNewLabel_1.setBounds(10, 65, 80, 14);
+            lblNewLabel_1.setBounds(25, 65, 80, 14);
             contentPanel.add(lblNewLabel_1);
         }
         {
@@ -77,7 +81,7 @@ public class AgregarRecurso extends JDialog {
         }
         {
             JLabel lblNewLabel_2 = new JLabel("Tipo:");
-            lblNewLabel_2.setBounds(10, 105, 80, 14);
+            lblNewLabel_2.setBounds(25, 105, 80, 14);
             contentPanel.add(lblNewLabel_2);
         }
         {
@@ -94,7 +98,7 @@ public class AgregarRecurso extends JDialog {
         }
         {
             JLabel lblNewLabel_3 = new JLabel("Cantidad:");
-            lblNewLabel_3.setBounds(10, 145, 80, 14);
+            lblNewLabel_3.setBounds(25, 145, 80, 14);
             contentPanel.add(lblNewLabel_3);
         }
         {
@@ -122,13 +126,13 @@ public class AgregarRecurso extends JDialog {
                                 Recurso aux = new Recurso(txtCodigo.getText(), cbxTipo.getSelectedItem().toString(),
                                         txtNombre.getText(), Integer.valueOf(spnCantidad.getValue().toString()));
                                 SPEC.getInstance().insertarRecurso(aux);
-                                JOptionPane.showMessageDialog(null, "Registro exitoso", "Información", 
+                                JOptionPane.showMessageDialog(null, "Registro exitoso", "Informacion", 
                                         JOptionPane.INFORMATION_MESSAGE);
                             } else {
                                 miRecurso.setNombre(txtNombre.getText());
                                 miRecurso.setTiporecurso(cbxTipo.getSelectedItem().toString());
                                 miRecurso.setCantidadTotal(Integer.valueOf(spnCantidad.getValue().toString()));
-                                JOptionPane.showMessageDialog(null, "Modificación exitosa", "Información", 
+                                JOptionPane.showMessageDialog(null, "Modificacion exitosa", "Informacion", 
                                         JOptionPane.INFORMATION_MESSAGE);
                                 dispose();
                             }

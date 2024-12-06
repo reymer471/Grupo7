@@ -24,6 +24,7 @@ public class TablaParticipante extends JDialog {
     private ArrayList<Participante> participantes;
 
     public TablaParticipante() {
+    	setResizable(false);
         setTitle("Listado de Participantes");
         setBounds(100, 100, 700, 400);
         setLocationRelativeTo(null);
@@ -129,8 +130,8 @@ public class TablaParticipante extends JDialog {
             
             int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
                 this, 
-                "¿Está seguro que desea eliminar este participante?", 
-                "Confirmar Eliminación", 
+                "�Estas seguro que desea eliminar este participante?", 
+                "Confirmar Eliminacion", 
                 javax.swing.JOptionPane.YES_NO_OPTION
             );
             

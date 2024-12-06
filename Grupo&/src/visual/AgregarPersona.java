@@ -34,6 +34,7 @@ public class AgregarPersona extends JDialog {
     private JLabel lblEspecificoDos;
 
     public AgregarPersona() {
+    	setResizable(false);
         setTitle("Agregar persona");
         setBounds(100, 100, 426, 341);
         getContentPane().setLayout(new BorderLayout());
@@ -131,7 +132,7 @@ public class AgregarPersona extends JDialog {
         String tipoSeleccionado = (String) cbTipoPersona.getSelectedItem();
         
         if ("Participante".equals(tipoSeleccionado)) {
-            lblEspecificoUno.setText("Dirección:");
+            lblEspecificoUno.setText("Direccion:");
             lblEspecificoDos.setText("Email:");
             txtEspecificoUno.setVisible(true);
             lblEspecificoUno.setVisible(true);

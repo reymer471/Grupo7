@@ -24,6 +24,7 @@ public class TablaJurado extends JDialog {
     private ArrayList<Jurado> jurados;
 
     public TablaJurado() {
+    	setResizable(false);
         setTitle("Listado de Jurados");
         setBounds(100, 100, 700, 400);
         setLocationRelativeTo(null);
@@ -36,7 +37,7 @@ public class TablaJurado extends JDialog {
         panel.add(scrollPane, BorderLayout.CENTER);
         
         // Definir columnas
-        String[] columnNames = {"Código", "Nombre", "Apellido", "Especialidad", "Experiencia"};
+        String[] columnNames = {"Codigo", "Nombre", "Apellido", "Especialidad", "Experiencia"};
         modelo = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -129,8 +130,8 @@ public class TablaJurado extends JDialog {
             
             int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
                 this, 
-                "¿Está seguro que desea eliminar este jurado?", 
-                "Confirmar Eliminación", 
+                "�Estas seguro que desea eliminar este jurado?", 
+                "Confirmar Eliminacion", 
                 javax.swing.JOptionPane.YES_NO_OPTION
             );
             

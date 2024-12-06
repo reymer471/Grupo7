@@ -47,7 +47,7 @@ public class ListadoEventos extends JDialog {
         contentPanel.add(panelTabla, BorderLayout.CENTER);
         
         // Crear tabla
-        String[] headers = {"C贸digo", "Nombre", "Tipo", "Fecha", "Tema", "Duraci贸n", "Capacidad"};
+        String[] headers = {"Codigo", "Nombre", "Tipo", "Fecha", "Tema", "Duracion", "Capacidad"};
         modelo = new DefaultTableModel(headers, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -103,8 +103,8 @@ public class ListadoEventos extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 if(selectedEvento != null) {
                     int option = JOptionPane.showConfirmDialog(null,
-                            "驴Est谩 seguro que desea eliminar el evento: " + selectedEvento.getNombre() + "?",
-                            "Confirmar eliminaci贸n",
+                            "縀stas seguro que desea eliminar el evento: " + selectedEvento.getNombre() + "?",
+                            "Confirmar eliminacion",
                             JOptionPane.YES_NO_OPTION);
                     if(option == JOptionPane.YES_OPTION) {
                         SPEC.getInstance().eliminarEvento(selectedEvento);
@@ -112,7 +112,7 @@ public class ListadoEventos extends JDialog {
                         btnModificar.setEnabled(false);
                         btnEliminar.setEnabled(false);
                         JOptionPane.showMessageDialog(null, "Evento eliminado exitosamente", 
-                            "Eliminaci贸n exitosa", JOptionPane.INFORMATION_MESSAGE);
+                            "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
@@ -150,7 +150,7 @@ public class ListadoEventos extends JDialog {
             if(modelo.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(this, 
                     "No hay eventos registrados en el sistema", 
-                    "Informaci贸n", 
+                    "Informacion", 
                     JOptionPane.INFORMATION_MESSAGE);
             }
             

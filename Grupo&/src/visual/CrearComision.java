@@ -55,6 +55,7 @@ public class CrearComision extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearComision() {
+		setResizable(false);
 		setTitle("Registrar comision");
 		setBounds(100, 100, 450, 340);
 		
@@ -74,7 +75,7 @@ public class CrearComision extends JDialog {
 				panel_1.setLayout(null);
 				{
 					JLabel lblCodcomision = new JLabel("Codigo:");
-					lblCodcomision.setBounds(31, 11, 90, 14);
+					lblCodcomision.setBounds(31, 21, 90, 14);
 					panel_1.add(lblCodcomision);
 				}
 				{
@@ -101,27 +102,27 @@ public class CrearComision extends JDialog {
 					panel_2.add(panel_3);
 					panel_3.setLayout(null);
 					{
-						JLabel lbljurado1 = new JLabel("Jurado 1");
+						JLabel lbljurado1 = new JLabel("Jurado 1:");
 						lbljurado1.setBounds(10, 11, 62, 14);
 						panel_3.add(lbljurado1);
 					}
 					{
-						JLabel lblJurado2 = new JLabel("Jurado 2");
+						JLabel lblJurado2 = new JLabel("Jurado 2:");
 						lblJurado2.setBounds(10, 46, 62, 14);
 						panel_3.add(lblJurado2);
 					}
 					{
-						JLabel lblJurado3 = new JLabel("Jurado 3");
+						JLabel lblJurado3 = new JLabel("Jurado 3:");
 						lblJurado3.setBounds(10, 82, 62, 14);
 						panel_3.add(lblJurado3);
 					}
 					{
-						JLabel lblJurado4 = new JLabel("Jurado 4");
+						JLabel lblJurado4 = new JLabel("Jurado 4:");
 						lblJurado4.setBounds(202, 11, 62, 14);
 						panel_3.add(lblJurado4);
 					}
 					{
-						JLabel lblJurado5 = new JLabel("Jurado 5");
+						JLabel lblJurado5 = new JLabel("Jurado 5:");
 						lblJurado5.setBounds(202, 46, 62, 14);
 						panel_3.add(lblJurado5);
 					}
@@ -157,7 +158,7 @@ public class CrearComision extends JDialog {
 					}
 				}
 				{
-					JLabel lblNewLabel = new JLabel("Agregue los jurados");
+					JLabel lblNewLabel = new JLabel("Agregue los jurados:");
 					lblNewLabel.setBounds(10, 11, 143, 14);
 					panel_2.add(lblNewLabel);
 				}
@@ -166,7 +167,7 @@ public class CrearComision extends JDialog {
 				txtCodigoComision.setText("C-" + SPEC.getInstance().codComision);
 				txtCodigoComision.setEnabled(false);
 				txtCodigoComision.setColumns(10);
-				txtCodigoComision.setBounds(110, 8, 136, 20);
+				txtCodigoComision.setBounds(110, 18, 136, 20);
 				panel_1.add(txtCodigoComision);
 			}
 		}

@@ -47,8 +47,10 @@ public class RegistrarTC extends JDialog {
     }
 
     public RegistrarTC() {
-        setTitle("Registrar Trabajo Científico");
-        setBounds(100, 100, 500, 400);
+    	setResizable(false);
+        setTitle("Registrar trabajo cient\u00EDfico");
+        setBounds(100, 100, 500, 307);
+        setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         getContentPane().add(contentPanel, BorderLayout.CENTER);

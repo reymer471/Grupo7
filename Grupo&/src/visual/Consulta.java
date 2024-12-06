@@ -106,6 +106,7 @@ public class Consulta extends JDialog {
 	 * Create the dialog.
 	 */
 	public Consulta() {
+		setResizable(false);
 		setTitle("Hacer consulta");
 		setBounds(100, 100, 501, 699);
 		setLocationRelativeTo(null);
@@ -136,7 +137,7 @@ public class Consulta extends JDialog {
 			panel_2.add(lblCodComision);
 			
 			lblNombreComision = new JLabel("Nombre:");
-			lblNombreComision.setBounds(10, 69, 46, 14);
+			lblNombreComision.setBounds(10, 69, 63, 14);
 			panel_2.add(lblNombreComision);
 			
 			txtCodComision = new JTextField();
@@ -149,8 +150,8 @@ public class Consulta extends JDialog {
 			panel_2.add(txtNombreComision);
 			txtNombreComision.setColumns(10);
 			
-			JLabel lblDescripComision = new JLabel("Comision");
-			lblDescripComision.setBounds(10, 11, 46, 14);
+			JLabel lblDescripComision = new JLabel("Comision:");
+			lblDescripComision.setBounds(10, 11, 81, 14);
 			panel_DescripComision.add(lblDescripComision);
 			
 			panel_DescripRecurso = new JPanel();

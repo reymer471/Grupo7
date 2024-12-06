@@ -35,7 +35,7 @@ public class ModificarJurado extends JDialog {
         setLocationRelativeTo(null);
         setModal(true);
         
-        JLabel lblCodigo = new JLabel("Código:");
+        JLabel lblCodigo = new JLabel("Codigo:");
         lblCodigo.setBounds(30, 30, 100, 20);
         contentPane.add(lblCodigo);
         
@@ -111,7 +111,7 @@ public class ModificarJurado extends JDialog {
         if(nombre.isEmpty() || apellido.isEmpty() || especialidad.isEmpty() || experiencia.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
                 "Todos los campos son obligatorios", 
-                "Error de Validación", 
+                "Error de Validacion", 
                 JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -126,7 +126,7 @@ public class ModificarJurado extends JDialog {
         
         JOptionPane.showMessageDialog(this, 
             "Jurado modificado exitosamente", 
-            "Modificación Exitosa", 
+            "Modificacion Exitosa", 
             JOptionPane.INFORMATION_MESSAGE);
         dispose();
     }
