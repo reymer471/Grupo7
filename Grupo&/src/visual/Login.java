@@ -56,7 +56,7 @@ public class Login extends JFrame {
 				ObjectOutputStream gestionWrite;
 				
 				try {
-					gestion = new FileInputStream("gestion.dat");
+					gestion = new FileInputStream("SPEC.dat");
 					gestionRead = new ObjectInputStream(gestion);
 					SPEC temp = (SPEC)gestionRead.readObject();
                     SPEC.setSPEC(temp);
@@ -65,7 +65,7 @@ public class Login extends JFrame {
 					
 				}catch (FileNotFoundException e) {
 					try {
-						gestion2 = new FileOutputStream("gestion.dat");
+						gestion2 = new FileOutputStream("SPEC.dat");
 						gestionWrite = new ObjectOutputStream(gestion2);
 						Usuario aux = new Usuario("Administrador", "Admin" , "Admin");
 						SPEC.getInstance().regUsuario(aux);
