@@ -36,7 +36,7 @@ public class CrearComision extends JDialog {
 	private JTextField txtJurado4;
 	private JTextField txtJurado5;
 	private int response;
-	private ArrayList<Jurado> newjurados;
+	private ArrayList<Jurado> newjurados = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -164,8 +164,8 @@ public class CrearComision extends JDialog {
 				}
 				
 				txtCodigoComision = new JTextField();
+				txtCodigoComision.setEditable(false);
 				txtCodigoComision.setText("C-" + SPEC.getInstance().codComision);
-				txtCodigoComision.setEnabled(false);
 				txtCodigoComision.setColumns(10);
 				txtCodigoComision.setBounds(110, 18, 136, 20);
 				panel_1.add(txtCodigoComision);
@@ -188,7 +188,7 @@ public class CrearComision extends JDialog {
 					                "Error",
 					                JOptionPane.ERROR_MESSAGE
 					            );
-					        } else if (cantjurados() < 2) {
+					        } else if (cantJurados() < 3) {
 					            JOptionPane.showMessageDialog(
 					                null,
 					                "Debe incluir al menos 3 jurados en la comisión.",
@@ -231,6 +231,8 @@ public class CrearComision extends JDialog {
 					                    "Éxito",
 					                    JOptionPane.INFORMATION_MESSAGE
 					                );
+					                
+					                cleancomision();
 						        }
 					        }
 					        
@@ -254,35 +256,42 @@ public class CrearComision extends JDialog {
 		}
 	}
 
-	protected void agregarcomision() {
+	private void agregarcomision() {
 		// TODO Auto-generated method stub
 		Comision nueva = new Comision(txtNombreComision.getText(), txtCodigoComision.getText());
 		nueva.setLosJurados(newjurados);
+		
+		SPEC.getInstance().insertarComision(nueva);
 	}
 
-	protected void cleancomision() {
+	private void cleancomision() {
 		// TODO Auto-generated method stub
-		txtNombreComision.setText(" ");
-		txtJurado1.setText(" ");
-		txtJurado2.setText(" ");
-		txtJurado3.setText(" ");
-		txtJurado4.setText(" ");
-		txtJurado5.setText(" ");
+		txtCodigoComision.setText("C-" + SPEC.getInstance().codComision );
+		txtNombreComision.setText("");
+		txtJurado1.setText("");
+		txtJurado2.setText("");
+		txtJurado3.setText("");
+		txtJurado4.setText("");
+		txtJurado5.setText("");
 	}
 
-	private int cantjurados() {
+	private int cantJurados() {
 		// TODO Auto-generated method stub
 		int cantjurados = 0;
 		
 		if(!txtJurado1.getText().isEmpty()) {
 			cantjurados++;
-		}else if (!txtJurado2.getText().isEmpty()) {
+		}
+		if (!txtJurado2.getText().isEmpty()) {
 			cantjurados++;
-		}else if (!txtJurado3.getText().isEmpty()) {
+		}
+		if (!txtJurado3.getText().isEmpty()) {
 			cantjurados++;
-		}else if (!txtJurado4.getText().isEmpty()) {
+		}
+		if (!txtJurado4.getText().isEmpty()) {
 			cantjurados++;
-		}else if (!txtJurado5.getText().isEmpty()) {
+		}
+		if (!txtJurado5.getText().isEmpty()) {
 			cantjurados++;
 		}
 				
@@ -291,6 +300,11 @@ public class CrearComision extends JDialog {
 	
 	private boolean juradoencontrado(String jurado) {
 		boolean encontrado = false;
+		
+		Jurado jurado2 = SPEC.getInstance().buscarJuradoById(jurado);
+		if(jurado2 != null) {
+			encontrado = true;
+		}
 		
 		return encontrado;
 	}
@@ -312,7 +326,7 @@ public class CrearComision extends JDialog {
 	        
 
 	        if (response == JOptionPane.YES_OPTION) {
-	            campoJurado.setText("");
+	            campoJurado.setText(" ");
 	            return false; 
 	        } else {
 	            JOptionPane.showMessageDialog(
@@ -324,8 +338,7 @@ public class CrearComision extends JDialog {
 	            cleancomision();
 	            return false; 
 	        }
-	    }
-	    else {
+	    }else {
 	    	
 	    Jurado jurado2 = SPEC.getInstance().buscarJuradoById(jurado);
 	    	newjurados.add(jurado2);

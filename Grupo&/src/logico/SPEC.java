@@ -277,12 +277,32 @@ public class SPEC implements Serializable {
 
 	public Comision buscarComisionById(String codigo) {
 		// TODO Auto-generated method stub
-		return null;
+		Comision c = null;
+		boolean encontrado = false; 
+		int i = 0;
+		while (i < misComisiones.size() && !encontrado) {
+			if(misComisiones.get(i).getCodigo().equalsIgnoreCase(codigo)) {
+				c = misComisiones.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return c;
 	}
 
 	public Comision buscarComisionByNombre(String text) {
 		// TODO Auto-generated method stub
-		return null;
+		Comision c = null;
+		boolean encontrado = false; 
+		int i = 0;
+		while (i < misComisiones.size() && !encontrado) {
+			if(misComisiones.get(i).getNombreComision().equalsIgnoreCase(text)) {
+				c = misComisiones.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return c;
 	}
 
 	private void eliminarTcDeAlgunEvento(TrabajoCientifico tci) {

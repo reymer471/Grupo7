@@ -114,16 +114,26 @@ public class ListadoComisiones extends JDialog {
 							 
 						if (respuesta == JOptionPane.YES_OPTION) {
 								 
-							idcomi = table.getValueAt(index, 0).toString();
+							idcomi = (String)table.getValueAt(index, 0).toString();
+							System.out.println(idcomi);
 							Comision comi = SPEC.getInstance().buscarComisionById(idcomi);
+							if(comi == null) {
+								System.out.println("comi es null");
+							}
+							if(comi != null) {
+								System.out.println("Valida! ");
+							}
 								 
 							 if(comi != null) {
 								 
 								 SPEC.getInstance().eliminarComision(comi);
+								 
 								 JOptionPane.showMessageDialog(
 								 null, 
 					             "La comision fue eliminada correctamente."
-					          );
+								);
+								 
+								 loadComisiones();
 							} 
 						}
 					}
@@ -136,6 +146,11 @@ public class ListadoComisiones extends JDialog {
 			}
 			{
 				cancelarBtn = new JButton("Cancel");
+				cancelarBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelarBtn.setActionCommand("Cancel");
 				buttonPane.add(cancelarBtn);
 			}
