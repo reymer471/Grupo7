@@ -1,20 +1,23 @@
 package visual;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
-import logico.Jurado;
-import logico.Persona;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import logico.SPEC;
 import logico.Participante;
-
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
+import logico.Jurado;
+import logico.Persona;
 
 public class AgregarPersona extends JDialog {
 
@@ -22,182 +25,172 @@ public class AgregarPersona extends JDialog {
     private JTextField txtCodigo;
     private JTextField txtNombre;
     private JTextField txtApellido;
-    private JTextField txtDireccion;
-    private JTextField txtEmail;
-    private JTextField txtExperiencia;
-    private JTextField txtEspecialidad;
-    private JComboBox<String> tipoPersonaComboBox;
-    private DefaultTableModel model;
-
-    public static void main(String[] args) {
-        try {
-        	
-        	DefaultTableModel testModel = new DefaultTableModel(new Object[] {"Codigo", "Nombre", "Apellido","Experiencia", "Especialidad"}, 0);            
-        	AgregarPersona dialog = new AgregarPersona();
-            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialog.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    private JTextField txtDireccionEmail;
+    private JTextField txtEspecificoUno;
+    private JTextField txtEspecificoDos;
+    private JComboBox<String> cbTipoPersona;
+    private JLabel lblEspecificoUno;
+    private JLabel lblEspecificoDos;
 
     public AgregarPersona() {
-        this.model = model;  // Se pasa el modelo de la tabla como parámetro
-        setTitle("Agregar tipo de persona");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarPersona.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
-        setBounds(150, 150, 413, 432);
+        setTitle("Agregar Persona");
+        setBounds(100, 100, 450, 400);
         getContentPane().setLayout(new BorderLayout());
-        contentPanel.setBackground(Color.LIGHT_GRAY);
-        contentPanel.setLayout(null);
-        contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
+        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
-        setLocationRelativeTo(null);
-
-        // Etiquetas comunes
-        JLabel lblCodigo = new JLabel("Codigo:");
-        lblCodigo.setBounds(10, 20, 100, 20);
+        contentPanel.setLayout(null);
+        
+        JLabel lblCodigo = new JLabel("Código:");
+        lblCodigo.setBounds(30, 30, 100, 20);
         contentPanel.add(lblCodigo);
-
-        JLabel lblNombre = new JLabel("Nombre:");
-        lblNombre.setBounds(10, 60, 100, 20);
-        contentPanel.add(lblNombre);
-
-        JLabel lblApellido = new JLabel("Apellido:");
-        lblApellido.setBounds(10, 100, 100, 20);
-        contentPanel.add(lblApellido);
-
-        // Campos comunes
+        
         txtCodigo = new JTextField();
-        txtCodigo.setEditable(false);
-        txtCodigo.setText("P-" + SPEC.getInstance().codPersona);
-        txtCodigo.setBounds(120, 20, 200, 20);
+        txtCodigo.setBounds(150, 30, 250, 20);
         contentPanel.add(txtCodigo);
-
+        txtCodigo.setColumns(10);
+        
+        JLabel lblNombre = new JLabel("Nombre:");
+        lblNombre.setBounds(30, 70, 100, 20);
+        contentPanel.add(lblNombre);
+        
         txtNombre = new JTextField();
-        txtNombre.setBounds(120, 60, 200, 20);
+        txtNombre.setColumns(10);
+        txtNombre.setBounds(150, 70, 250, 20);
         contentPanel.add(txtNombre);
-
+        
+        JLabel lblApellido = new JLabel("Apellido:");
+        lblApellido.setBounds(30, 110, 100, 20);
+        contentPanel.add(lblApellido);
+        
         txtApellido = new JTextField();
-        txtApellido.setBounds(120, 100, 200, 20);
+        txtApellido.setColumns(10);
+        txtApellido.setBounds(150, 110, 250, 20);
         contentPanel.add(txtApellido);
-
-        // Selección de tipo de persona
-        JLabel lblTipoPersona = new JLabel("Tipo de Persona:");
-        lblTipoPersona.setBounds(10, 140, 100, 20);
+        
+        JLabel lblTipoPersona = new JLabel("Tipo Persona:");
+        lblTipoPersona.setBounds(30, 150, 100, 20);
         contentPanel.add(lblTipoPersona);
-
-        tipoPersonaComboBox = new JComboBox<>();
-        tipoPersonaComboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Participante", "Jurado"}));
-        tipoPersonaComboBox.setBounds(120, 140, 200, 20);
-        contentPanel.add(tipoPersonaComboBox);
-
-        // Campos específicos para Participante
-        JLabel lblDireccion = new JLabel("Direccion:");
-        lblDireccion.setBounds(10, 180, 100, 20);
-        contentPanel.add(lblDireccion);
-
-        txtDireccion = new JTextField();
-        txtDireccion.setBounds(120, 180, 200, 20);
-        contentPanel.add(txtDireccion);
-
-        JLabel lblEmail = new JLabel("Email:");
-        lblEmail.setBounds(10, 220, 100, 20);
-        contentPanel.add(lblEmail);
-
-        txtEmail = new JTextField();
-        txtEmail.setBounds(120, 220, 200, 20);
-        contentPanel.add(txtEmail);
-
-        // Campos específicos para Jurado
-        JLabel lblExperiencia = new JLabel("Experiencia:");
-        lblExperiencia.setBounds(10, 260, 100, 20);
-        contentPanel.add(lblExperiencia);
-
-        txtExperiencia = new JTextField();
-        txtExperiencia.setBounds(120, 260, 200, 20);
-        contentPanel.add(txtExperiencia);
-
-        JLabel lblEspecialidad = new JLabel("Especialidad:");
-        lblEspecialidad.setBounds(10, 300, 100, 20);
-        contentPanel.add(lblEspecialidad);
-
-        txtEspecialidad = new JTextField();
-        txtEspecialidad.setBounds(120, 300, 200, 20);
-        contentPanel.add(txtEspecialidad);
-
-        // Botones de acción
+        
+        cbTipoPersona = new JComboBox<>();
+        cbTipoPersona.setBounds(150, 150, 250, 20);
+        cbTipoPersona.addItem("Participante");
+        cbTipoPersona.addItem("Jurado");
+        contentPanel.add(cbTipoPersona);
+        
+        lblEspecificoUno = new JLabel("Dirección:");
+        lblEspecificoUno.setBounds(30, 190, 100, 20);
+        contentPanel.add(lblEspecificoUno);
+        
+        txtDireccionEmail = new JTextField();
+        txtDireccionEmail.setColumns(10);
+        txtDireccionEmail.setBounds(150, 190, 250, 20);
+        contentPanel.add(txtDireccionEmail);
+        
+        lblEspecificoDos = new JLabel("Email:");
+        lblEspecificoDos.setBounds(30, 230, 100, 20);
+        contentPanel.add(lblEspecificoDos);
+        
+        txtEspecificoUno = new JTextField();
+        txtEspecificoUno.setColumns(10);
+        txtEspecificoUno.setBounds(150, 230, 250, 20);
+        contentPanel.add(txtEspecificoUno);
+        
+        txtEspecificoDos = new JTextField();
+        txtEspecificoDos.setColumns(10);
+        txtEspecificoDos.setBounds(150, 270, 250, 20);
+        contentPanel.add(txtEspecificoDos);
+        
+        cbTipoPersona.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                actualizarCampos();
+            }
+        });
+        
+        // Botones
         JPanel buttonPane = new JPanel();
-        buttonPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getContentPane().add(buttonPane, BorderLayout.SOUTH);
-
-        JButton Agregar = new JButton("Agregar");
-        Agregar.setIcon(new ImageIcon(AgregarPersona.class.getResource("/javax/swing/plaf/metal/icons/Inform.gif")));
-        Agregar.setActionCommand("Agregar");
-        buttonPane.add(Agregar);
-
-        JButton cancelButton = new JButton("Cancelar");
-        cancelButton.setIcon(new ImageIcon(AgregarPersona.class.getResource("/javax/swing/plaf/metal/icons/ocean/error.png")));
-        cancelButton.setActionCommand("Cancel");
-        buttonPane.add(cancelButton);
-
-        // Lógica para cambiar entre campos de Participante y Jurado
-        tipoPersonaComboBox.addActionListener(new ActionListener() {
+        
+        JButton btnRegistrar = new JButton("Registrar");
+        btnRegistrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String selectedType = (String) tipoPersonaComboBox.getSelectedItem();
-                if (selectedType.equals("Participante")) {
-                    txtDireccion.setEnabled(true);
-                    txtEmail.setEnabled(true);
-                    txtExperiencia.setEnabled(false);
-                    txtEspecialidad.setEnabled(false);
-                } else if (selectedType.equals("Jurado")) {
-                    txtDireccion.setEnabled(false);
-                    txtEmail.setEnabled(false);
-                    txtExperiencia.setEnabled(true);
-                    txtEspecialidad.setEnabled(true);
-                }
+                registrarPersona();
             }
         });
+        buttonPane.add(btnRegistrar);
         
-        
-
-        // Acciones de los botones
-        Agregar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String codigo = txtCodigo.getText();
-                String nombre = txtNombre.getText();
-                String apellido = txtApellido.getText();
-                
-
-                if (codigo.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                Persona persona = null;
-                if (tipoPersonaComboBox.getSelectedItem().equals("Participante")) {
-                    persona = new Participante(codigo, nombre, apellido, txtDireccion.getText(), txtEmail.getText());
-                } else if (tipoPersonaComboBox.getSelectedItem().equals("Jurado")) {
-                    persona = new Jurado(codigo, nombre, apellido, txtExperiencia.getText(), txtEspecialidad.getText());
-                }
-
-                if (persona != null) {
-                    // Agregar la persona a la tabla
-                    model.addRow(new Object[]{persona.getCodigo(), persona.getNombre(), persona.getApellido(),
-                            persona instanceof Jurado ? ((Jurado) persona).getExperiencia() : "",
-                            persona instanceof Jurado ? ((Jurado) persona).getEspecialidad() : ""});
-                    
-                    JOptionPane.showMessageDialog(null, "Se ha agregado correctamente a " + persona.getNombre() + " " + persona.getApellido(), "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();  // Cierra el diálogo
-                }
-            }
-        });
-
-        cancelButton.addActionListener(new ActionListener() {
+        JButton btnCancelar = new JButton("Cancelar");
+        btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
+        buttonPane.add(btnCancelar);
+        
+        actualizarCampos();
     }
-
+    
+    private void actualizarCampos() {
+        String tipoSeleccionado = (String) cbTipoPersona.getSelectedItem();
+        
+        if ("Participante".equals(tipoSeleccionado)) {
+            lblEspecificoUno.setText("Dirección:");
+            lblEspecificoDos.setText("Email:");
+            txtEspecificoUno.setVisible(true);
+            txtEspecificoDos.setVisible(true);
+            lblEspecificoUno.setVisible(true);
+            lblEspecificoDos.setVisible(true);
+        } else {
+            lblEspecificoUno.setText("Experiencia:");
+            lblEspecificoDos.setText("Especialidad:");
+            txtEspecificoUno.setVisible(true);
+            txtEspecificoDos.setVisible(true);
+            lblEspecificoUno.setVisible(true);
+            lblEspecificoDos.setVisible(true);
+        }
+    }
+    
+    private void registrarPersona() {
+        String codigo = txtCodigo.getText();
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String tipoPersona = (String) cbTipoPersona.getSelectedItem();
+        
+        // Validaciones básicas
+        if (codigo.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Persona nuevaPersona = null;
+        
+        if ("Participante".equals(tipoPersona)) {
+            String direccion = txtDireccionEmail.getText();
+            String email = txtEspecificoUno.getText();
+            
+            nuevaPersona = new Participante(codigo, nombre, apellido, direccion, email);
+        } else {
+            String experiencia = txtDireccionEmail.getText();
+            String especialidad = txtEspecificoUno.getText();
+            
+            nuevaPersona = new Jurado(codigo, nombre, apellido, experiencia, especialidad);
+        }
+        
+        // Insertar en el sistema
+        SPEC.getInstance().insertarPersona(nuevaPersona);
+        
+        JOptionPane.showMessageDialog(this, tipoPersona + " registrado exitosamente", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Limpiar campos
+        limpiarCampos();
+    }
+    
+    private void limpiarCampos() {
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtDireccionEmail.setText("");
+        txtEspecificoUno.setText("");
+        txtEspecificoDos.setText("");
+    }
 }
