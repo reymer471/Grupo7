@@ -1,11 +1,16 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Evento {
+public class Evento implements Serializable {
 	
-	    private String nombre;
+	    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		private String nombre;
 	    private String idEvento;
 	    private Date fechaEvento;
 	    private String tipoEvento;
@@ -114,6 +119,13 @@ public class Evento {
 				trabajosCientificos.remove(trabajo);
 			}
 		}
+		
+		public void eliminarRecursoDeEvento(Recurso recurso) {
+			// TODO Auto-generated method stub
+			if (recurso != null) {
+				recursosEvento.remove(recurso);
+			}
+		}
 	    
 		 public void crearEvento() {
 		        System.out.println("Evento creado: " + nombre);
@@ -130,6 +142,9 @@ public class Evento {
 		    public void agregarComision(Comision comision) {
 		        comisiones.add(comision);
 		    }
+
+
+			
 
 
 			

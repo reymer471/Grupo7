@@ -1,8 +1,14 @@
 package logico;
 
-public class Recurso {
+import java.io.Serializable;
+
+public class Recurso implements Serializable {
 	
-    private String id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String id;
     private String tipoRecurso;
     private String nombre;
     private int cantidadTotal;

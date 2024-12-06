@@ -1,9 +1,14 @@
 package logico;
 
 import java.util.ArrayList;
-
-public class SPEC {
+import java.io.*;
+import java.io.Serializable;
+public class SPEC implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<TrabajoCientifico>mistrabajosCientificos;
 	private ArrayList<Evento>misEventos;
 	private ArrayList<Persona>misPersonas;
@@ -85,6 +90,12 @@ public class SPEC {
 	public void insertarComision(Comision comision) {
 		misComisiones.add(comision);
 		codComision++;
+	}
+	
+	public void insertarEvento(Evento evento) {
+		// TODO Auto-generated method stub
+		misEventos.add(evento);
+		codEvento++;
 	}
 	
 	public void insertarRecurso(Recurso nuevoRecurso) {
@@ -292,8 +303,85 @@ public class SPEC {
 		}
 	}
 
+	public Recurso buscarRecursoById(String codRecurso2) {
+		// TODO Auto-generated method stub
+		Recurso recurso = null;
+		boolean found = false; 
+		int i = 0; 
+		
+		while(i < misRecursos.size() && !found) {
+			if (misRecursos.get(i).getId().equalsIgnoreCase(codRecurso2)) {
+				recurso = misRecursos.get(i);
+				found = true;
+			}
+			i++;
+		}
+		return recurso;
+	}
 	
+	private void eliminarRecursoDeAlgunEvento(Recurso recurso2) {
+		
+		for (Evento evento : misEventos) {
+			for (Recurso recurso : evento.getRecursosEvento()) {
+				
+				if(recurso2.getId().equalsIgnoreCase(recurso.getId())){
+					
+					evento.eliminarRecursoDeEvento(recurso);
+				}
+			}
+			
+		}
+	}
 
+	public void eliminarRecurso(Recurso recurso) {
+		// TODO Auto-generated method stub
+		if (recurso != null) {
+			misRecursos.remove(recurso);
+		}
+	}
+
+	
+	public void guardarDatos(String archivo) {
+        try (FileOutputStream fos = new FileOutputStream(archivo);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(this); 
+            System.out.println("Datos guardados correctamente en " + archivo);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error al guardar los datos: " + e.getMessage());
+        }
+    }
+
+    
+    public static void cargarDatos(String archivo) {
+        try (FileInputStream fis = new FileInputStream(archivo);
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            sistemaSpec = (SPEC) ois.readObject(); 
+            System.out.println("Datos cargados correctamente desde " + archivo);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar los datos: " + e.getMessage());
+        }
+    }
+
+
+	public void insertarEvento1(Evento evento) {
+		// TODO Auto-generated method stub
+		misEventos.add(evento);
+		codEvento++;
+	}
+
+	public static void setSPEC(SPEC temp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void regUsuario(Usuario aux) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 
 }

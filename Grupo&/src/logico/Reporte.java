@@ -3,6 +3,10 @@ package logico;
 import java.util.Date;
 
 public class Reporte extends infoEvento {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String tipoReporte; 
 	private Date generacion;
 	

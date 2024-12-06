@@ -134,6 +134,7 @@ public class TablaJurado extends JDialog {
         });
     }
 
+
     private void cargarJurados() {
         // Limpiar tabla
         model.setRowCount(0);
@@ -151,29 +152,12 @@ public class TablaJurado extends JDialog {
                 jurado.getEspecialidad()
             };
             model.addRow(rowData);
-        }
-    }
+        }}
 
-    private ArrayList<Jurado> obtenerJurados() {
-        ArrayList<Jurado> jurados = new ArrayList<>();
-        
-        // Filtrar solo jurados de la lista de personas
-        for (Persona persona : SPEC.getInstance().getMisPersonas()) {
-            if (persona instanceof Jurado) {
-                jurados.add((Jurado) persona);
-            }
-        }
-        
-        return jurados;
-    }
+	private ArrayList<Jurado> obtenerJurados() {
+		// TODO Auto-generated method stub
+		return null;
+	}}
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                TablaJurado dialog = new TablaJurado();
-                dialog.setVisible(true);
-            }
-        });
-    }
-}
+
+    

@@ -10,7 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import org.omg.PortableInterceptor.USER_EXCEPTION;
+
+//import com.sun.java.util.jar.pack.Package.File;
+
 import logico.Control;
+import logico.SPEC;
+import logico.Usuario;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -21,6 +27,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
@@ -37,6 +50,37 @@ public class Login extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				FileInputStream gestion;
+				FileOutputStream gestion2;
+				ObjectInputStream gestionRead;
+				ObjectOutputStream gestionWrite;
+				
+				try {
+					gestion = new FileInputStream("gestion.dat");
+					gestionRead = new ObjectInputStream(gestion);
+					SPEC temp = (SPEC)gestionRead.readObject();
+                    SPEC.setSPEC(temp);
+					gestion.close();
+					gestionRead.close();
+					
+				}catch (FileNotFoundException e) {
+					try {
+						gestion2 = new FileOutputStream("gestion.dat");
+						gestionWrite = new ObjectOutputStream(gestion2);
+						Usuario aux = new Usuario("Administrador", "Admin" , "Admin");
+						SPEC.getInstance().regUsuario(aux);
+						gestionWrite.writeObject(Control.getInstance());
+						gestion2.close();
+						gestionWrite.close();
+					}catch(FileNotFoundException e1) {
+					}catch (IOException e1) {
+					}
+				}catch(IOException e) {
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				try {
 					Login frame = new Login();
 					frame.setVisible(true);
@@ -98,6 +142,16 @@ public class Login extends JFrame {
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(Control.getInstance().confirmLogin(textField, textField_1.getText())) {
+					Principal frame = new Principal();
+					dispose();
+					frame.setVisible(true);
+							
+				};
+				
+			}
+		});	
+				
 				
 				btnNewButton.addActionListener(new ActionListener() {
 				    public void actionPerformed(ActionEvent e) {
@@ -109,7 +163,7 @@ public class Login extends JFrame {
 				        } else {
 				            if (Control.getInstance().confirmLogin(username, password)) { 
 				                Principal frame = new Principal(); 
-				                if (Control.getLoginUser().getTipo().equalsIgnoreCase("comercial")) {
+				                if (Control.getLoginUser().getTipo1().equalsIgnoreCase("comercial")) {
 		                            // Bloquear el menú de administración para usuario comercial
 		                            frame.desactivarMenuAdministracion();
 		                        }
@@ -124,13 +178,6 @@ public class Login extends JFrame {
 	
 				
 				
-				if(Control.getInstance().confirmLogin(textField.getText(), textField_1.getText())) {
-					Principal frame = new Principal();
-					dispose();
-					frame.setVisible(true);
-				}
-			}
-		});
 		btnNewButton.setBounds(235, 212, 89, 23);
 		panel.add(btnNewButton);
 		

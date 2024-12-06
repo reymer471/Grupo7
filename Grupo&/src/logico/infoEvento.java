@@ -1,7 +1,13 @@
 package logico;
 
-public abstract class infoEvento {
+import java.io.Serializable;
+
+public abstract class infoEvento implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String temaEvento;
 	protected String numeroPersonas;
 	protected String duracionEvento;

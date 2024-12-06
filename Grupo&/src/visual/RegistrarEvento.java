@@ -175,10 +175,12 @@ public class RegistrarEvento extends JDialog {
 
             // Crear el evento
             Evento evento = new Evento(nombre, codigo, fecha, tipoEvento, null);
+            SPEC.getInstance().insertarEvento(evento);
 
             // Confirmación
             mostrarMensaje("Evento registrado exitosamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
 
+            SPEC.getInstance().guardarDatos("gestion.dat");
             // Cerrar la ventana
             dispose();
         } catch (Exception ex) {
