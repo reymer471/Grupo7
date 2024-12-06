@@ -18,6 +18,8 @@ import logico.SPEC;
 import logico.Participante;
 import logico.Jurado;
 import logico.Persona;
+import javax.swing.border.EtchedBorder;
+import java.awt.Color;
 
 public class AgregarPersona extends JDialog {
 
@@ -27,26 +29,25 @@ public class AgregarPersona extends JDialog {
     private JTextField txtApellido;
     private JTextField txtDireccionEmail;
     private JTextField txtEspecificoUno;
-    private JTextField txtEspecificoDos;
     private JComboBox<String> cbTipoPersona;
     private JLabel lblEspecificoUno;
     private JLabel lblEspecificoDos;
 
     public AgregarPersona() {
-        setTitle("Agregar Persona");
-        setBounds(100, 100, 450, 400);
+        setTitle("Agregar persona");
+        setBounds(100, 100, 426, 341);
         getContentPane().setLayout(new BorderLayout());
-        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.BLUE, Color.YELLOW));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
         setLocationRelativeTo(null);
         
-        JLabel lblCodigo = new JLabel("Código:");
+        JLabel lblCodigo = new JLabel("Codigo:");
         lblCodigo.setBounds(30, 30, 100, 20);
         contentPanel.add(lblCodigo);
         
         txtCodigo = new JTextField();
-        txtCodigo.setBounds(150, 30, 250, 20);
+        txtCodigo.setBounds(126, 30, 250, 20);
         contentPanel.add(txtCodigo);
         txtCodigo.setColumns(10);
         
@@ -56,7 +57,7 @@ public class AgregarPersona extends JDialog {
         
         txtNombre = new JTextField();
         txtNombre.setColumns(10);
-        txtNombre.setBounds(150, 70, 250, 20);
+        txtNombre.setBounds(126, 70, 250, 20);
         contentPanel.add(txtNombre);
         
         JLabel lblApellido = new JLabel("Apellido:");
@@ -65,7 +66,7 @@ public class AgregarPersona extends JDialog {
         
         txtApellido = new JTextField();
         txtApellido.setColumns(10);
-        txtApellido.setBounds(150, 110, 250, 20);
+        txtApellido.setBounds(126, 110, 250, 20);
         contentPanel.add(txtApellido);
         
         JLabel lblTipoPersona = new JLabel("Tipo Persona:");
@@ -73,18 +74,18 @@ public class AgregarPersona extends JDialog {
         contentPanel.add(lblTipoPersona);
         
         cbTipoPersona = new JComboBox<>();
-        cbTipoPersona.setBounds(150, 150, 250, 20);
+        cbTipoPersona.setBounds(126, 150, 250, 20);
         cbTipoPersona.addItem("Participante");
         cbTipoPersona.addItem("Jurado");
         contentPanel.add(cbTipoPersona);
         
-        lblEspecificoUno = new JLabel("Dirección:");
+        lblEspecificoUno = new JLabel("Direccion:");
         lblEspecificoUno.setBounds(30, 190, 100, 20);
         contentPanel.add(lblEspecificoUno);
         
         txtDireccionEmail = new JTextField();
         txtDireccionEmail.setColumns(10);
-        txtDireccionEmail.setBounds(150, 190, 250, 20);
+        txtDireccionEmail.setBounds(126, 190, 250, 20);
         contentPanel.add(txtDireccionEmail);
         
         lblEspecificoDos = new JLabel("Email:");
@@ -93,13 +94,8 @@ public class AgregarPersona extends JDialog {
         
         txtEspecificoUno = new JTextField();
         txtEspecificoUno.setColumns(10);
-        txtEspecificoUno.setBounds(150, 230, 250, 20);
+        txtEspecificoUno.setBounds(126, 230, 250, 20);
         contentPanel.add(txtEspecificoUno);
-        
-        txtEspecificoDos = new JTextField();
-        txtEspecificoDos.setColumns(10);
-        txtEspecificoDos.setBounds(150, 270, 250, 20);
-        contentPanel.add(txtEspecificoDos);
         
         cbTipoPersona.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -138,14 +134,12 @@ public class AgregarPersona extends JDialog {
             lblEspecificoUno.setText("Dirección:");
             lblEspecificoDos.setText("Email:");
             txtEspecificoUno.setVisible(true);
-            txtEspecificoDos.setVisible(true);
             lblEspecificoUno.setVisible(true);
             lblEspecificoDos.setVisible(true);
         } else {
             lblEspecificoUno.setText("Experiencia:");
             lblEspecificoDos.setText("Especialidad:");
             txtEspecificoUno.setVisible(true);
-            txtEspecificoDos.setVisible(true);
             lblEspecificoUno.setVisible(true);
             lblEspecificoDos.setVisible(true);
         }
@@ -192,6 +186,5 @@ public class AgregarPersona extends JDialog {
         txtApellido.setText("");
         txtDireccionEmail.setText("");
         txtEspecificoUno.setText("");
-        txtEspecificoDos.setText("");
     }
 }
